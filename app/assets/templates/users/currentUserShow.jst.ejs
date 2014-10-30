@@ -1,0 +1,8 @@
+<h1>Here is that <%= model.escape("username") %>.</h1>
+<h2>Profile</h2>
+<% if (model.profile) { %>
+  <%= model.profile.escape("about") %>
+<% } %>
+
+
+<a href="#/edit">Edit Profile</a>

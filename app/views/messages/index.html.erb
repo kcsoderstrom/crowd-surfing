@@ -1,0 +1,9 @@
+<h1>Your messages</h1>
+
+<ul>
+  <% current_user.messages.each do |msg| %>
+    <li><a href="<%= message_url(msg) %>"><%= h msg %></a></li>
+  <% end %>
+</ul>
+
+<a href="<%= new_message_url %>">New Message</a>

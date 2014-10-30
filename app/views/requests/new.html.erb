@@ -1,0 +1,13 @@
+<form method="POST" action="<%= requests_url %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="invitation" value="false">
+  <input type="hidden" name="receiver_id" value="<%= h @request.receiver_id %>">
+  <button type="submit">Submit request</button>
+</form>
+
+<form method="POST" action="<%= requests_url %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="invitation" value="true">
+  <input type="hidden" name="receiver_id" value="<%= h @request.receiver_id %>">
+  <button type="submit">Submit invitation</button>
+</form>

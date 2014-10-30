@@ -1,0 +1,14 @@
+<form method="GET" action="<%= users_url %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="user-username">Username</label>
+  <input id="user-username" name="match">
+  <button type="submit">Search</button>
+
+</form>
+
+<% if @users %>
+  <% @users.each do |user| %>
+    <a href="<%= user_url(user) %>"><%= h user %></a>
+  <% end %>
+<% end %>

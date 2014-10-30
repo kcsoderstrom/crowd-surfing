@@ -1,0 +1,13 @@
+class Message < ActiveRecord::Base
+  belongs_to :sender,
+  class_name: "User",
+  foreign_key: :sender_id
+  
+  belongs_to :reciever,
+  class_name: "User",
+  foreign_key: :receiver_id
+  
+  def to_s
+    subject
+  end
+end

@@ -1,0 +1,25 @@
+<header>
+  <nav class="full-nav">
+
+    <figure class="logo"></figure>
+    <ul class="left-nav">
+      <li><a class="home" href="#">Home</a></li>
+      <li><a href="#/search">Search</a></li>
+    </ul>
+
+    <ul class="right-nav">
+      <li><a class="requests" href="#/requests" alt="Requests"></a></li>
+      <li><a class="messages" href="#/messages" alt="Messages"></a></li>
+
+      <li><a class="user-img" href="javascript:void(0)" alt="howdy <%= h current_user %>"></a>
+        <form class="sign-out" method="POST" action="<%= session_url %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <button type="submit">Sign Out</button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<% puts "WHAT IS GOING ON" %>

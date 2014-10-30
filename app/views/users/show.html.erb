@@ -1,0 +1,13 @@
+<h1>Here is that <%= @user %>.</h1>
+
+<% if @user != current_user %>
+  <a href="<%= new_user_request_url(@user) %>">Send request</a>
+  <a href="<%= new_message_url %>">Send message</a>
+<% end %>
+  
+<h2>Profile</h2>
+<%= @user.profile %>
+
+<% if @user == current_user %>
+  <a href="<%= edit_user_url(current_user) %>">Edit Profile</a>
+<% end %>

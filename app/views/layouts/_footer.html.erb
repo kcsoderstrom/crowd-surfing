@@ -1,0 +1,14 @@
+Report a bug
+<form method="POST" action="<%= messages_url %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" id="msg-receiver" name="receiver_id" value="1">
+
+  <label for="msg-subject">Subject</label>
+  <input id="msg-subject" name="subject" value="">
+
+  <label for="msg-body">Body</label>
+  <textarea id="msg-body" name="body"></textarea>
+
+  <button type="submit">Send</button>
+</form>

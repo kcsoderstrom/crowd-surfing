@@ -1,0 +1,15 @@
+<form class="search">
+  <label for="user-username">Username</label>
+  <input id="user-username" name="match">
+  <button type="submit">Search</button>
+</form>
+
+<button class="advanced">Sort & Filter</button>
+
+<section class="advMenu"></section>
+
+<ul>
+  <% collection.forEach(function(user) { %>
+    <li><a href="#/users/<%= user.id %>"><%= user.escape("username") %></a></li>
+  <% }); %>
+</ul>

@@ -1,0 +1,12 @@
+<form class="message-new">
+  <label for="msg-receiver">To<label>
+  <input id="msg-receiver" name="receiver_id" value="<%= model.escape("receiver_id") %>">
+
+  <label for="msg-subject">Subject</label>
+  <input id="msg-subject" name="subject" value="<%= model.escape("subject") %>">
+
+  <label for="msg-body">Body</label>
+  <textarea id="msg-body" name="body"><%= model.escape("body") %></textarea>
+
+  <button type="submit">Send</button>
+</form>

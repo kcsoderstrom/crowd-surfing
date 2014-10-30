@@ -1,0 +1,5 @@
+<form class="edit-profile">
+  <textarea name="user[profile][about]"
+            class="profile"><% if(model.profile) { %><%= model.profile.escape("about") %><% } %></textarea>
+  <button type="submit">Update Profile</button>
+</form>

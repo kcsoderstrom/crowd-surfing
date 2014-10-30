@@ -1,0 +1,297 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+html, ol, body, ul, li, input, a, button, form, label, textarea, h1, h2, nav, header {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: transparent;
+  font: inherit;
+  text-decoration: none;
+}
+
+body {
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+input {
+  background-color: white;
+  border-radius: 5px;
+  width: 90%;
+}
+
+textarea {
+  background-color: white;
+  width: 90%;
+  border-radius: 5px;
+  height: 40px;
+}
+
+footer {
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  height: 150px;
+  background: green;
+  width: 100%;
+}
+
+footer:hover {
+  outline: 2px solid blue;
+}
+
+
+
+// WELCOME PAGE
+
+section.signInModal, section.signUpModal {
+  display: none;
+}
+
+section.active {
+  display: block;
+  z-index: 100;
+  background: white;
+  height: 300px;
+  width: 290px;
+  padding: 15px;
+  position: absolute;
+  top: 66px;
+  left: 50%;
+  margin-left: -100px;
+  border-radius: 10px;
+}
+
+.shady {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+section.welcome > a {
+  width: 200px;
+  height: 26px;
+  padding: 10px 0 14px 0;
+  border-radius: 10px;
+  font-size: 26px;
+  margin-top: 33px;
+}
+
+a.sign-up {
+  float: left;
+  margin-left: 150px;
+  margin-right: 21px;
+  background-image: linear-gradient(to bottom, #58616f,#373f49);
+  color: white;
+}
+
+a.sign-in {
+  float: left;
+  background-image: linear-gradient(to bottom, #dcdee0,#9c9c9c);
+  color: #363636;
+}
+
+section.welcome {
+  position: relative;
+  width: 720px;
+  height: 550px;
+  padding: 90px 12px 0 12px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: -57px;            // THIS IS TERRIBLE AND HACKY
+}
+
+section.welcome-body {
+  background: image-url("couchsurfing_bg.jpg") no-repeat center;
+}
+
+section.welcome:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+section.welcome > h1 {
+  font-weight: bold;
+  margin-top: 33px;
+  font-size: 60px;
+  color: white;
+}
+
+p.welcome {
+  color: white;
+  font-size: 21px;
+  padding: 0 100px;
+  margin-top: 33px;
+  margin-bottom: 10px;
+}
+
+figure.brand {
+  width: 350px;
+  height: 100px;
+  background: image-url("brand.png") no-repeat;
+  margin: 0 auto;
+}
+
+// END WELCOME PAGE
+
+
+h1 {
+  font-size: 20px;
+  color: black;
+}
+
+section.main {
+  padding-top: 57px;
+  bottom: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 1000px;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+.currentUser {
+  width: 948px;
+  margin: 0 auto;
+  padding: 0 5px;
+  border-left: 1px solid #CBCBCB;
+  border-right: 1px solid #CBCBCB;
+  background-color: white;
+  padding-top: 30px;             //TESTING TESTING
+}
+
+section.main {
+  background-color: #ECEBE0;
+}
+
+input {
+  border: 1px solid black;
+}
+
+// HEADER
+
+header {
+  position: fixed;
+  height: 57px;
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px 0px;
+}
+
+nav.full-nav {
+  position: relative;
+  width: 1000px;
+  height: 57px;
+  margin: 0 auto;
+
+  ul {
+    height: 44px;
+    padding-top: 8px;
+  }
+
+  li {
+    height: 36px;
+    text-align: center;
+    float: left;
+    padding-top: 10px;    //I hate this
+  }
+
+}
+
+.left-nav {
+  float: left;
+  left: 0px;
+  width: 394px;
+  height: 100px;
+
+  li {
+    float: left;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.right-nav {
+  float: right;
+
+  li {
+    float: right;
+    width: 60px;
+    overflow: hidden;
+  }
+}
+
+figure.logo {
+  float: left;
+  display: block;
+  width: 113px;
+  height: 38px;
+  content: "";
+  background-image: image-url("logo-small.png");
+}
+
+a.messages {
+  height: 100%;
+  width: 100%;
+  background-image: image-url("messages.png");
+}
+
+a.requests {
+  height: 100%;
+  width: 100%;
+  background-image: image-url("disco.jpg");
+}
+
+a.user-img {
+  height: 100%;
+  width: 100%;
+  background-image: image-url("goat.gif");
+}
+
+form.sign-out {
+  display: none;
+  position: absolute;
+}
+
+li:hover > form.sign-out {
+  display: block;
+}
+
+// END HEADER
+
+section.advMenu {
+  display: none;
+}
+
+section.advMenu.active {
+  display: block;
+}

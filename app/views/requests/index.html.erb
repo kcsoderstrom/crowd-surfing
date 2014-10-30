@@ -1,0 +1,15 @@
+<h1>Your sent requests</h1>
+
+<ul>
+  <% current_user.sent_requests.each do |request| %>
+    <li><%= h request %></li>
+  <% end %>
+</ul>
+
+<h1>Your received requests</h1>
+
+<ul>
+  <% current_user.received_requests.each do |request| %>
+    <li><%= h request %></li>
+  <% end %>
+</ul>
