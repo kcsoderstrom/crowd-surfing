@@ -16,7 +16,6 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
 
   signOut: function(event) {
     event.preventDefault();
-    console.log("heyyy");
     var session = new CrowdSurfing.Models.Session();
     session.destroy({
       success: function() {

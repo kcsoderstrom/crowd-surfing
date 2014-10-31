@@ -1,10 +1,9 @@
-CrowdSurfing.Views.MessageNew = Backbone.View.extend({
-  template: JST["messages/messageNew"],
+CrowdSurfing.Views.RequestNew = Backbone.View.extend({
+  template: JST["requests/requestNew"],
 
   events: {
-    "click button" : "sendMessage",
-    "keyup input#msg-receiver" : "quickSearch",
-    "click input#msg-receiver" : "stopAutofilling"
+    "click button" : "sendRequest",
+    "keyup input#req-receiver" : "quickSearch"
   },
 
   initialize: function(options) {
@@ -33,15 +32,15 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
     });
   },
 
-  sendMessage: function(event) {
+  sendRequest: function(event) {
     event.preventDefault();
-    var msg = new CrowdSurfing.Models.Message();
-    var $form = $("form.message-new");
+    var req = new CrowdSurfing.Models.Request();
+    var $form = $("form.request-new");
     var formData = $form.serializeJSON();
-    msg.set(formData);
-    msg.save({}, {
+    req.set(formData);
+    req.save({}, {
       success: function() {
-        Backbone.history.navigate("/messages", {trigger: true});
+        Backbone.history.navigate("/requests", {trigger: true});
       }
     });
   },
@@ -54,6 +53,5 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
     if(match.length > 1) {
       this.matches.fetch({data: { match: match }});
     }
-  },
-
+  }
 })

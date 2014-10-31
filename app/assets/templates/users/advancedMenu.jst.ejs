@@ -1,33 +1,49 @@
-<form class="sort-method">
+<form class="sort-criterion">
   <h1>Sort by</h1>
-  <input type="radio" name="sort-method" value="last-login" id="sort-last-login">
-  <label for="sort-last-login">Last login</label>
-  <input type="radio" name="sort-method" value="proximity" id="sort-proximity">
-  <label for="sort-proximity">Proximity</label>
+    <div class="sort">
+      <input type="radio" name="sort-criterion" value="last-login" id="sort-last-login">
+      <label for="sort-last-login">Last login</label>
+    </div>
+
+    <div class="sort">
+      <input type="radio" name="sort-criterion" value="proximity" id="sort-proximity">
+      <label for="sort-proximity">Proximity</label>
+    </div>
 </form>
 
 <form class="filter-criteria">
   <h1>Filter by</h1>
 
-  <form class="age">
+  <section class="age">
     <h2>Age</h2>
-      <label for="age-lower">Between</label>
-      <input id="age-lower" name="age-lower" class="user-age">
-      <label for="age-upper">and</label>
-      <input id="age-upper" name="age-upper" class="user-age">
-  </form>
+      <div class="age">
+        <label for="age-lower">Between</label>
+        <input id="age-lower" name="age_lower" class="user-age">
+      </div>
 
-  <form class="gender">
+      <div class="age">
+        <label for="age-upper">and</label>
+        <input id="age-upper" name="age_upper" class="user-age">
+      </div>
+  </section>
+
+  <section class="gender">
     <h2>Gender</h2>
-      <input type="radio" name="gender-criterion" value="female" id="gender-female" class="gender">
-      <label for="gender-female" class="gender">Female</label>
-      <input type="radio" name="gender-criterion" value="male" id="gender-male" class="gender">
-      <label for="gender-male" class="gender">Male</label>
-      <input type="radio" name="gender-criterion" value="male" id="gender-other" class="gender">
-      <label for="gender-other" class="gender">Other</label>
-  </form>
+      <div class="gender">
+        <input type="radio" name="gender" value="female" id="gender-female" class="gender">
+        <label for="gender-female" class="gender">Female</label>
+      </div>
+      <div class="gender">
+        <input type="radio" name="gender" value="male" id="gender-male" class="gender">
+        <label for="gender-male" class="gender">Male</label>
+      </div>
+      <div class="gender">
+        <input type="radio" name="gender" value="male" id="gender-other" class="gender">
+        <label for="gender-other" class="gender">Other</label>
+      </div>
+  </section>
 
   <h2>Keyword</h2>
     <input name="keyword" id="keyword">
 
-</form>
+  </form>

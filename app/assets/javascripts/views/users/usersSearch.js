@@ -24,8 +24,12 @@ CrowdSurfing.Views.UsersSearch = Backbone.View.extend({
   search: function(event) {
     event.preventDefault();
 
-    var match = $(event.currentTarget).find("input").val();
-    this.matches.fetch({data: {match: match}});
+    var $filterForm = $("form.filter-criteria");
+    var filterData = $filterForm.serializeJSON();
+
+    var sortCriterion = $("form.sort-criterion").find("input:checked").val();
+
+    this.matches.fetch({data: { filter_by: filterData, sort_by: sortCriterion}});
     this.render();
   },
 

@@ -34,6 +34,7 @@ section.advMenu {
   background-color: lightgray;
 
   form {
+    position: relative;
     float: left;
     width: 50%;
   }
@@ -43,19 +44,35 @@ section.advMenu {
     float: left;
   }
 
+  div.gender, div.sort {
+    position: relative;
+    width: 200px;
+    padding: 5px;
+    border-radius: 10px;
+    background: red;
+    margin: 5px;
+  }
+
+  div.gender:after, div.sort:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  section.age:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
   label {
     float: left;
   }
 
-  label.gender {
-    width: 200px;
-    background: gray;
-  }
-
   input[type="radio"] {
-    position: absolute;
+    width: 20px;
+    float: left;
   }
-
 }
 
 section.advMenu:after {

@@ -2,15 +2,26 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
   urlRoot: '/api/users',
 
   parse: function(jsonResp) {
-    if (jsonResp.messages) {
-      this.messages = new CrowdSurfing.Collections.Messages(jsonResp.messages, {parse: true});
-      delete jsonResp.messages;
+    if (jsonResp.sent_messages) {
+      this.sentMessages = new CrowdSurfing.Collections.Messages(jsonResp.sent_messages, {parse: true});
+      delete jsonResp.sent_messages;
     }
 
-    // if (jsonResp.requests) {
-    //   this.requests = new CrowdSurfing.Collections.Requests(jsonResp.requests, {parse: true});
-    //   delete jsonResp.requests;
-    // }
+    if (jsonResp.received_messages) {
+      this.receivedMessages = new CrowdSurfing.Collections.Messages(jsonResp.received_messages, {parse: true});
+      delete jsonResp.received_messages;
+    }
+
+    if (jsonResp.sent_requests) {
+      this.sentRequests = new CrowdSurfing.Collections.Requests(jsonResp.sent_requests, {parse: true});
+      delete jsonResp.sent_requests;
+    }
+
+    if (jsonResp.received_requests) {
+      this.receivedRequests = new CrowdSurfing.Collections.Requests(jsonResp.received_requests, {parse: true});
+      delete jsonResp.received_requests;
+    }
+
 
     if(jsonResp.profile) {
       this._profile = new CrowdSurfing.Models.Profile(jsonResp.profile, {parse: true});

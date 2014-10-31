@@ -3,10 +3,13 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "" : "landingPage",
     "edit" : "currentUserEdit",
     "users/:id" : "userShow",
+    "users/:id/messages/new" : "messageNewForUser",
+    "users/:id/requests/new" : "requestNewForUser",
     "search" : "usersSearch",
     "messages" : "messagesIndex",
     "messages/new" : "messageNew",
-    "messages/:id" : "messageShow"
+    "messages/:id" : "messageShow",
+    "requests/new" : "requestNew"
   },
 
   initialize: function(options) {
@@ -30,7 +33,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   currentUserShow: function() {
     var user = this.collection.getOrFetch(window.currentUserId);
-    var showView = new CrowdSurfing.Views.CurrentUserShow({model: user});
+    var showView = new CrowdSurfing.Views.CurrentUserShow({model: user, collection: this.collection});
     this.$el.html(showView.render().$el);
   },
 
@@ -57,6 +60,13 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.$el.html(newView.render().$el);
   },
 
+  messageNewForUser: function(id) {
+    var msg = new CrowdSurfing.Models.Message();
+    var receiver = this.collection.getOrFetch(id);
+    var newView = new CrowdSurfing.Views.MessageNew({model: msg, receiver: receiver});
+    this.$el.html(newView.render().$el);
+  },
+
   messagesIndex: function() {
     var messages = new CrowdSurfing.Collections.Messages();
     messages.fetch();
@@ -70,6 +80,20 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     message.fetch();
     var showView = new CrowdSurfing.Views.MessageShow({model: message});
     this.$el.html(showView.render().$el);
+  },
+
+  requestNew: function() {
+    var req = new CrowdSurfing.Models.Request();
+    var newView = new CrowdSurfing.Views.RequestNew({model: req});
+    this.$el.html(newView.render().$el);
+  },
+
+  requestNewForUser: function(id) {
+    var req = new CrowdSurfing.Models.Request();
+    var receiver = this.collection.getOrFetch(id);
+    var newView = new CrowdSurfing.Views.RequestNew({model: req, receiver: receiver});
+    this.$el.html(newView.render().$el);
   }
+
 
 });

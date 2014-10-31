@@ -9,21 +9,31 @@
 </section>
 
 <section class="profile-invitations">
-  <h2>Invitations</h2>
+  <h2>Sent requests</h2>
 
-  <% if (model.invitations) { %>
+  <ul>
+  <% if (model.sentRequests) { %>
+    <% model.sentRequests.forEach(function(req) { %>
+      <li>To user <%= collection.getOrFectch(req.receiver_id).escape("username") %>, status <%= req.escape("status") %></li>
+    <% })  %>
   <% } %>
+  </ul>
 
-  <a href="#">Edit Invitations</a>
+  <a href="#">Edit</a>
 
 </section>
 
 <section class="profile-requests">
-  <h2>Requests</h2>
+  <h2>Received requests</h2>
 
-  <% if (model.requests) { %>
+  <ul>
+  <% if (model.receivedRequests) { %>
+    <% model.receivedRequests.forEach(function(req) { %>
+      <li>From user <%= collection.getOrFectch(req.sender_id).escape("username") %>, status <%= req.escape("status") %></li>
+    <% })  %>
   <% } %>
+  </ul>
 
-  <a href="#">Edit Requests</a>
+  <a href="#">Edit</a>
 
 </section>

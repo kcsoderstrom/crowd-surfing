@@ -3,5 +3,7 @@
 <a href="#/requests/new">Send request</a>
 <a href="#/messages/new">Send message</a>
 
-<h2>Profile</h2>
-<%= model.escape("profile") %>
+<h2>About</h2>
+<%= model.profile().escape("about") %>
+<%= model.profile().escape("gender") %>
+<%= model.profile().escape("age") %>

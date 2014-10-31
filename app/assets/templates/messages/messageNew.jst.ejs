@@ -1,6 +1,6 @@
 <form class="message-new">
   <label for="msg-receiver">To<label>
-  <input id="msg-receiver" name="receiver_id" value="<%= model.escape("receiver_id") %>">
+  <input id="msg-receiver" name="receiver" value="<%= receiver ? receiver.escape("username") : null %>">
 
   <label for="msg-subject">Subject</label>
   <input id="msg-subject" name="subject" value="<%= model.escape("subject") %>">

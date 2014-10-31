@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
   class_name: "Message",
   foreign_key: :receiver_id
 
+  has_many :contacts
+
+  has_many :friends,
+  through: :contacts,
+  source: :friend
+
   has_one :profile
 
   include BCrypt

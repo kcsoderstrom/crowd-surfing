@@ -3,6 +3,7 @@ module Api
 
     def index
       if current_user
+        puts current_user.messages
         render json: current_user.messages
       else
         render json: "Sign in ok"
@@ -30,7 +31,7 @@ module Api
     private
     def message_params
       { sender_id: current_user ? current_user.id : 1,
-        receiver_id: params[:receiver_id],
+        receiver_id: User.find_by_username(params[:receiver]).id,
         body: params[:body],
         subject: params[:subject] }
     end

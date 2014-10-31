@@ -8,7 +8,6 @@ CrowdSurfing.Views.MessageShow = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({model: this.model}));
-    console.log(this.model);
     return this;
   }
 });
