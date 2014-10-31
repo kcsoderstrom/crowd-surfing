@@ -14,7 +14,7 @@
   <ul>
   <% if (model.sentRequests) { %>
     <% model.sentRequests.forEach(function(req) { %>
-      <li>To user <%= collection.getOrFectch(req.receiver_id).escape("username") %>, status <%= req.escape("status") %></li>
+      <li>To user <%= collection.getOrFetch(req.receiver_id).escape("username") %>, status <%= req.escape("status") %></li>
     <% })  %>
   <% } %>
   </ul>
@@ -29,7 +29,7 @@
   <ul>
   <% if (model.receivedRequests) { %>
     <% model.receivedRequests.forEach(function(req) { %>
-      <li>From user <%= collection.getOrFectch(req.sender_id).escape("username") %>, status <%= req.escape("status") %></li>
+      <li>From user <%= collection.getOrFetch(req.sender_id).escape("username") %>, status <%= req.escape("status") %></li>
     <% })  %>
   <% } %>
   </ul>
