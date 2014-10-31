@@ -13,10 +13,14 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
     // }
 
     if(jsonResp.profile) {
-      this.profile = new CrowdSurfing.Models.Profile(jsonResp.profile, {parse: true});
+      this._profile = new CrowdSurfing.Models.Profile(jsonResp.profile, {parse: true});
       delete jsonResp.profile;
     }
 
     return jsonResp;
+  },
+
+  profile: function() {
+    return this._profile || { escape: function() {} };
   }
 });

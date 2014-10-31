@@ -1,3 +1,31 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+section.profile-main {
+  height: 160px;
+  width: 260px;
+  padding: 0 10px;
+  margin: 10px 0;
+  text-align: center;
+  float: left;
+}
+
+section.profile-invitations section.profile-requests {
+  float: right;
+  width: 700px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+section.current-user:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+textarea {
+  outline: none;
+  border: 1px solid black;
+  padding: 5px;
+}

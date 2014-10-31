@@ -1,8 +1,29 @@
-<h1>Here is that <%= model.escape("username") %>.</h1>
-<h2>Profile</h2>
-<% if (model.profile) { %>
-  <%= model.profile.escape("about") %>
-<% } %>
+<section class="profile-main">
+  <h2><%= model.escape("username") %></h2>
 
+  <%= model.profile().escape("location") %>
+  <%= model.profile().escape("about") %>
 
-<a href="#/edit">Edit Profile</a>
+  <a href="#/edit">Edit Profile</a>
+
+</section>
+
+<section class="profile-invitations">
+  <h2>Invitations</h2>
+
+  <% if (model.invitations) { %>
+  <% } %>
+
+  <a href="#">Edit Invitations</a>
+
+</section>
+
+<section class="profile-requests">
+  <h2>Requests</h2>
+
+  <% if (model.requests) { %>
+  <% } %>
+
+  <a href="#">Edit Requests</a>
+
+</section>
