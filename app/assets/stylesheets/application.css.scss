@@ -58,14 +58,13 @@ footer:hover {
 }
 
 
-
 // WELCOME PAGE
 
-section.signInModal, section.signUpModal {
+section.sign-in, section.sign-up {
   display: none;
 }
 
-section.active {
+section.active.sign-in, section.active.sign-up {
   display: block;
   z-index: 100;
   background: white;
@@ -75,7 +74,7 @@ section.active {
   position: absolute;
   top: 66px;
   left: 50%;
-  margin-left: -100px;
+  margin-left: -160px;
   border-radius: 10px;
 }
 

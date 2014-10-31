@@ -17,7 +17,9 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
 
   updateProfile: function(event) {
     event.preventDefault();
-    this.model.save({ user: { profile: { about: $("textarea.profile").val() } } }, {
+    var $form = this.$(".edit-profile");
+    var formData = $form.serializeJSON();
+    this.model.save(formData, {
       success: function() {
         Backbone.history.navigate("/", {trigger: true});
       },

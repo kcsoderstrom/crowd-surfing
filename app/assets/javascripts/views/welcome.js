@@ -14,20 +14,20 @@ CrowdSurfing.Views.Welcome = Backbone.View.extend({
 
   signUpModal: function(event) {
     event.preventDefault();
-    $(".signUpModal").addClass("active");
+    $(".sign-up").addClass("active");
     $(".wax-paper").addClass("shady");
   },
 
   signInModal: function(event) {
     event.preventDefault();
-    $(".signInModal").addClass("active");
+    $(".sign-in").addClass("active");
     $(".wax-paper").addClass("shady");
   },
 
   removeModals: function(event) {
     event.preventDefault();
-    $(".signUpModal").removeClass("active");
-    $(".signInModal").removeClass("active");
+    $(".sign-up").removeClass("active");
+    $(".sign-in").removeClass("active");
     $(".wax-paper").removeClass("shady");
   }
 });

@@ -1,0 +1,33 @@
+<form class="sort-method">
+  <h1>Sort by</h1>
+  <input type="radio" name="sort-method" value="last-login" id="sort-last-login">
+  <label for="sort-last-login">Last login</label>
+  <input type="radio" name="sort-method" value="proximity" id="sort-proximity">
+  <label for="sort-proximity">Proximity</label>
+</form>
+
+<form class="filter-criteria">
+  <h1>Filter by</h1>
+
+  <form class="age">
+    <h2>Age</h2>
+      <label for="age-lower">Between</label>
+      <input id="age-lower" name="age-lower" class="user-age">
+      <label for="age-upper">and</label>
+      <input id="age-upper" name="age-upper" class="user-age">
+  </form>
+
+  <form class="gender">
+    <h2>Gender</h2>
+      <input type="radio" name="gender-criterion" value="female" id="gender-female" class="gender">
+      <label for="gender-female" class="gender">Female</label>
+      <input type="radio" name="gender-criterion" value="male" id="gender-male" class="gender">
+      <label for="gender-male" class="gender">Male</label>
+      <input type="radio" name="gender-criterion" value="male" id="gender-other" class="gender">
+      <label for="gender-other" class="gender">Other</label>
+  </form>
+
+  <h2>Keyword</h2>
+    <input name="keyword" id="keyword">
+
+</form>

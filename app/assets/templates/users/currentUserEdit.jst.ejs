@@ -5,11 +5,23 @@
             class="profile"><%= model.profile().escape("about") %></textarea>
 
   <h2>Gender</h2>
-    <input type="radio" name="user[profile][gender]" value="female" id="gender-female">
+    <input type="radio"
+           name="user[profile][gender]"
+           value="female"
+           id="gender-female"
+           <%= model.profile().escape("gender") === "female" ? "checked" : "" %>>
     <label for="gender-female">Female</label>
-    <input type="radio" name="user[profile][gender]" value="male" id="gender-male">
+    <input type="radio"
+           name="user[profile][gender]"
+           value="male"
+           id="gender-male"
+          <%= model.profile().escape("gender") === "male" ? "checked" : "" %>>
     <label for="gender-male">Male</label>
-    <input type="radio" name="user[profile][gender]" value="male" id="gender-other">
+    <input type="radio"
+           name="user[profile][gender]"
+           value="male"
+           id="gender-other"
+          <%= model.profile().escape("gender") === "other" ? "checked" : "" %>>
     <label for="gender-other">Other</label>
 
   <label for="user-age">Age</label>

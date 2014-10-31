@@ -29,3 +29,37 @@ textarea {
   border: 1px solid black;
   padding: 5px;
 }
+
+section.advMenu {
+  background-color: lightgray;
+
+  form {
+    float: left;
+    width: 50%;
+  }
+
+  input.user-age {
+    width: 20px;
+    float: left;
+  }
+
+  label {
+    float: left;
+  }
+
+  label.gender {
+    width: 200px;
+    background: gray;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+  }
+
+}
+
+section.advMenu:after {
+  content: "";
+  display: block;
+  clear: both;
+}
