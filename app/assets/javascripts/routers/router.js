@@ -65,9 +65,10 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     var receiver = this.collection.getOrFetch(id);
     var newView = new CrowdSurfing.Views.MessageNew({model: msg, receiver: receiver});
     this.$el.html(newView.render().$el);
-  },
+  }, //TODO: use a cookie for this?
 
   messagesIndex: function() {
+    console.log("well you're here");
     var messages = new CrowdSurfing.Collections.Messages();
     messages.fetch();
     var indexView = new CrowdSurfing.Views.MessagesIndex({collection: messages});
@@ -94,6 +95,5 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     var newView = new CrowdSurfing.Views.RequestNew({model: req, receiver: receiver});
     this.$el.html(newView.render().$el);
   }
-
 
 });

@@ -3,7 +3,8 @@ module Api
 
     def index
       if(current_user)
-        render json: current_user.requests
+        render :index
+        #render json: current_user.requests
       else
         render json: "Sign in ok"
       end

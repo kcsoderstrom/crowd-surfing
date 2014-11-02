@@ -1,12 +1,8 @@
 module Api
   class UsersController < ApplicationController
 
-    def json_current_user
-      render json: current_user, include: :messages
-    end
-
     def index
-      render json: { users: User.all, current_user: current_user }
+      render json: User.all.includes(:sent_messages, :received_messages, :sent_requests, :received_requests)
     end
 
     def show
@@ -83,7 +79,7 @@ module Api
     end
 
     def profile_params
-      params.require(:user).require(:profile).permit(:about, :gender, :age)
+      params.require(:user).require(:profile).permit(:about, :gender, :age, :location)
     end
 
     def filter_params

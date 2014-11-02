@@ -1,39 +1,52 @@
-<section class="profile-main">
-  <h2><%= model.escape("username") %></h2>
+<div class="I-want-this-centered">
+  <section class="left-side">
+    <section class="profile-main">
 
-  <%= model.profile().escape("location") %>
-  <%= model.profile().escape("about") %>
+      <div class="profile-subheader">
+        <h2><%= model.escape("username") %></h2>
+        <h3><%= model.profile().escape("location") %></h3>
+      </div>
 
-  <a href="#/edit">Edit Profile</a>
+      <div class="profile-body">
+        <%= model.profile().escape("about") %>
+        <a href="#/edit">Edit Profile</a>
+      </div>
 
-</section>
+    </section>
+  </section>
 
-<section class="profile-invitations">
-  <h2>Sent requests</h2>
+  <section class="right-side">
+    <section class="profile-requests">
+      <h2>Sent requests</h2>
 
-  <ul>
-  <% if (model.sentRequests) { %>
-    <% model.sentRequests.forEach(function(req) { %>
-      <li>To user <%= collection.getOrFetch(req.receiver_id).escape("username") %>, status <%= req.escape("status") %></li>
-    <% })  %>
-  <% } %>
-  </ul>
+      <ul>
+      <% if (model.sentRequests) { %>
+        <% model.sentRequests.forEach(function(req) { %>
+          <li>To <a href="#/users/<%= req.escape("receiver_id") %>">
+                 <%= req.escape("receiver") %></a>,
+                 status <%= req.escape("status") %>,
+                 sent at <%= req.escape("created_at") %></li>
+        <% })  %>
+      <% } %>
+      </ul>
 
-  <a href="#">Edit</a>
+      <a href="#">Edit</a>
 
-</section>
+    </section>
 
-<section class="profile-requests">
-  <h2>Received requests</h2>
+    <section class="profile-requests">
+      <h2>Received requests</h2>
 
-  <ul>
-  <% if (model.receivedRequests) { %>
-    <% model.receivedRequests.forEach(function(req) { %>
-      <li>From user <%= collection.getOrFetch(req.sender_id).escape("username") %>, status <%= req.escape("status") %></li>
-    <% })  %>
-  <% } %>
-  </ul>
+      <ul>
+      <% if (model.receivedRequests) { %>
+        <% model.receivedRequests.forEach(function(req) { %>
+          <li>From user <%= req.escape("sender") %>, status <%= req.escape("status") %></li>
+        <% })  %>
+      <% } %>
+      </ul>
 
-  <a href="#">Edit</a>
+      <a href="#">Edit</a>
 
-</section>
+    </section>
+  </section>
+</div>

@@ -2,23 +2,59 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-section.profile-main {
-  height: 160px;
-  width: 260px;
-  padding: 0 10px;
-  margin: 10px 0;
-  text-align: center;
-  float: left;
+.current-user-for-real {
+  width: 100%;
+  height: 100%;
+  background-color: #F0F0F0;
+
+  .I-want-this-centered {
+    width: 1000px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  section.left-side {
+    float: left;
+    width: 280px;
+  }
+
+  section.right-side {
+    margin-left: 20px;
+    width: 700px;
+    float: left;
+  }
+
+  section.profile-main {
+    height: 160px;
+    width: 280px;
+    margin: 0 auto;
+
+    div.profile-subheader {
+      background: #F4F6F9;
+      width: 240px;
+      height: 40px;
+      padding: 20px 20px 0 20px;
+    }
+
+    div.profile-body {
+      width: 260px;
+      padding: 0 10px;
+      background: white;
+    }
+  }
+
+
 }
 
-section.profile-invitations section.profile-requests {
+section.profile-invitations, section.profile-requests {
   float: right;
   width: 700px;
   margin-top: 10px;
   margin-bottom: 20px;
+  background: white;
 }
 
-section.current-user:after {
+div.I-want-this-centered:after {
   content: "";
   display: block;
   clear: both;
@@ -79,4 +115,8 @@ section.advMenu:after {
   content: "";
   display: block;
   clear: both;
+}
+
+a {
+  display: inline;
 }

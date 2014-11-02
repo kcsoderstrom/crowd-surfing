@@ -27,5 +27,8 @@
   <label for="user-age">Age</label>
   <input id="user-age" name="user[profile][age]" value="<%= model.profile().escape("age") %>">
 
+  <label for="user-location">Location</label>
+  <input id="user-location" name="user[profile][location]" value="<%= model.profile().escape("location") %>">
+
   <button type="submit">Update Profile</button>
 </form>

@@ -3,8 +3,8 @@ module Api
 
     def index
       if current_user
-        puts current_user.messages
-        render json: current_user.messages
+        @messages = current_user.messages
+        render :index
       else
         render json: "Sign in ok"
       end
@@ -20,9 +20,9 @@ module Api
     end
 
     def show
-      @message = Message.find(params[:id])
+      @message = Message.find(params[:id]).includes(:sender, :receiver)
       if @message.sender == current_user || @message.receiver == current_user
-        render json: @message
+        render :show
       else
         render json: "Sign in you jerk"
       end
