@@ -1,9 +1,11 @@
 CrowdSurfing.Views.UserShow = Backbone.View.extend({
   template: JST["users/userShow"],
 
+  tagName: "section",
+
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    this.$el.addClass("currentUser");  //TODO change that in the css and all
+    this.$el.addClass("user-show");
   },
 
   render: function() {

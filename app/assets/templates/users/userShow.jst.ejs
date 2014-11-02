@@ -1,9 +1,32 @@
-<h1>Here is that <%= model.escape("username") %>.</h1>
+<section class="profile-subheader">
+  <h1><%= model.escape("username") %></h1>
+  <% if(model.profile().escape("location")) {%>
+    <%= model.profile().escape("location") %>
+  <% } else { %>
+    No location given.
+  <% } %>
+</section>
 
-<a href="#/users/<%= model.escape("id") %>/requests/new">Send request</a>
-<a href="#/users/<%= model.escape("id") %>/messages/new">Send message</a>
+<section class="left-side">
+  <a class="request-button" href="#/users/<%= model.escape("id") %>/requests/new">Send request</a>
+  <ul class="nav">
+    <li><a href="#/users/<%= model.escape("id") %>/messages/new">
+      Send message
+    </a></li>
 
-<h2>About</h2>
-<%= model.profile().escape("about") %>
-<%= model.profile().escape("gender") %>
-<%= model.profile().escape("age") %>
+    <li><a href="#">
+      Add contact
+    </a></li>
+  </ul>
+  <figure class="profile-photo"></figure>
+
+</section>
+
+<section class="right-side">
+  <h2>About</h2>
+  <ul>
+    <li><%= model.profile().escape("about") %></li>
+    <li>Gender: <%= model.profile().escape("gender") %></li>
+    <li>Age: <%= model.profile().escape("age") %></li>
+  </ul>
+</section>

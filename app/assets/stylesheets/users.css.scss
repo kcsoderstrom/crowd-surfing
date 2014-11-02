@@ -43,15 +43,17 @@
     }
   }
 
-
 }
 
 section.profile-invitations, section.profile-requests {
   float: right;
   width: 700px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   background: white;
+
+  a {
+    display: inline;
+  }
 }
 
 div.I-want-this-centered:after {
@@ -117,6 +119,87 @@ section.advMenu:after {
   clear: both;
 }
 
-a {
-  display: inline;
+section.user-show {
+
+  width: 948px;
+  margin: 0 auto;
+  padding: 0 5px;
+  border-left: 1px solid #CBCBCB;
+  border-right: 1px solid #CBCBCB;
+  background-color: white;
+  padding-top: 30px;
+
+  section.left-side {
+    width: 50%;
+    float: left;
+  }
+
+  section.right-side {
+    width: 50%;
+    float: left;
+  }
+
+  figure {
+    height: 300px;
+    width: 200px;
+    background-color: blue;
+    margin: 0 auto;
+  }
+
+  a.request-button {
+    color: black;
+    font-weight: bold;
+    width: 300px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid red;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 5px 0;
+    margin: 20px auto;
+  }
+
+  a.request-button:hover {
+    background-color: red;
+    color: white;
+  }
+
+  ul.nav {
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  ul.nav:after {
+    display: block;
+    clear: both;
+    content: "";
+    li {
+      float: left;
+    }
+  }
+
+
+
+  ul li {
+    display: block;
+  }
+
 }
+
+section.user-show:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+section.profile-subheader {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 30px;
+
+  h1 {
+    font-weight: bold;
+  }
+}
+
