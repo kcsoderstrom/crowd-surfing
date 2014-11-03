@@ -1,6 +1,7 @@
 CrowdSurfing.Routers.Router = Backbone.Router.extend({
   routes: {
     "" : "landingPage",
+    "_=_" : "currentUserShow",
     "edit" : "currentUserEdit",
     "users/:id" : "userShow",
     "users/:id/messages/new" : "messageNewForUser",
@@ -68,7 +69,6 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   }, //TODO: use a cookie for this?
 
   messagesIndex: function() {
-    console.log("well you're here");
     var messages = new CrowdSurfing.Collections.Messages();
     messages.fetch();
     var indexView = new CrowdSurfing.Views.MessagesIndex({collection: messages});

@@ -4,6 +4,7 @@ CrowdSurfing.Views.UsersSearch = Backbone.View.extend({
   events: {
     "click :radio" : "search",
     "blur input" : "search",
+    "keydown input" : "searchIfReturn"
   },
 
   initialize: function() {
@@ -20,7 +21,7 @@ CrowdSurfing.Views.UsersSearch = Backbone.View.extend({
     return this;
   },
 
-  search: function(event) {
+  search: function() {
     var username = $("input#user-username").val();
 
     var $filterForm = $("form.filter-criteria");
@@ -31,6 +32,13 @@ CrowdSurfing.Views.UsersSearch = Backbone.View.extend({
     this.matches.fetch({data: { match: username,
                                 filter_by: filterData,
                                 sort_by: sortCriterion}});
+  },
+
+  searchIfReturn: function(event) {
+    if(event.keyCode === 13) {
+      event.preventDefault();
+      this.search();
+    }
   }
 
 })

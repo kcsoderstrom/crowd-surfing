@@ -61,21 +61,50 @@ footer:hover {
 // WELCOME PAGE
 
 section.sign-in, section.sign-up {
-  display: none;
-}
-
-section.active.sign-in, section.active.sign-up {
-  display: block;
-  z-index: 100;
+  z-index: -1;
   background: white;
   height: 300px;
   width: 290px;
   padding: 15px;
   position: absolute;
-  top: 66px;
+  top: -66px;
   left: 50%;
   margin-left: -160px;
-  border-radius: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: top 0.5s, opacity 0.5s;
+
+  div.divider {
+    width: 100%;
+    text-align: center;
+    color: #747474;
+  }
+
+  input {
+    border: 1px solid #747474;
+    border-radius: 5px;
+    color: #747474;
+    width: 276px;
+    height: 20px;
+    padding: 7px;
+    margin-bottom: 10px;
+    outline: none;
+  }
+
+  input.active {
+    color: black;
+  }
+
+  a.facebook {
+    width: 100%;
+  }
+}
+
+section.active.sign-in, section.active.sign-up {
+  display: block;
+  z-index: 100;
+  top: 66px;
+  opacity: 100;
 }
 
 .shady {
@@ -92,7 +121,7 @@ section.welcome > a {
   width: 200px;
   height: 26px;
   padding: 10px 0 14px 0;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 26px;
   margin-top: 33px;
 }
@@ -179,7 +208,7 @@ a {
 }
 
 .currentUser {
-  width: 948px;
+  width: 960px;
   margin: 0 auto;
   padding: 0 5px;
   border-left: 1px solid #CBCBCB;
@@ -213,30 +242,40 @@ nav.full-nav {
   height: 57px;
   margin: 0 auto;
 
-  ul {
-    height: 44px;
+  ul.left-nav {
+    height: 36px;
     padding-top: 8px;
+    float: left;
+    margin-left: 50px;
+    width: 394px;
+  }
+
+  ul.right-nav {
+    height: 36px;
+    padding-top: 8px;
+    float: right;
   }
 
   li {
-    height: 36px;
-    text-align: center;
-    float: left;
-    padding-top: 10px;    //I hate this
+
+
+
   }
 
 }
 
-.left-nav {
+.left-nav li {
   float: left;
-  left: 0px;
-  width: 394px;
-  height: 100px;
+  height: 36px;
+  text-align: center;
+  float: left;
+  padding-top: 18px;
 
-  li {
-    float: left;
+  a {
     padding-left: 12px;
     padding-right: 12px;
+    cursor: pointer;
+    transform: translateY(-50%)
   }
 }
 
@@ -244,9 +283,10 @@ nav.full-nav {
   float: right;
 
   li {
-    float: right;
+    float: left;
     width: 60px;
     overflow: hidden;
+    height: 36px;
   }
 }
 
@@ -256,23 +296,24 @@ figure.logo {
   width: 113px;
   height: 38px;
   content: "";
-  background-image: image-url("logo-small.png");
+  background: image-url("logosmall2.png");
+  margin: 6px 0;
 }
 
 a.messages {
-  height: 100%;
+  height: 36px;
   width: 100%;
-  background-image: image-url("messages.png");
+  background: image-url("messages.png") no-repeat 0;
 }
 
 a.requests {
-  height: 100%;
+  height: 36px;
   width: 100%;
   background-image: image-url("disco.jpg");
 }
 
 a.user-img {
-  height: 100%;
+  height: 36px;
   width: 100%;
   background-image: image-url("goat.gif");
 }

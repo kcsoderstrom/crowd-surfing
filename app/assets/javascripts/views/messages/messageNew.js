@@ -60,7 +60,7 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
     var match = $searchBar.val();
 
     if(match.length > 1) {
-      this.matches.fetch({data: { match: match }});
+      this.matches.fetch({data: { match: match, contacts_only: true }});
     } else {
       this.removeFoundUsersList();
     }

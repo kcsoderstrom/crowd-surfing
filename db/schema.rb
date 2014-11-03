@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031184843) do
+ActiveRecord::Schema.define(version: 20141103211157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,15 +32,30 @@ ActiveRecord::Schema.define(version: 20141031184843) do
     t.datetime "updated_at"
   end
 
-  create_table "profiles", force: true do |t|
+  create_table "photos", force: true do |t|
     t.integer  "user_id",                     null: false
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+    t.string   "{:null=>false}_file_name"
+    t.string   "{:null=>false}_content_type"
+    t.integer  "{:null=>false}_file_size"
+    t.datetime "{:null=>false}_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", force: true do |t|
     t.text     "about"
     t.string   "gender"
     t.integer  "age"
     t.string   "location"
-    t.boolean  "established", default: false, null: false
+    t.boolean  "established",      default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "primary_photo_id"
+    t.integer  "user_id"
   end
 
   create_table "requests", force: true do |t|
@@ -59,6 +74,9 @@ ActiveRecord::Schema.define(version: 20141031184843) do
     t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "email"
   end
 
 end

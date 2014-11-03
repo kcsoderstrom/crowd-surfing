@@ -54,3 +54,9 @@ group :production do
 end
 
 gem 'backbone-on-rails'
+
+gem 'paperclip', "~> 4.2"
+gem 'aws-sdk'
+gem 'figaro'
+
+gem 'omniauth-facebook'

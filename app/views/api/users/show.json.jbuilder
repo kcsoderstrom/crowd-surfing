@@ -25,3 +25,4 @@ end
 json.contacts @user.friends
 json.profile @user.profile
 
+json.is_contact current_user.friends.include?(@user)

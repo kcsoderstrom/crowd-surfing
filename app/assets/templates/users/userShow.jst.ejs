@@ -14,9 +14,15 @@
       Send message
     </a></li>
 
-    <li><a href="#">
-      Add contact
-    </a></li>
+    <li>
+      <% if(!model.isContact) { %>
+        <a id="add-contact" href="#">
+          Add contact
+        </a>
+      <% } else { %>
+        Already in contacts
+      <% } %>
+    </li>
   </ul>
   <figure class="profile-photo"></figure>
 

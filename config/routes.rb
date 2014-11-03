@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :requests, only: [:create, :edit, :update, :destroy, :index]
   resources :messages, only: [:index, :new, :create, :show]
 
+  get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
+
   namespace :api, defaults: { format: :json } do
     get 'users/current_user', to: "users#json_current_user", as: "current_user"
     get 'users/search', to: "users#search", as: "search"
@@ -15,5 +17,6 @@ Rails.application.routes.draw do
     resources :session, only: [:create, :update, :destroy]
     resources :requests, only: [:create, :show, :update, :destroy, :index]
     resources :messages, only: [:create, :show, :update, :destroy, :index]
+    resources :contacts, only: [:create]
   end
 end

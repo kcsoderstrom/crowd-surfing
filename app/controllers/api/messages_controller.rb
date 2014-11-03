@@ -20,7 +20,7 @@ module Api
     end
 
     def show
-      @message = Message.find(params[:id]).includes(:sender, :receiver)
+      @message = Message.includes(:sender, :receiver).find(params[:id])
       if @message.sender == current_user || @message.receiver == current_user
         render :show
       else

@@ -6,7 +6,14 @@ module Api
     end
 
     def show
-      @user = User.find(params[:id])
+      @user = User.includes(sent_messages: [:sender, :receiver],
+                            received_messages: [:sender, :receiver],
+                            sent_requests: [:sender, :receiver],
+                            received_requests: [:sender, :receiver])
+                  .find(params[:id])
+                  p current_user
+                  p current_user.friends
+                  p current_user.friends.include?(@user)
       render :show
       #TODO: fix this so that it only shows the info that's ok to show
     end
@@ -23,8 +30,9 @@ module Api
 
     def search
 
+      match = params[:match] && params[:match].length > 0 ? params[:match] : nil
+
       if params[:filter_by]
-        match = filter_params[:match] && filter_params[:match].length > 0 ? filter_params[:match] : nil
         gender = filter_params[:gender]
         age_lower = filter_params[:age_lower].length > 0 ? Integer(filter_params[:age_lower]) : nil
         age_upper = filter_params[:age_upper].length > 0 ? Integer(filter_params[:age_upper]) : nil
@@ -33,13 +41,12 @@ module Api
 
       @users = User.all
 
-      if match
-        @users = @users.where("username ~ ?", match)
-      end
-      if gender
-        @users = @users.joins(:profile)
-                       .where("profiles.gender = ?", gender)
-      end
+      @users = current_user.friends if params[:contacts_only]
+
+      @users = @users.where("username ~* ?", match) if match
+
+      @users = @users.joins(:profile)
+                     .where("profiles.gender = ?", gender) if gender
       @users = @users.joins(:profile)
                      .where("profiles.age > ?", age_lower - 1) if age_lower
       @users = @users.joins(:profile)

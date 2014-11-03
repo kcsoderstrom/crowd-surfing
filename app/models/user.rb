@@ -29,6 +29,24 @@ class User < ActiveRecord::Base
   include BCrypt
   after_initialize :ensure_session_token
 
+  def self.facebook_make(options)
+    user = User.find_by(uid: options[:uid], provider: options[:provider])
+
+    unless user
+      options[:password] = SecureRandom.urlsafe_base64
+      if options[:profile]
+        profile_params = options[:profile]
+        options.delete(:profile)
+      end
+
+      user = User.new(options)
+      user.build_profile(profile_params)
+      user.save!
+    end
+
+    user
+  end
+
   def self.generate_session_token
     SecureRandom.hex(16)
     #really should make sure this isn't being used.

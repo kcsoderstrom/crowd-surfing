@@ -2,6 +2,7 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
   urlRoot: '/api/users',
 
   parse: function(jsonResp) {
+
     if (jsonResp.sent_messages) {
       this.sentMessages = new CrowdSurfing.Collections.Messages(jsonResp.sent_messages, {parse: true});
       delete jsonResp.sent_messages;
@@ -22,10 +23,19 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
       delete jsonResp.received_requests;
     }
 
-
     if(jsonResp.profile) {
       this._profile = new CrowdSurfing.Models.Profile(jsonResp.profile, {parse: true});
       delete jsonResp.profile;
+    }
+
+    if(jsonResp.contacts) {
+      this.contacts = new CrowdSurfing.Collections.Users(jsonResp.contacts, {parse: true});
+      delete jsonResp.contacts;
+    }
+
+    if(jsonResp.is_contact != undefined) {
+      this.isContact = jsonResp.is_contact;
+      delete jsonResp.is_contact;
     }
 
     return jsonResp;
