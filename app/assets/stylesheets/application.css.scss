@@ -204,6 +204,7 @@ header {
   width: 100%;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px 0px;
+  z-index: 10;
 }
 
 nav.full-nav {
@@ -286,11 +287,3 @@ li:hover > form.sign-out {
 }
 
 // END HEADER
-
-section.advMenu {
-  display: none;
-}
-
-section.advMenu.active {
-  display: block;
-}

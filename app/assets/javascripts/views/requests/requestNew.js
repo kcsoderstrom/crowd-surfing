@@ -40,7 +40,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
     req.set(formData);
     req.save({}, {
       success: function() {
-        Backbone.history.navigate("/requests", {trigger: true});
+        Backbone.history.navigate("", {trigger: true});
       }
     });
   },

@@ -23,34 +23,27 @@ module Api
 
     def search
 
-      if params[:match]
-        @users = User.where("username ~ ?", params[:match])
-        render json: @users
-        return
-      end
-
-
       if params[:filter_by]
+        match = filter_params[:match] && filter_params[:match].length > 0 ? filter_params[:match] : nil
         gender = filter_params[:gender]
         age_lower = filter_params[:age_lower].length > 0 ? Integer(filter_params[:age_lower]) : nil
         age_upper = filter_params[:age_upper].length > 0 ? Integer(filter_params[:age_upper]) : nil
-        keywords = filter_params[:keywords] ? filter_params[:keywords].split(//) : nil
+        keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
       end
 
       @users = User.all
 
+      if match
+        @users = @users.where("username ~ ?", match)
+      end
       if gender
         @users = @users.joins(:profile)
                        .where("profiles.gender = ?", gender)
       end
-      if age_lower
-        @users = @users.joins(:profile)
-                       .where("profiles.age > ?", age_lower - 1)
-      end
-      if age_upper
-        @users = @users.joins(:profile)
-                       .where("profiles.age < ? ", age_upper + 1)
-      end
+      @users = @users.joins(:profile)
+                     .where("profiles.age > ?", age_lower - 1) if age_lower
+      @users = @users.joins(:profile)
+                     .where("profiles.age < ? ", age_upper + 1) if age_upper
 
       if params[:sort_by]
         if params[:sort_by] == "last-login"
@@ -83,7 +76,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:age_upper, :age_lower, :gender, :keywords)
+      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword)
     end
 
   end
