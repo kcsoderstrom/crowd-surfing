@@ -20,11 +20,17 @@ module Api
 
     def update
       @user = current_user
-      if @user.profile.update(profile_params)
+
+      profile_updated = @user.profile.update(profile_params)
+      photo_created = @user.profile.photos.create(photo_params[:my_photo])
+
+      if profile_updated && photo_created
         render :show
       else
         render json: @user.errors.full_messages,
                status: :unprocessable_entity
+
+               #TODO: customize errors
       end
     end
 
@@ -84,6 +90,10 @@ module Api
 
     def filter_params
       params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword)
+    end
+
+    def photo_params
+      params.permit(:pic)
     end
 
   end

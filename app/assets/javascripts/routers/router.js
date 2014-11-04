@@ -15,8 +15,12 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$el = options.$el;
+    this.$headerEl = options.$headerEl;
     this.collection = options.collection;
     this.collection.fetch();
+    var headerView = new CrowdSurfing.Views.Header({el: this.$headerEl, model: this.collection.getOrFetch(window.currentUserId)});
+    // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
+    headerView.render();
   },
 
   landingPage: function() {

@@ -12,11 +12,26 @@
       <li><a class="messages" href="#/messages" alt="Messages"></a></li>
 
       <li><a class="user-img" href="javascript:void(0)" alt="howdy <%= h current_user %>"></a>
-        <form class="sign-out" method="POST" action="<%= session_url %>">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <button type="submit">Sign Out</button>
-        </form>
+
+        <ul class="dropdown">
+          </li>
+            <a href="#">My Profile</a>
+          <li>
+
+          </li>
+            <a href="#/edit">Account Settings</a>
+          <li>
+
+          <li>
+            <form class="sign-out" method="POST" action="<%= session_url %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <button type="submit">Sign Out</button>
+            </form>
+          </li>
+          
+        </ul>
+
       </li>
     </ul>
   </nav>

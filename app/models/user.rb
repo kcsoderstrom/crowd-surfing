@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  validates :username, :password_digest, :session_token, presence: true
-  validates :username, uniqueness: true
+  validates :email, :password_digest, :session_token, presence: true
+  validates :email, uniqueness: true
 
   has_many :sent_requests,
   class_name: "Request",

@@ -44,4 +44,5 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
   profile: function() {
     return this._profile || { escape: function() {} };
   }
+  
 });

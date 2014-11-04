@@ -1,11 +1,13 @@
-<a class="facebook" href="/auth/facebook">Sign up via Facebook</a>
+<a class="facebook" href="/auth/facebook">Sign Up With Facebook</a>
 
 <div class="divider">or</div>
 
 <form class="sign-up" method="POST" action="/users/">
   <input type="hidden" name="authenticity_token" value=<%= window.authenticityToken %>>
-  <input id="user-username" name="user[email]" placeholder="Email">
 
+  <input id="user-email" name="user[email]" placeholder="Email">
   <input type="password" id="user-password" name="user[password]" placeholder="Password">
+  <input id="user-username" name="user[username]" placeholder="Name">
+
   <button type="submit">Sign Up</button>
 </form>

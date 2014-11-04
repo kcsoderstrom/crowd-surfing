@@ -2,7 +2,8 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
   template: JST["header"],
 
   events: {
-    "submit form.sign-out" : "signOut"
+    "click .user-img" : "toggleDropdown",
+    "click ul.dropdown" : "toggleDropdown"
   },
 
   initialize: function() {
@@ -14,18 +15,14 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
     return this;
   },
 
-  signOut: function(event) {
-    event.preventDefault();
-    var session = new CrowdSurfing.Models.Session();
-    session.destroy({
-      success: function() {
-        Backbone.history.navigate("/", {trigger: true});
-      },
+  toggleDropdown: function() {
+    $dropdown = $("ul.dropdown");
 
-      error: function(data) {
-        console.log(data);
-      }
-    });
-
+    if($dropdown.hasClass("active")) {
+      $dropdown.removeClass("active");
+    } else {
+      $dropdown.addClass("active");
+    }
   }
+
 });

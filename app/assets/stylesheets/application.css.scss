@@ -322,12 +322,6 @@ nav.full-nav {
     float: right;
   }
 
-  li {
-
-
-
-  }
-
 }
 
 .left-nav li {
@@ -348,9 +342,9 @@ nav.full-nav {
 .right-nav {
   float: right;
 
-  li {
+  > li {
     float: left;
-    width: 60px;
+    width: 55px;
     overflow: hidden;
     height: 36px;
   }
@@ -369,27 +363,61 @@ figure.logo {
 a.messages {
   height: 36px;
   width: 100%;
-  background: image-url("messages.png") no-repeat 0;
+  background: image-url("messages.png") no-repeat 6px -8px;
 }
 
 a.requests {
   height: 36px;
   width: 100%;
-  background-image: image-url("disco.jpg");
+  background: image-url("disco.png") no-repeat 8px;
 }
 
 a.user-img {
   height: 36px;
   width: 100%;
-  background-image: image-url("goat.gif");
+  background: image-url("goat.gif") no-repeat 8px 0;
 }
 
-form.sign-out {
+ul.dropdown {
   display: none;
   position: absolute;
+  right: 0;
+  border-radius: 5px;
+  background: white;
+
+  border: 1px solid #B3B3B3;
+  padding: 5px 0;
+
+  li {
+    position: relative;
+    display: block;
+  }
+
+  a {
+    display: block;
+    height: 20px;
+    width: 130px;
+    text-align: left;
+    padding: 7px 12px 3px 12px;
+    color: #737373;
+  }
+
+  button {
+    display: block;
+    height: 30px;
+    width: 154px;
+    text-align: left;
+    padding: 6px 12px 4px 12px;
+    color: #737373;
+  }
+
+  button:hover, a:hover {
+    background: #F2F2F2;
+    color: black;
+  }
 }
 
-li:hover > form.sign-out {
+ul.dropdown.active {
   display: block;
 }
 

@@ -19,7 +19,7 @@
     <label for="gender-male">Male</label>
     <input type="radio"
            name="user[profile][gender]"
-           value="male"
+           value="other"
            id="gender-other"
           <%= model.profile().escape("gender") === "other" ? "checked" : "" %>>
     <label for="gender-other">Other</label>
@@ -29,6 +29,9 @@
 
   <label for="user-location">Location</label>
   <input id="user-location" name="user[profile][location]" value="<%= model.profile().escape("location") %>">
+
+  <label for="photo">Upload photo</label>
+  <input id="photo" type="file" class="my-photo-upload">
 
   <button type="submit">Update Profile</button>
 </form>

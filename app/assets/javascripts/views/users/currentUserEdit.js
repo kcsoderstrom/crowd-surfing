@@ -2,12 +2,13 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   template: JST["users/currentUserEdit"],
 
   events: {
-    "click button" : "updateProfile"
+    "click button" : "updateProfile",
+    'change .my-photo-upload': 'handleFile'
   },
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    this.$el.addClass("currentUser")
+    this.$el.addClass("currentUser");
   },
 
   render: function() {
@@ -28,6 +29,17 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
         console.log("didn't work ok");
       }
     })
+  },
+
+  handleFile: function (event) {
+    var file = event.currentTarget.files[0];
+    var view = this;
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      // note that this isn't saving
+      view.model.set('pic', this.result);
+    }
+    reader.readAsDataURL(file);
   }
 
 })
