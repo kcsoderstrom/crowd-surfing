@@ -75,6 +75,11 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
 
   removeFoundUsersList: function(event) {
     $("ul.found-users").empty();
+  },
+
+  leave: function() {
+    localStorage.removeItem("msgToName");
+    this.remove();
   }
 
 })

@@ -13,11 +13,8 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     return this;
   },
 
-  subviews: function() {
-    if(!this._subviews) {
-      this._subviews = [];
-    }
-    return this._subviews;
+  leave: function() {
+    this.remove();
   }
 
 

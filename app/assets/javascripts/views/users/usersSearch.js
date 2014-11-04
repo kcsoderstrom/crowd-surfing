@@ -39,6 +39,10 @@ CrowdSurfing.Views.UsersSearch = Backbone.View.extend({
       event.preventDefault();
       this.search();
     }
+  },
+
+  leave: function() {
+    this.remove();
   }
 
 })

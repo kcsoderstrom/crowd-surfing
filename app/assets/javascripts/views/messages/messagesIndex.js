@@ -9,5 +9,9 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({collection: this.collection}));
     return this;
+  },
+
+  leave: function() {
+    this.remove();
   }
 });

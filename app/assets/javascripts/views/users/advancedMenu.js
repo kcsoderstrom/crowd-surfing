@@ -4,6 +4,10 @@ CrowdSurfing.Views.AdvancedMenu = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template());
     return this;
+  },
+
+  leave: function() {
+    this.remove();
   }
 
 });

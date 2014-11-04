@@ -53,5 +53,10 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
     if(match.length > 1) {
       this.matches.fetch({data: { match: match }});
     }
+  },
+
+  leave: function() {
+    localStorage.removeItem("reqToName");
+    this.remove();
   }
 })

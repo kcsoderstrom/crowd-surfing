@@ -4,7 +4,6 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "_=_" : "currentUserShow",
     "edit" : "currentUserEdit",
     "users/:id" : "userShow",
-    "users/:id/messages/new" : "messageNewForUser",
     "users/:id/requests/new" : "requestNewForUser",
     "search" : "usersSearch",
     "messages" : "messagesIndex",
@@ -18,7 +17,8 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.$headerEl = options.$headerEl;
     this.collection = options.collection;
     this.collection.fetch();
-    var headerView = new CrowdSurfing.Views.Header({el: this.$headerEl, model: this.collection.getOrFetch(window.currentUserId)});
+    var headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
+                                                    model: this.collection.getOrFetch(window.currentUserId)});
     // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
     headerView.render();
   },
@@ -33,50 +33,43 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   welcome: function() {
     var welcomeView = new CrowdSurfing.Views.Welcome();
-    this.$el.html(welcomeView.render().$el);
+    this._swapView(welcomeView);
   },
 
   currentUserShow: function() {
     var user = this.collection.getOrFetch(window.currentUserId);
     var showView = new CrowdSurfing.Views.CurrentUserShow({model: user, collection: this.collection});
-    this.$el.html(showView.render().$el);
+    this._swapView(showView);
   },
 
   currentUserEdit: function() {
     var user = this.collection.getOrFetch(window.currentUserId);
     var editView = new CrowdSurfing.Views.CurrentUserEdit({model: user});
-    this.$el.html(editView.render().$el);
+    this._swapView(editView);
   },
 
   userShow: function(id) {
     var user = this.collection.getOrFetch(id);
     var showView = new CrowdSurfing.Views.UserShow({model: user});
-    this.$el.html(showView.render().$el);
+    this._swapView(showView);
   },
 
   usersSearch: function() {
     var searchView = new CrowdSurfing.Views.UsersSearch({collection: this.collection});
-    this.$el.html(searchView.render().$el);
+    this._swapView(searchView);
   },
 
   messageNew: function() {
     var msg = new CrowdSurfing.Models.Message();
     var newView = new CrowdSurfing.Views.MessageNew({model: msg});
-    this.$el.html(newView.render().$el);
-  },
-
-  messageNewForUser: function(id) {
-    var msg = new CrowdSurfing.Models.Message();
-    var receiver = this.collection.getOrFetch(id);
-    var newView = new CrowdSurfing.Views.MessageNew({model: msg, receiver: receiver});
-    this.$el.html(newView.render().$el);
-  }, //TODO: use a cookie for this?
+    this._swapView(newView);
+  }, //TODO: WHEN THIS GETS REMOVED YOU MUST MUST MUST CLEAR THE COOKIE!!
 
   messagesIndex: function() {
     var messages = new CrowdSurfing.Collections.Messages();
     messages.fetch();
     var indexView = new CrowdSurfing.Views.MessagesIndex({collection: messages});
-    this.$el.html(indexView.render().$el);
+    this._swapView(indexView);
   },
 
   messageShow: function(id) {
@@ -84,19 +77,18 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     message.set({id: id});
     message.fetch();
     var showView = new CrowdSurfing.Views.MessageShow({model: message});
-    this.$el.html(showView.render().$el);
+    this._swapView(showView);
   },
 
   requestNew: function() {
     var req = new CrowdSurfing.Models.Request();
     var newView = new CrowdSurfing.Views.RequestNew({model: req});
-    this.$el.html(newView.render().$el);
+    this._swapView(newView);
   },
 
-  requestNewForUser: function(id) {
-    var req = new CrowdSurfing.Models.Request();
-    var receiver = this.collection.getOrFetch(id);
-    var newView = new CrowdSurfing.Views.RequestNew({model: req, receiver: receiver});
+  _swapView: function (newView) {
+    this._currentView && this._currentView.leave();
+    this._currentView = newView;
     this.$el.html(newView.render().$el);
   }
 

@@ -4,7 +4,9 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   tagName: "section",
 
   events: {
-    "click a#add-contact" : "addContact"
+    "click a#add-contact" : "addContact",
+    "click a#msg-send" : "sendMessage",
+    "click a#req-send" : "sendRequest"
   },
 
   initialize: function() {
@@ -14,7 +16,7 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({model: this.model}));
-    return this;x
+    return this;
   },
 
   addContact: function(event) {
@@ -26,5 +28,17 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
         user.fetch();
       }
     });
+  },
+
+  sendMessage: function(event) {
+    localStorage.setItem("msgToName", this.model.get("name"));
+  },
+
+  sendRequest: function(event) {
+    localStorage.setItem("reqToName", this.model.get("name"));
+  },
+
+  leave: function() {
+    this.remove();
   }
 })

@@ -43,11 +43,6 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
       delete jsonResp.photos;
     }
 
-    if(jsonResp.profile_photo_url) {
-      this.profile_photo_url = jsonResp.profile_photo_url;
-      delete jsonResp.profile_photo_url;
-    }
-
     return jsonResp;
   },
 

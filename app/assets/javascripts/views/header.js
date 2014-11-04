@@ -7,6 +7,7 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
   },
 
   initialize: function() {
+    console.log("this one is the header", this.model);
     this.listenTo(this.model, "sync", this.render);
   },
 
@@ -23,6 +24,10 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
     } else {
       $dropdown.addClass("active");
     }
+  },
+
+  leave: function() {
+    this.remove();
   }
 
 });

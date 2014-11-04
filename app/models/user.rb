@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   foreign_key: :receiver_id
 
   has_many :contacts
+  has_many :events
 
   has_many :friends,
   through: :contacts,

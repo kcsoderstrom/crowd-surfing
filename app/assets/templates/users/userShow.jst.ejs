@@ -1,5 +1,5 @@
 <section class="profile-subheader">
-  <h1><%= model.escape("username") %></h1>
+  <h1><%= model.profile().escape("name") %></h1>
   <% if(model.profile().escape("location")) {%>
     <%= model.profile().escape("location") %>
   <% } else { %>
@@ -8,9 +8,9 @@
 </section>
 
 <section class="left-side">
-  <a class="request-button" href="#/users/<%= model.escape("id") %>/requests/new">Send request</a>
+  <a id="req-send" class="request-button" href="#/requests/new">Send request</a>
   <ul class="nav">
-    <li><a href="#/users/<%= model.escape("id") %>/messages/new">
+    <li><a id="msg-send" href="#/messages/new">
       Send message
     </a></li>
 

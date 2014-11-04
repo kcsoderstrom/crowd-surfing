@@ -1,6 +1,6 @@
 <form class="request-new">
   <label for="req-receiver">To<label>
-  <input id="req-receiver" name="receiver" value="<%= receiver ? receiver.escape("username") : null %>">
+  <input id="req-receiver" name="receiver" value="<%= localStorage.getItem("reqToName") %>">
 
   <label for="req-details">Details</label>
   <input id="req-details" name="details" value="<%= model.escape("details") %>">

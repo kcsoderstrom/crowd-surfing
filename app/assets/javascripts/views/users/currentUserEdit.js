@@ -19,8 +19,10 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
 
   updateProfile: function(event) {
     event.preventDefault();
+    var that = this;
     var $form = this.$(".edit-profile");
     var formData = $form.serializeJSON();
+
     this.model.save(formData, {
       success: function() {
         Backbone.history.navigate("/", {trigger: true});
@@ -48,6 +50,10 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     $("img.selected").removeClass("selected");
     $selectedPhoto.addClass("selected");
     $("input#profile-photo").val($selectedPhoto.data("id"));
+  },
+
+  leave: function() {
+    this.remove();
   }
 
 })
