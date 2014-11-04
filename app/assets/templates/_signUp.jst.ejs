@@ -4,8 +4,8 @@
 
 <form class="sign-up" method="POST" action="/users/">
   <input type="hidden" name="authenticity_token" value=<%= window.authenticityToken %>>
-  <input id="user-username" name="user[username]" value="Username">
+  <input id="user-username" name="user[email]" placeholder="Email">
 
-  <input type="password" id="user-password" name="user[password]" value="Password">
+  <input type="password" id="user-password" name="user[password]" placeholder="Password">
   <button type="submit">Sign Up</button>
 </form>

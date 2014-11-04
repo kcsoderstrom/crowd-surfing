@@ -4,10 +4,9 @@
 
 <form class="sign-in" method="POST" action="/session/">
   <input type="hidden" name="authenticity_token" value=<%= window.authenticityToken %>>
-  <input id="user-username" name="user[username]" value="Username">
+  <input id="user-username" name="user[email]" placeholder="Email">
 
-  <input id="fake-password" name="user[password]" value="Password">
-  <input id="user-password" name="user[password]" type="password">
+  <input type="password" id="user-password" name="user[password]" placeholder="Password">
   <button type="submit">Sign In</button>
 </form>
 
