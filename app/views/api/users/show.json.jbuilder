@@ -1,4 +1,4 @@
-json.extract! @user, :id, :username
+json.extract! @user, :id, :email
 
 json.received_messages @user.received_messages do |msg|
   json.extract! msg, :subject, :body, :created_at, :sender_id, :receiver_id
@@ -24,5 +24,14 @@ end
 
 json.contacts @user.friends
 json.profile @user.profile
+
+json.photos @user.profile.photos do |photo|
+  json.url photo.pic.url
+  json.id photo.id
+end
+
+if @user.profile.primary_photo
+  json.profile_photo_url @user.profile.primary_photo.pic.url
+end
 
 json.is_contact current_user.friends.include?(@user)

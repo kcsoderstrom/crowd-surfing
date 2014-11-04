@@ -38,11 +38,21 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
       delete jsonResp.is_contact;
     }
 
+    if(jsonResp.photos) {
+      this.photos = new CrowdSurfing.Collections.Photos(jsonResp.photos, {parse: true});
+      delete jsonResp.photos;
+    }
+
+    if(jsonResp.profile_photo_url) {
+      this.profile_photo_url = jsonResp.profile_photo_url;
+      delete jsonResp.profile_photo_url;
+    }
+
     return jsonResp;
   },
 
   profile: function() {
     return this._profile || { escape: function() {} };
   }
-  
+
 });

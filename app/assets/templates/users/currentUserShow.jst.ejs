@@ -3,7 +3,8 @@
     <section class="profile-main">
 
       <div class="profile-subheader">
-        <h2><%= model.escape("username") %></h2>
+        <img src="<%= model.profile_photo_url %>" class="profile-photo">
+        <h2><%= model.profile().escape("name") %></h2>
         <h3><%= model.profile().escape("location") %></h3>
       </div>
 

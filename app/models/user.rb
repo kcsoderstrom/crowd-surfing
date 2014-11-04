@@ -56,6 +56,14 @@ class User < ActiveRecord::Base
     self.password_digest = Password.create(password)
   end
 
+  def name=(name)
+    if self.profile
+      self.profile.update(name: name)
+    else
+      self.build_profile(name: name)
+    end
+  end
+
   def is_password?(password)
     Password.new(password_digest).is_password?(password)
   end

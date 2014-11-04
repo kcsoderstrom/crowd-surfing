@@ -375,7 +375,12 @@ a.requests {
 a.user-img {
   height: 36px;
   width: 100%;
-  background: image-url("goat.gif") no-repeat 8px 0;
+
+  img {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid red;
+  }
 }
 
 ul.dropdown {

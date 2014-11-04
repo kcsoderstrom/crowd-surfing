@@ -4,14 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_username(user_params[:username])
+    @user = User.find_by_email(user_params[:email])
     if @user && @user.is_password?(user_params[:password])
       login_user!(@user)
       redirect_to root_url
     else
-      @user = User.new
-      @user.username = user_params[:username]
-      render json: @user.errors.full_messages,
+      render json: @user,
              status: :unprocessable_entity
     end
   end
@@ -23,6 +21,6 @@ class SessionsController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:email, :password)
   end
 end

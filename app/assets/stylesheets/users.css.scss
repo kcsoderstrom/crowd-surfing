@@ -34,12 +34,30 @@
       width: 240px;
       height: 40px;
       padding: 20px 20px 0 20px;
+      position: relative;
+
+      img.profile-photo {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        border: 2px solid red;
+        border-radius: 50%;
+      }
+
+      h2 {
+        width: 50px;
+        margin-left: 50px;
+      }
     }
 
     div.profile-body {
       width: 260px;
       padding: 0 10px;
       background: white;
+
+      a {
+        margin-left: 60px
+      }
     }
   }
 
@@ -179,8 +197,6 @@ section.user-show {
     }
   }
 
-
-
   ul li {
     display: block;
   }
@@ -193,13 +209,6 @@ section.user-show:after {
   clear: both;
 }
 
-section.profile-subheader {
-  text-align: center;
-  width: 100%;
-  padding-bottom: 30px;
-
-  h1 {
-    font-weight: bold;
-  }
+img.selected {
+  border: 2px solid blue;
 }
-

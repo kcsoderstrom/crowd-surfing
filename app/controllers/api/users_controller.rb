@@ -11,9 +11,6 @@ module Api
                             sent_requests: [:sender, :receiver],
                             received_requests: [:sender, :receiver])
                   .find(params[:id])
-                  p current_user
-                  p current_user.friends
-                  p current_user.friends.include?(@user)
       render :show
       #TODO: fix this so that it only shows the info that's ok to show
     end
@@ -22,7 +19,7 @@ module Api
       @user = current_user
 
       profile_updated = @user.profile.update(profile_params)
-      photo_created = @user.profile.photos.create(photo_params[:my_photo])
+      photo_created = @user.profile.photos.create(photo_params)
 
       if profile_updated && photo_created
         render :show
@@ -81,15 +78,15 @@ module Api
 
     private
     def user_params
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:email, :password)
     end
 
     def profile_params
-      params.require(:user).require(:profile).permit(:about, :gender, :age, :location)
+      params.require(:user).require(:profile).permit(:about, :gender, :age, :location, :primary_photo_id)
     end
 
     def filter_params
-      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword)
+      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword, :name)
     end
 
     def photo_params

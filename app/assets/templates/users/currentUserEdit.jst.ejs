@@ -4,6 +4,9 @@
             id="user-profile"
             class="profile"><%= model.profile().escape("about") %></textarea>
 
+  <label for="user-name">Name</label>
+  <input id="user-name" name="user[profile][name]" value="<%= model.profile().escape("name") %>">
+
   <h2>Gender</h2>
     <input type="radio"
            name="user[profile][gender]"
@@ -32,6 +35,15 @@
 
   <label for="photo">Upload photo</label>
   <input id="photo" type="file" class="my-photo-upload">
+
+  THIS IS WHERE PHOTOS GO
+  <% if (model.photos) { %>
+    <% model.photos.forEach( function(photo) { %>
+      <img class="photo" data-id="<%= photo.id %>" src="<%= photo.src_url %>">
+    <% }) %>
+  <% } %>
+
+  <input type="hidden" id="profile-photo" name="user[profile][primary_photo_id]">
 
   <button type="submit">Update Profile</button>
 </form>

@@ -3,7 +3,8 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
 
   events: {
     "click button" : "updateProfile",
-    'change .my-photo-upload': 'handleFile'
+    "change .my-photo-upload": "handleFile",
+    "click img.photo" : "selectProfilePhoto"
   },
 
   initialize: function() {
@@ -40,6 +41,13 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
       view.model.set('pic', this.result);
     }
     reader.readAsDataURL(file);
+  },
+
+  selectProfilePhoto: function(event) {
+    $selectedPhoto = $(event.currentTarget);
+    $("img.selected").removeClass("selected");
+    $selectedPhoto.addClass("selected");
+    $("input#profile-photo").val($selectedPhoto.data("id"));
   }
 
 })
