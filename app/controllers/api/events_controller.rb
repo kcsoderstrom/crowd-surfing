@@ -33,8 +33,8 @@ module Api
 
       if params[:filter_by]
         location = filter_params[:location]
-        date_lower = Integer(filter_params[:date_lower]) if filter_params[:date_lower].length > 0
-        date_upper = Integer(filter_params[:date_upper]) if filter_params[:date_upper].length > 0
+        date_lower = Integer(filter_params[:date_lower]) if filter_params[:date_lower] && filter_params[:date_lower].length > 0
+        date_upper = Integer(filter_params[:date_upper]) if filter_params[:date_upper] && filter_params[:date_upper].length > 0
         keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
       end
 
@@ -61,6 +61,10 @@ module Api
     private
     def event_params
       params.require(:event).permit(:title, :location, :time, :date, :description)
+    end
+
+    def filter_params
+      params.require(:filter_by).permit(:location, :date_lower, :date_upper)
     end
 
   end

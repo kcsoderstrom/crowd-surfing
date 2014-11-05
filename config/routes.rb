@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback', to: 'oauth_callbacks#facebook'
 
   namespace :api, defaults: { format: :json } do
-    get 'users/current_user', to: "users#json_current_user", as: "current_user"
-    get 'users/search', to: "users#search", as: "search"
+    get 'users/search', to: "users#search"
+    get 'events/search', to: "events#search"
     resources :users, only: [:show, :create, :update, :index]
     resources :events, only: [:create, :show, :update, :destroy, :index]
     resources :requests, only: [:create, :show, :update, :destroy, :index]

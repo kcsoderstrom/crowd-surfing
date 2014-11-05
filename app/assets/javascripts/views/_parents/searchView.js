@@ -7,7 +7,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     "blur input" : "search",
     "submit form" : "search",
     "keydown input" : "search",
-    
+
     "click a#load-more" : "loadMore",
     "click button.tab" : "swapTabs"
   },
@@ -15,18 +15,28 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   initialize: function() {
     this.page = 0;
     this.modelsName = "users";
-    this.matches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
-    this.moreMatches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
+
+    this.userMatches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
+    this.moreUserMatches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
+    this.eventMatches = new CrowdSurfing.Collections.SearchResults({modelsName: "events"});
+    this.moreEventMatches = new CrowdSurfing.Collections.SearchResults({modelsName: "events"});
+
+    this.matches = { users: this.userMatches, events: this.eventMatches };
+    this.moreMatches = { users: this.moreUserMatches, events: this.moreEventMatches };
+
     this.$el.addClass("currentUser");  //TODO change that in the css and all
     this.advMenu = new CrowdSurfing.Views.AdvancedMenu();
   },
 
   render: function() {
     this.$el.html(this.template({collection: this.matches}));
+
+    var el = this.$("ul#" + this.modelsName + "-results");
+
     this.resultsSubview = new CrowdSurfing.Views.ResultsSubview({
-      collection: this.matches,
-      subcollection: this.moreMatches,
-      el: this.$("ul")});
+      collection: this.matches[this.modelsName],
+      subcollection: this.moreMatches[this.modelsName],
+      el: el});
     this.advMenu.$el = this.$(".advMenu");
     this.advMenu.render();
     return this;
@@ -36,12 +46,15 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     event.preventDefault();
     var tab = $(event.currentTarget);
     $("button.tab").removeClass("active");
+    this.$("section").removeClass("active");
+
     tab.addClass("active");
+    $("section#" + tab.attr("id")).addClass("active");
 
     this.modelsName = tab.data("models-name");
   },
 
-  search: function() {
+  search: function(event) {
     if(event.type === "submit") {
       event.preventDefault();
     }
@@ -54,12 +67,12 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
       event.preventDefault();
     }
 
-    this.fetchResults(this.matches);
+    this.fetchResults(this.matches[this.modelsName]);
   },
 
   loadMore: function(event) {
     event.preventDefault();
-    this.fetchResults(this.moreMatches);
+    this.fetchResults(this.moreMatches[this.modelsName]);
   },
 
   fetchResults: function(collection) {
@@ -72,11 +85,13 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     this.page = 0;
 
-    collection.set({modelsName: this.modelsName});
+    collection.modelsName = this.modelsName;
     collection.fetch({data: { match: name,
-                                filter_by: filterData,
-                                sort_by: sortCriterion,
-                                page: this.page }});
+                              filter_by: filterData,
+                              sort_by: sortCriterion,
+                              page: this.page },
+                              success: function(data) { console.log("NAILED IT", data)} }
+                    );
   },
 
   leave: function() {

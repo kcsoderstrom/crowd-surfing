@@ -27,6 +27,7 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
   },
 
   removeDropdown: function(event) {
+    //TODO: THAT'S REALLY BAD
     console.log(event.currentTarget);
   },
 

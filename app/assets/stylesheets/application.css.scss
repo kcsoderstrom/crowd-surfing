@@ -459,3 +459,11 @@ div.tabs:after {
   content: "";
   display: block;
 }
+
+section.search {
+  display: none;
+  
+  &.active {
+    display: block
+  }
+}
