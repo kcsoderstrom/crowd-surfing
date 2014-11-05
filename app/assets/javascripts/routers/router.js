@@ -63,7 +63,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     var msg = new CrowdSurfing.Models.Message();
     var newView = new CrowdSurfing.Views.MessageNew({model: msg});
     this._swapView(newView);
-  }, //TODO: WHEN THIS GETS REMOVED YOU MUST MUST MUST CLEAR THE COOKIE!!
+  },
 
   messagesIndex: function() {
     var messages = new CrowdSurfing.Collections.Messages();

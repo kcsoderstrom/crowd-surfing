@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
       login_user!(@user)
       redirect_to root_url
     else
-      render json: @user,
-             status: :unprocessable_entity
+      redirect_to root_url
     end
   end
 

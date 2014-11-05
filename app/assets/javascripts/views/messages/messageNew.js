@@ -34,7 +34,6 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
       function() {
         var str = ""
         that.matches.forEach(function(match){
-          console.log("dat match", match);
           str += ("<li>" + match.get("name") + "</li>");
         });
         return str;
@@ -68,7 +67,6 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   },
 
   selectReceiver: function(event) {
-    console.log('hiiiiiiiiiiiiiiiiiiiiii')
     var receiverName = $(event.currentTarget).text();
     var $toField = $("input#msg-receiver");
     $toField.val(receiverName);
@@ -76,7 +74,6 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   },
 
   removeFoundUsersList: function(event) {
-    console.log(event);
     $("ul.found-users").empty();
   },
 

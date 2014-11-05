@@ -11,8 +11,11 @@ module Api
                             sent_requests: [:sender, :receiver],
                             received_requests: [:sender, :receiver])
                   .find(params[:id])
-      render :show
-      #TODO: fix this so that it only shows the info that's ok to show
+      if @user == current_user
+        render :current_user_show
+      else
+        render :show
+      end
     end
 
     def update
@@ -56,25 +59,20 @@ module Api
       @users = @users.joins(:profile)
                      .where("profiles.age < ? ", age_upper + 1) if age_upper
 
+
       if params[:sort_by]
         if params[:sort_by] == "last-login"
           @users = @users.order(:updated_at)
         end
       end
 
+
+      @users = @users.limit(10) if params[:page]
+      @users = @users.offset(Integer(params[:page])*10) if params[:page]
+
+
       render :search_results
 
-    end
-
-    def create
-      @user = User.new(user_params)
-      if @user.save
-        login_user!(@user)
-        render :show
-      else
-        render json: @user.errors.full_messages,
-               status: :unprocessable_entity
-      end
     end
 
     private
@@ -88,10 +86,6 @@ module Api
 
     def filter_params
       params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword, :name)
-    end
-
-    def photo_params
-      params.permit(:pic)
     end
 
   end
