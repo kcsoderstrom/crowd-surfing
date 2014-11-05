@@ -42,11 +42,12 @@ module Api
         keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
       end
 
-      @users = User.all
+      @users = User.includes(:profile).all
 
       @users = current_user.friends if params[:contacts_only]
 
-      @users = @users.where("username ~* ?", match) if match
+      @users = @users.joins(:profile)
+                     .where("name ~* ?", match) if match
 
       @users = @users.joins(:profile)
                      .where("profiles.gender = ?", gender) if gender
@@ -61,7 +62,7 @@ module Api
         end
       end
 
-      render json: @users
+      render :search_results
 
     end
 

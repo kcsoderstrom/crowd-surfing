@@ -5,7 +5,7 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
     "click button" : "sendMessage",
     "keyup input#msg-receiver" : "quickSearch",
     "click input#msg-receiver" : "stopAutofilling",
-    "click ul.found-users > li" : "selectReceiver",
+    "mousedown ul.found-users > li" : "selectReceiver",
     "blur input#msg-receiver" : "removeFoundUsersList"
   },
 
@@ -34,7 +34,8 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
       function() {
         var str = ""
         that.matches.forEach(function(match){
-          str += ("<li>" + match.escape("username") + "</li>");
+          console.log("dat match", match);
+          str += ("<li>" + match.get("name") + "</li>");
         });
         return str;
       }()
@@ -67,6 +68,7 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   },
 
   selectReceiver: function(event) {
+    console.log('hiiiiiiiiiiiiiiiiiiiiii')
     var receiverName = $(event.currentTarget).text();
     var $toField = $("input#msg-receiver");
     $toField.val(receiverName);
@@ -74,6 +76,7 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   },
 
   removeFoundUsersList: function(event) {
+    console.log(event);
     $("ul.found-users").empty();
   },
 
