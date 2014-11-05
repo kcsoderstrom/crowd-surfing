@@ -4,8 +4,8 @@ class OauthCallbacksController < ApplicationController
       provider: request.env['omniauth.auth'][:provider],
       uid: request.env['omniauth.auth'][:uid],
       email: request.env['omniauth.auth'][:info][:email],
-      username: request.env['omniauth.auth'][:info][:name],
       profile: {
+        name: request.env['omniauth.auth'][:info][:name],
         location: request.env['omniauth.auth'][:info][:location],
         gender: request.env['omniauth.auth'][:extra][:raw_info][:gender]
       }
