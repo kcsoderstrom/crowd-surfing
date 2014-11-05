@@ -11,13 +11,13 @@
   <input id="evt-location" name="event[location]" value="<%= model.escape("location") %>">
 
   <label for="evt-time">Time</label>
-  <input id="evt-time" name="event[location]" value="<%= model.escape("time") %>">
+  <input id="evt-time" name="event[time]" value="<%= model.escape("time") %>">
 
   <label for="evt-date">Date</label>
   <input type="date" id="evt-date" name="event[date]" value="<%= model.escape("date") %>">
 
   <label for="evt-description">Description</label>
-  <textarea id="evt-description" name="body"><%= model.escape("description") %></textarea>
+  <textarea id="evt-description" name="event[description]"><%= model.escape("description") %></textarea>
 
   <button type="submit">Create</button>
 </form>

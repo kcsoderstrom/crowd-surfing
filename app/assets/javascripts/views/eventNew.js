@@ -2,7 +2,7 @@ CrowdSurfing.Views.EventNew = Backbone.View.extend({
   template: JST["events/eventNew"],
 
   events: {
-    "click button" : "sendMessage",
+    "click button" : "createEvent",
     "keyup input#inv-receiver" : "quickSearch",
     "click input#inv-receiver" : "stopAutofilling",
     "mousedown ul.found-users > li" : "selectReceiver",
@@ -41,13 +41,13 @@ CrowdSurfing.Views.EventNew = Backbone.View.extend({
     )
   },
 
-  sendMessage: function(event) {
+  createEvent: function(event) {
     event.preventDefault();
-    var msg = new CrowdSurfing.Models.Message();
-    var $form = $("form.message-new");
+    var evt = new CrowdSurfing.Models.Event();
+    var $form = $("form.event-new");
     var formData = $form.serializeJSON();
-    msg.set(formData);
-    msg.save({}, {
+    evt.set(formData);
+    evt.save({}, {
       success: function() {
         Backbone.history.navigate("/messages", {trigger: true});
       }
@@ -55,7 +55,6 @@ CrowdSurfing.Views.EventNew = Backbone.View.extend({
   },
 
   quickSearch: function(event) {
-    console.log("in here ok")
     var that = this;
     var $searchBar = $(event.currentTarget);
     var match = $searchBar.val();
