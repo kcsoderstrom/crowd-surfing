@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'users/current_user', to: "users#json_current_user", as: "current_user"
     get 'users/search', to: "users#search", as: "search"
     resources :users, only: [:show, :create, :update, :index]
-    resources :session, only: [:create, :update, :destroy]
+    resources :events, only: [:create, :show, :update, :destroy, :index]
     resources :requests, only: [:create, :show, :update, :destroy, :index]
     resources :messages, only: [:create, :show, :update, :destroy, :index]
     resources :contacts, only: [:create]

@@ -1,0 +1,23 @@
+<form class="event-new">
+  <label for="inv-receiver">Invite<label>
+  <input id="inv-receiver" name="invitation[receiver]" value="<%= localStorage.getItem("invToName") %>">
+  <ul class="found-users">
+  </ul>
+
+  <label for="evt-title">Title</label>
+  <input id="evt-title" name="event[title]" value="<%= model.escape("title") %>">
+
+  <label for="evt-location">Location</label>
+  <input id="evt-location" name="event[location]" value="<%= model.escape("location") %>">
+
+  <label for="evt-time">Time</label>
+  <input id="evt-time" name="event[location]" value="<%= model.escape("time") %>">
+
+  <label for="evt-date">Date</label>
+  <input type="date" id="evt-date" name="event[date]" value="<%= model.escape("date") %>">
+
+  <label for="evt-description">Description</label>
+  <textarea id="evt-description" name="body"><%= model.escape("description") %></textarea>
+
+  <button type="submit">Create</button>
+</form>

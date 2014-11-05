@@ -2,6 +2,8 @@
 
 <div class="divider">or</div>
 
+<%= loginErrors ? "Email or password is incorrect" : "" %>
+
 <form class="sign-in" method="POST" action="/session/">
   <input type="hidden" name="authenticity_token" value=<%= window.authenticityToken %>>
   <input id="user-username" name="user[email]" placeholder="Email">

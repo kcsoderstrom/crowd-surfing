@@ -34,6 +34,8 @@ CrowdSurfing.Views.Welcome = Backbone.View.extend({
     $(".sign-up").removeClass("active");
     $(".sign-in").removeClass("active");
     $(".wax-paper").removeClass("shady");
+    this.loginErrors = false;
+    this.render();
   },
 
   leave: function() {

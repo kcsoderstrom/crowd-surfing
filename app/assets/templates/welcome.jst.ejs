@@ -14,10 +14,10 @@
 
   </section>
 
-  <section class="wax-paper">
+  <section class="wax-paper <%= loginErrors ? 'shady' : '' %>">
   </section>
 
-  <section class="sign-in">
+  <section class="sign-in <%= loginErrors ? 'active' : '' %> ">
     <%= JST["_signIn"]({loginErrors: loginErrors}) %>
   </section>
 
