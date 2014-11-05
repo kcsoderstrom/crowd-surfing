@@ -88,5 +88,9 @@ module Api
       params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword, :name)
     end
 
+    def photo_params
+      params.permit(:pic)
+    end
+
   end
 end
