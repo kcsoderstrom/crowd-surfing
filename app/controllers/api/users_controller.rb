@@ -11,7 +11,7 @@ module Api
                             sent_requests: [:sender, :receiver],
                             received_requests: [:sender, :receiver])
                   .find(params[:id])
-      if @user == current_user
+      if @user.id == current_user.id
         render :current_user_show
       else
         render :show
@@ -73,6 +73,15 @@ module Api
 
       render :search_results
 
+    end
+
+    def show
+      @user = User.find(params[:id])
+      if params[:id] == current_user.id
+        render :current_user_show
+      else
+        render :show
+      end
     end
 
     private

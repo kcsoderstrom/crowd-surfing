@@ -37,6 +37,7 @@
   <input id="photo" type="file" class="my-photo-upload">
 
   THIS IS WHERE PHOTOS GO
+  <% console.log(model) %>
   <% if (model.photos) { %>
     <% model.photos.forEach( function(photo) { %>
       <img class="photo" data-id="<%= photo.id %>" src="<%= photo.src_url %>">
