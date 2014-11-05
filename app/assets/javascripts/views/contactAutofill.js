@@ -13,8 +13,9 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
     this.receiver = options.receiver;
     this.name = options.name;
     this.id = options.id;
-    this.matches = new CrowdSurfing.Collections.SearchResults();
+    this.matches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
     this.listenTo(this.matches, "sync", this.subrender);
+    this.userIds = [];
   },
 
   render: function() {
@@ -28,7 +29,7 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
       function() {
         var str = ""
         that.matches.forEach(function(match){
-          str += ("<li>" + match.get("name") + "</li>");
+          str += ('<li data-user-id="' + match.get("id") + '">' + match.get("name") + "</li>");
         });
         return str;
       }()
@@ -50,7 +51,11 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   selectReceiver: function(event) {
     this.receiver = $(event.currentTarget).text();
     var $toField = this.$("input");
-    $toField.val(this.receiver);
+    this.$el.append(this.receiver);
+
+    this.userIds.push($(event.currentTarget).data("userId"));
+
+    $toField.empty();
     $("ul.found-users").empty();
   },
 

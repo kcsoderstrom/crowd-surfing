@@ -13,7 +13,6 @@ module Api
     def create
       @request = Request.new(request_params)
 
-      @request.invitation = false
       puts @request
       if @request.save
         render json: @request
@@ -43,7 +42,7 @@ module Api
     private
     def request_params
       { sender_id: current_user.id,
-        receiver_id: User.find_by_username(params[:receiver]).id,
+        receiver_id: params[:receiver_id],
         details: params[:details],
         status: params[:status],
         invitation: params[:invitation] }

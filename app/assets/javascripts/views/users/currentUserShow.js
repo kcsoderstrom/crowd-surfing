@@ -24,8 +24,10 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
       this.inviteView.leave();
     }
 
-    this.inviteView = new CrowdSurfing.Views.InviteMenu();
-    $(event.currentTarget).closest("li").append(this.inviteView.render().$el);
+    var $li = $(event.currentTarget).closest("li");
+
+    this.inviteView = new CrowdSurfing.Views.InviteMenu({eventId: $li.data("eventId")});
+    $li.append(this.inviteView.render().$el);
   },
 
   leave: function() {

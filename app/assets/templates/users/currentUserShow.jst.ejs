@@ -55,7 +55,7 @@
       <ul>
       <% if (model.events) { %>
         <% model.events.forEach(function(evt) { %>
-          <li>
+          <li data-event-id="<%= evt.id %>">
             It is called <%= evt.escape("title") %> ok
             <a class="invite" href="#">Invite people</a>
           </li>

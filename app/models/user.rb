@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    username
+    self.profile.name
   end
 
   def messages

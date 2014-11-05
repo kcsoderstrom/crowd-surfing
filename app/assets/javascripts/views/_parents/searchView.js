@@ -31,12 +31,18 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({collection: this.matches}));
 
-    var el = this.$("ul#" + this.modelsName + "-results");
+    this.usersResultsSubview = new CrowdSurfing.Views.ResultsSubview({
+      collection: this.matches["users"],
+      subcollection: this.moreMatches["users"],
+      el: this.$("ul#users-results"),
+      modelsName: "users" });
 
-    this.resultsSubview = new CrowdSurfing.Views.ResultsSubview({
-      collection: this.matches[this.modelsName],
-      subcollection: this.moreMatches[this.modelsName],
-      el: el});
+    this.eventsResultsSubview = new CrowdSurfing.Views.ResultsSubview({
+      collection: this.matches["events"],
+      subcollection: this.moreMatches["events"],
+      el: this.$("ul#events-results"),
+      modelsName: "events" });
+
     this.advMenu.$el = this.$(".advMenu");
     this.advMenu.render();
     return this;
@@ -78,6 +84,11 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   fetchResults: function(collection) {
     var name = $("input#user-name").val();
 
+    if(this.modelsName === "events") {
+      name = $("input#event-title").val();
+      console.log("TERRIBLE NAME", name);
+    }
+
     var $filterForm = $("form.filter-criteria");
     var filterData = $filterForm.serializeJSON();
 
@@ -89,13 +100,12 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     collection.fetch({data: { match: name,
                               filter_by: filterData,
                               sort_by: sortCriterion,
-                              page: this.page },
-                              success: function(data) { console.log("NAILED IT", data)} }
-                    );
+                              page: this.page }});
   },
 
   leave: function() {
-    this.resultsSubview.leave();
+    this.usersResultsSubview.leave();
+    this.eventsResultsSubview.leave();
     this.remove();
   }
 

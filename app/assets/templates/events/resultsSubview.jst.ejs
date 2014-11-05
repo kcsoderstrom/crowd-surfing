@@ -1,0 +1,9 @@
+<% console.log("THA COLLECTIUM IS", collection) %>
+
+
+<% collection.forEach(function(evt) { %>
+  <li class="search-reult">
+  <% console.log("HEY YOU'RE HERE") %>
+    <a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a>
+  </li>
+<% }); %>
