@@ -9,7 +9,8 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "messages" : "messagesIndex",
     "messages/new" : "messageNew",
     "messages/:id" : "messageShow",
-    "requests/new" : "requestNew"
+    "requests/new" : "requestNew",
+    "=(" : "loginErrors"
   },
 
   initialize: function(options) {
@@ -84,6 +85,11 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     var req = new CrowdSurfing.Models.Request();
     var newView = new CrowdSurfing.Views.RequestNew({model: req});
     this._swapView(newView);
+  },
+
+  loginErrors: function() {
+    var welcomeView = new CrowdSurfing.Views.Welcome({loginErrors: true});
+    this._swapView(welcomeView);
   },
 
   _swapView: function (newView) {

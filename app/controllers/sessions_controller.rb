@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       login_user!(@user)
       redirect_to root_url
     else
-      redirect_to root_url
+      redirect_to "#/error"
     end
   end
 

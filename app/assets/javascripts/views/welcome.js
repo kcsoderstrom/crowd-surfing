@@ -7,8 +7,13 @@ CrowdSurfing.Views.Welcome = Backbone.View.extend({
     "click section.wax-paper" : "removeModals"
   },
 
+  initialize: function(options) {
+    options = options || {};
+    this.loginErrors = options.loginErrors;
+  },
+
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template({loginErrors: this.loginErrors}));
     return this;
   },
 
