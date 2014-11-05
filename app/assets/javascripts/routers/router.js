@@ -6,6 +6,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "users/:id" : "userShow",
     "users/:id/requests/new" : "requestNewForUser",
     "search" : "usersSearch",
+    "events/search" : "eventsSearch",
     "messages" : "messagesIndex",
     "messages/new" : "messageNew",
     "messages/:id" : "messageShow",
@@ -58,6 +59,11 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   usersSearch: function() {
     var searchView = new CrowdSurfing.Views.UsersSearch({collection: this.collection});
+    this._swapView(searchView);
+  },
+
+  eventsSearch: function() {
+    var searchView = new CrowdSurfing.Views.EventsSearch();
     this._swapView(searchView);
   },
 

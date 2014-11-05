@@ -23,11 +23,38 @@ module Api
       end
     end
 
-    def index
+    def destroy
 
     end
 
-    def destroy
+    def search
+
+      match = params[:match] && params[:match].length > 0 ? params[:match] : nil
+
+      if params[:filter_by]
+        location = filter_params[:location]
+        date_lower = Integer(filter_params[:date_lower]) if filter_params[:date_lower].length > 0
+        date_upper = Integer(filter_params[:date_upper]) if filter_params[:date_upper].length > 0
+        keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
+      end
+
+      @events = Event.all
+      @events = @events.where("location ~ ?", location) if location
+      @events = @events.where("title ~* ?", match) if match
+      @events = @events.where("date < ?", date_upper + 1) if date_upper
+      @events = @events.where("date > ?", date_lower - 1) if date_lower
+
+      if params[:sort_by]
+        if params[:sort_by] == "last-login"
+          @users = @users.order(:updated_at)
+        end
+      end
+
+
+      @events = @events.limit(10) if params[:page]
+      @events = @events.offset(Integer(params[:page])*10) if params[:page]
+
+      render :search_results
 
     end
 
