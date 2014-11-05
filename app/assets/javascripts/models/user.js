@@ -43,6 +43,11 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
       delete jsonResp.photos;
     }
 
+    if(jsonResp.events) {
+      this.events = new CrowdSurfing.Collections.Events(jsonResp.events, {parse: true});
+      delete jsonResp.events;
+    }
+
     return jsonResp;
   },
 

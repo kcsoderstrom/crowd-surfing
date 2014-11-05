@@ -35,4 +35,6 @@ if @user.profile.primary_photo
   json.thumbnail_url @user.profile.primary_photo.pic.url(:thumb)
 end
 
+json.events @user.events
+
 json.is_contact true

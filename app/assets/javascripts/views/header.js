@@ -3,7 +3,8 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
 
   events: {
     "click .user-img" : "toggleDropdown",
-    "click ul.dropdown" : "toggleDropdown"
+    "click ul.dropdown" : "toggleDropdown",
+    "click document" : "removeDropdown"
   },
 
   initialize: function() {
@@ -23,6 +24,10 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
     } else {
       $dropdown.addClass("active");
     }
+  },
+
+  removeDropdown: function(event) {
+    console.log(event.currentTarget);
   },
 
   leave: function() {

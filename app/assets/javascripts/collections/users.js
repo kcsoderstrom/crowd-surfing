@@ -23,7 +23,6 @@ CrowdSurfing.Collections.Users = Backbone.Collection.extend({
       model.fetch({
         success: function() {
           that.add(model);
-          console.log("it was successful")
         }
       });
       return model;

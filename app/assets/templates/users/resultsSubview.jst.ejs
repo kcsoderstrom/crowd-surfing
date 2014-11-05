@@ -1,6 +1,5 @@
 <% collection.forEach(function(user) { %>
   <li class="search-reult">
-    <% console.log(user) %>
     <img src="<%= user.get("profile_photo_url") %>">
     <a href="#/users/<%= user.id %>"><%= user.get("name") %></a>
   </li>

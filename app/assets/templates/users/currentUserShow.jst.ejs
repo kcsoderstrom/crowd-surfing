@@ -48,5 +48,24 @@
       <a href="#">Edit</a>
 
     </section>
+
+    <section class="events">
+      <h2>Your events</h2>
+
+      <ul>
+      <% if (model.events) { %>
+        <% model.events.forEach(function(evt) { %>
+          <li>
+            It is called <%= evt.escape("title") %> ok
+            <a href="#">Invite people</a>
+          </li>
+        <% })  %>
+      <% } %>
+      </ul>
+
+      <a href="#">Edit</a>
+      <a href="#/events/new">New event</a>
+
+    </section>
   </section>
 </div>

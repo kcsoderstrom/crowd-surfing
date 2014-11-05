@@ -6,12 +6,15 @@ module Api
     end
 
     def show
-      @user = User.includes(sent_messages: [:sender, :receiver],
+      @user = User.includes(:events,
+                            sent_messages: [:sender, :receiver],
                             received_messages: [:sender, :receiver],
                             sent_requests: [:sender, :receiver],
                             received_requests: [:sender, :receiver])
                   .find(params[:id])
+
       if @user.id == current_user.id
+
         render :current_user_show
       else
         render :show
@@ -73,15 +76,6 @@ module Api
 
       render :search_results
 
-    end
-
-    def show
-      @user = User.find(params[:id])
-      if params[:id] == current_user.id
-        render :current_user_show
-      else
-        render :show
-      end
     end
 
     private

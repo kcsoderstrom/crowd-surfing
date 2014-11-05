@@ -13,8 +13,6 @@ CrowdSurfing.Views.ResultsSubview = Backbone.View.extend({
   },
 
   subrender: function() {
-    console.log("well I tried")
-    console.log(this.subcollection);
     this.$el.append(this.template({collection: this.subcollection}));
     return this;
   },
