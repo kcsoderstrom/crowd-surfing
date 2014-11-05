@@ -18,7 +18,6 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   },
 
   render: function() {
-    console.log(this.id);
     this.$el.html(this.template({ receiver: this.receiver, name: this.name, id: this.id }));
     return this;
   },
