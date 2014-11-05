@@ -1,34 +1,32 @@
-CrowdSurfing.Views.MessageNew = Backbone.View.extend({
-  template: JST["messages/messageNew"],
+CrowdSurfing.Views.EventNew = Backbone.View.extend({
+  template: JST["events/eventNew"],
 
   events: {
-    "click button" : "sendMessage"
+    "click button" : "createEvent",
   },
 
   initialize: function(options) {
-
     this.listenTo(this.model, "sync", this.render);
     this.$el.addClass("currentUser");  //TODO change that in the css and all
     this.autofillSubview = new CrowdSurfing.Views.ContactAutofill(
-                                { receiver: localStorage.getItem("msgToName"),
-                                  id: "msg-receiver",
+                                { receiver: localStorage.getItem("reqToName"),
+                                  id: "req-receiver",
                                   name: "receiver" });
     this.listenTo(this.matches, "sync", this.subRender);
   },
 
   render: function() {
     this.$el.html(this.template({model: this.model, receiver: this.receiver}));
-    this.$("div.msg-receiver").html(this.autofillSubview.render().$el);
     return this;
   },
 
-  sendMessage: function(event) {
+  createEvent: function(event) {
     event.preventDefault();
-    var msg = new CrowdSurfing.Models.Message();
-    var $form = $("form.message-new");
+    var evt = new CrowdSurfing.Models.Event();
+    var $form = $("form.event-new");
     var formData = $form.serializeJSON();
-    msg.set(formData);
-    msg.save({}, {
+    evt.set(formData);
+    evt.save({}, {
       success: function() {
         Backbone.history.navigate("/messages", {trigger: true});
       }
