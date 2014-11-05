@@ -63,7 +63,7 @@
 
 }
 
-section.profile-invitations, section.profile-requests {
+section.profile-invitations, section.profile-requests, section.events {
   float: right;
   width: 700px;
   margin-bottom: 30px;
@@ -71,6 +71,19 @@ section.profile-invitations, section.profile-requests {
 
   a {
     display: inline;
+  }
+
+  li {
+    position: relative;
+  }
+
+  section.invite-menu {
+    position: absolute;
+    right: 0;
+    height: 200px;
+    width: 200px;
+    background: red;
+    border: 2px solid black;
   }
 }
 
