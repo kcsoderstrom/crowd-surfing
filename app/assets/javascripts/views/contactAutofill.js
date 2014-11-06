@@ -2,10 +2,10 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   template: JST["contactAutofill"],
 
   events: {
-    "keyup input" : "quickSearch",
     "keydown input" : "selectReceiver",
-    "click input" : "stopAutofilling",
     "mousedown ul.found-users > li" : "selectReceiver",
+    "click ul.selected-users li" : "removeReceiver",
+    "keyup input" : "quickSearch",
     "blur input" : "removeFoundUsersList"
   },
 
@@ -13,14 +13,17 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
     options = options || {};
     this.receiver = options.receiver;
     this.name = options.name;
-    this.id = options.id;
+    this.some_id = options.id;
+    this.receiverId = options.receiverId;
     this.matches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
     this.listenTo(this.matches, "sync", this.subrender);
     this.userIds = [];
   },
 
   render: function() {
-    this.$el.html(this.template({ receiver: this.receiver, name: this.name, id: this.id }));
+    console.log("THIS IS THE RENDERIN", this);
+    this.$el.html(this.template({ receiver: this.receiver, receiverId: this.receiverId, name: this.name, id: this.some_id }));
+    this.$("input").focus();
     return this;
   },
 
@@ -43,14 +46,14 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
     var match = $searchBar.val();
 
     if(match.length > 1) {
-      this.matches.fetch({data: { match: match, contacts_only: true }});
+      this.matches.fetch({data: { match: match, contacts_only: true, exclude: this.userIds }});
     } else {
       this.removeFoundUsersList();
     }
   },
 
   selectReceiver: function(event) {
-    var $userLl;
+    var $userLi;
 
     if(event.type === "keydown") {
       if(event.keyCode !== 13) {
@@ -58,19 +61,29 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
       }
 
       event.preventDefault();
-      $userLi =  $("ul.found-users").first();
+      $userLi = $("ul.found-users li").first();
     } else {
       $userLi = $(event.currentTarget);
     }
 
+    var userId = $userLi.data("user-id");
+
     this.receiver = $userLi.text();
     var $toField = this.$("input");
-    this.$("ul.selected-users").append("<li>" + this.receiver + "</li>");
+    this.$("ul.selected-users").append('<li data-user-id="' + userId + '"><a href="javascript:void(0)">' + this.receiver + "</a></li>");
 
-    this.userIds.push($userLi.data("userId"));
+    this.userIds.push(userId);
 
     $toField.val("");
     $("ul.found-users").empty();
+  },
+
+  removeReceiver: function(event) {
+    var $li = $(event.currentTarget);
+    var id = $li.data("user-id");
+
+    this.userIds.splice(this.userIds.indexOf(id), 1);
+    $li.remove();
   },
 
   removeFoundUsersList: function(event) {

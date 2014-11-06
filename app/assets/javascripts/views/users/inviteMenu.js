@@ -1,7 +1,7 @@
 CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
   template: JST["users/inviteMenu"],
   tagName: "section",
-  className: "invite-menu",
+  className: "invite-menu transient active",
 
   events: {
     "click button" : "sendInvitations"

@@ -25,7 +25,8 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.moreMatches = { users: this.moreUserMatches, events: this.moreEventMatches };
 
     this.$el.addClass("currentUser");  //TODO change that in the css and all
-    this.advMenu = new CrowdSurfing.Views.AdvancedMenu();
+    this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "user"});
+    this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "event"})
   },
 
   render: function() {
@@ -43,8 +44,11 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
       el: this.$("ul#events-results"),
       modelsName: "events" });
 
-    this.advMenu.$el = this.$(".advMenu");
-    this.advMenu.render();
+    this.usersAdvMenu.$el = this.$(".adv-menu.users");
+    this.usersAdvMenu.render();
+
+    this.eventsAdvMenu.$el = this.$(".adv-menu.events");
+    this.eventsAdvMenu.render();
     return this;
   },
 
@@ -73,6 +77,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
       event.preventDefault();
     }
 
+    this.page = 0;
     this.fetchResults(this.matches[this.modelsName]);
   },
 
@@ -83,10 +88,10 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
   fetchResults: function(collection) {
     var name = $("input#user-name").val();
+    var that = this;
 
     if(this.modelsName === "events") {
       name = $("input#event-title").val();
-      console.log("TERRIBLE NAME", name);
     }
 
     var $filterForm = $("form.filter-criteria");
@@ -94,13 +99,18 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     var sortCriterion = $("form.sort-criterion").find("input:checked").val();
 
-    this.page = 0;
-
     collection.modelsName = this.modelsName;
-    collection.fetch({data: { match: name,
-                              filter_by: filterData,
-                              sort_by: sortCriterion,
-                              page: this.page }});
+    collection.fetch({
+                        data: { match: name,
+                                filter_by: filterData,
+                                sort_by: sortCriterion,
+                                page: this.page },
+
+                        success: function() {
+                          that.page += 1;
+                        }
+                      });
+
   },
 
   leave: function() {

@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :events, only: [:create, :show, :update, :destroy, :index]
     resources :requests, only: [:create, :show, :update, :destroy, :index]
     resources :messages, only: [:create, :show, :update, :destroy, :index]
-    resources :contacts, only: [:create]
+    resources :contacts, only: [:create, :destroy]
   end
 end

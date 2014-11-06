@@ -1,6 +1,13 @@
 <% collection.forEach(function(user) { %>
-  <li class="search-reult">
+  <li class="search-result">
     <img src="<%= user.get("profile_photo_url") %>">
-    <a href="#/users/<%= user.id %>"><%= user.get("name") %></a>
+    <section class="profile-info">
+      <a href="#/users/<%= user.id %>"><%= user.get("name") %></a>
+      <ul>
+        <li>Age: <%= user.get("age") %></li>
+        <li>Gender: <%= user.get("gender") %></li>
+        <li>About: <%= user.get("about") %></li>
+      </ul>
+    </section>
   </li>
 <% }); %>

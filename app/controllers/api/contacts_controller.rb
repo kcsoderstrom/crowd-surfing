@@ -8,5 +8,20 @@ module Api
         render json: "that didn't work", status: :unprocessable_entity
       end
     end
+
+    def destroy
+
+      puts "HEY WE GOT HERE OK &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+      @contact = Contact.where("user_id = ?", current_user.id)
+                        .where("friend_id = ?", params[:contact_user_id])
+                        .first
+
+      if @contact && @contact.destroy
+        render json: "It was destroyed."
+      else
+        render json: @contact.errors.full_messages,
+                     status: :unprocessable_entity
+      end
+    end
   end
 end

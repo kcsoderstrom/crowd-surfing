@@ -70,7 +70,21 @@
 
 }
 
-section.profile-invitations, section.profile-requests, section.events {
+section.contacts-list {
+  width: 280px;
+  margin: 0 auto;
+  background: white;
+  h2 {
+    background: #F4F6F9;
+    padding: 5px;
+    padding-top: 12px;
+    font-size: 18px;
+    height: 27px;
+    color: rgb(88, 97, 111);
+  }
+}
+
+section.events {
   float: right;
   width: 700px;
   margin-bottom: 30px;
@@ -87,16 +101,77 @@ section.profile-invitations, section.profile-requests, section.events {
 
   ul.info li {
     padding: 5px 10px;
+    position: relative;
   }
 
   section.invite-menu {
+    display: none;
     position: absolute;
-    right: 0;
-    height: 200px;
-    width: 200px;
-    background: red;
-    border: 2px solid black;
+    right: 20px;
+    top: 50px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #B3B3B3;
     z-index: 15;
+    padding: 5px;
+    width: 250px;
+
+    ul.selected-users:after {
+      clear: both;
+      content: "";
+      display: block;
+    }
+
+    li {
+      position: relative;
+      display: block;
+      margin: 5px;
+      float: left;
+    }
+
+    a {
+      display: block;
+      height: 20px;
+      text-align: left;
+      padding: 7px 12px 3px 12px;
+      color: #737373;
+      border-radius: 50px;
+      background: #F8F8F8;
+
+      &:after {
+        display: block;
+        float: right;
+        content: "X";
+        color: #959595;
+      }
+    }
+
+    button {
+      display: block;
+      height: 30px;
+      width: 150px;
+      text-align: left;
+      padding: 6px 12px 4px 12px;
+      color: #737373;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    button:hover, a:hover {
+      background: #F2F2F2;
+      color: black;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    input {
+      outline: none
+    }
   }
 
   h2 {
@@ -141,12 +216,11 @@ textarea {
   padding: 5px;
 }
 
-section.advMenu {
+section.adv-menu {
   background-color: lightgray;
 
   form {
     position: relative;
-    float: left;
     width: 50%;
   }
 
@@ -157,7 +231,7 @@ section.advMenu {
 
   div.gender, div.sort {
     position: relative;
-    width: 200px;
+    width: 100px;
     padding: 5px;
     border-radius: 10px;
     background: red;
@@ -184,12 +258,12 @@ section.advMenu {
     width: 20px;
     float: left;
   }
-}
 
-section.advMenu:after {
-  content: "";
-  display: block;
-  clear: both;
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 }
 
 section.user-show {

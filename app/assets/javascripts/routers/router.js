@@ -23,6 +23,14 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
                                                     model: this.collection.getOrFetch(window.currentUserId)});
     // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
     headerView.render();
+    // this.$headerEl.on("mouseup", function(event) {
+    //   $(".transient.active").removeClass("active");
+    // });
+    // this.$el.on("mousedown", function(event){
+    //   if(!$(event.target).hasClass("transient") && !$(event.target).hasClass("transient-friend")) {
+    //     $(".transient.active").removeClass("active");
+    //   }
+    // })
   },
 
   landingPage: function() {

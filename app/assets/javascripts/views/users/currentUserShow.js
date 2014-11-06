@@ -2,11 +2,12 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   template: JST["users/currentUserShow"],
 
   events: {
-    "click a.invite" : "openInviteView"
+    "click a.invite" : "openInviteView",
+    "click button.delete-contact" : "removeContact"
   },
 
   initialize: function() {
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync update", this.render);
     this.listenTo(this.collection, "sync", this.render);
 
     this.eventsCollection = new CrowdSurfing.Collections.Events();
@@ -30,11 +31,19 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     }
 
     var $li = $(event.currentTarget).closest("li");
-    console.log($li);
-    console.log($li.data("event-id"));
 
     this.inviteView = new CrowdSurfing.Views.InviteMenu({eventId: $li.data("eventId")});
     $li.append(this.inviteView.render().$el);
+  },
+
+  removeContact: function(event) {
+    event.preventDefault();
+    $button = $(event.currentTarget)
+    var user = this.model;
+
+    user.save({contact_user_id: $button.data("id"), delete_contact: true},
+              {success: function() { user.fetch(); }});
+
   },
 
   leave: function() {

@@ -20,7 +20,10 @@
       <% if (model.contacts && model.contacts.length > 0) { %>
         <ul class="contacts">
           <% model.contacts.forEach(function(contact){ %>
-            <li><a href="#/users/<%= contact.id %>"><%= contact.name %></a></li>
+            <li>
+                <a href="#/users/<%= contact.id %>"><%= contact.name %></a>
+                <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
+            </li>
           <% }); %>
         </ul>
       <% } else { %>

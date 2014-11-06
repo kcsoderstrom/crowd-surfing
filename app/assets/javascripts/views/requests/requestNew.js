@@ -2,8 +2,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   template: JST["requests/requestNew"],
 
   events: {
-    "click button" : "sendRequest",
-    "keyup input#req-receiver" : "quickSearch"
+    "click button" : "sendRequest"
   },
 
   initialize: function(options) {
@@ -14,22 +13,18 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
       }
     }
 
-    this.listenTo(this.model, "sync", this.render);
     this.$el.addClass("currentUser");  //TODO change that in the css and all
-    this.matches = new CrowdSurfing.Collections.SearchResults();
-    this.listenTo(this.matches, "sync", this.subRender);
+    this.autofill = new CrowdSurfing.Views.ContactAutofill({
+      receiver: localStorage.getItem("reqToName"),
+      receiverId: localStorage.getItem("reqToId")
+    });
   },
 
   render: function() {
+    console.log("main thing is rendering");
     this.$el.html(this.template({model: this.model, receiver: this.receiver}));
+    this.$("div").html(this.autofill.render().$el);
     return this;
-  },
-
-  subRender: function() {
-    var that = this;
-    this.matches.forEach(function(match){
-      that.$el.append("<div>" + match.escape("username") + "</div>");
-    });
   },
 
   sendRequest: function(event) {
@@ -45,18 +40,10 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
     });
   },
 
-  quickSearch: function(event) {
-    var that = this;
-    var $searchBar = $(event.currentTarget);
-    var match = $searchBar.val();
-
-    if(match.length > 1) {
-      this.matches.fetch({data: { match: match }});
-    }
-  },
-
   leave: function() {
     localStorage.removeItem("reqToName");
+    localStorage.removeItem("reqToId");
+    this.autofill.leave();
     this.remove();
   }
 })

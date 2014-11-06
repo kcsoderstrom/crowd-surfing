@@ -32,10 +32,12 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
 
   sendMessage: function(event) {
     localStorage.setItem("msgToName", this.model.get("name"));
+    localStorage.setItem("msgToId", this.model.get("name"));
   },
 
   sendRequest: function(event) {
     localStorage.setItem("reqToName", this.model.get("name"));
+    localStorage.setItem("reqToId", this.model.get("name"));
   },
 
   leave: function() {

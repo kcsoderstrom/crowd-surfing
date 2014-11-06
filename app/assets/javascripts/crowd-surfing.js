@@ -7,7 +7,7 @@ window.CrowdSurfing = {
   initialize: function() {
     var col = new CrowdSurfing.Collections.Users;
     this.$headerEl = $("header");
-    this.$mainEl = $("section.main")
+    this.$mainEl = $("section.main");
     new CrowdSurfing.Routers.Router({$el: this.$mainEl,
                                      $headerEl: this.$headerEl,
                                      collection: col});

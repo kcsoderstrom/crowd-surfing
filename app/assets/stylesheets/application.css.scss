@@ -29,6 +29,8 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 input {
@@ -259,11 +261,14 @@ h1 {
 
 section.main {
   padding-top: 57px;
-  bottom: 100px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  padding-bottom: 120px;
   width: 100%;
-  height: 1000px;
+
+  &:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
 }
 
 button {
@@ -278,10 +283,17 @@ a {
   width: 960px;
   margin: 0 auto;
   padding: 0 5px;
-  border-left: 1px solid #CBCBCB;
-  border-right: 1px solid #CBCBCB;
+  border: 1px solid #CBCBCB;
+  border-radius: 5px;
   background-color: white;
   padding-top: 30px;             //TESTING TESTING
+  position: relative;
+
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
 }
 
 section.main {
@@ -469,6 +481,65 @@ section.search {
 
   &.active {
     display: block
+  }
+
+  div.adv-menu {
+    float: left;
+    width: 200px;
+  }
+}
+
+a.load-more {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  text-align: center;
+  padding: 5px 20px;
+  background: red;
+  border-radius: 5px;
+  bottom: 20px;
+  transform: translateX(-100px);
+}
+
+ul.search-results {
+  width: 50%;
+  float: left;
+  padding-bottom: 60px;
+}
+
+li.search-result {
+  border: 1px solid #dfdfdf;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 5px;
+  width: 100%;
+
+  img {
+    height: 50px;
+    width: 50px;
+    display: block;
+    border: 1px solid #dfdfdf;
+    padding: 2px;
+    border-radius: 5px;
+    float: left;
+  }
+
+  section.profile-info {
+    float: left;
+    margin-left: 20px;
+
+    a {
+      font-weight: bold;
+      color: rgb(33, 131, 194);
+      font-size: 18px;
+    }
+
+  }
+
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
   }
 }
 
