@@ -1,6 +1,7 @@
 CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
   template: JST["users/inviteMenu"],
   tagName: "section",
+  className: "invite-menu",
 
   events: {
     "click button" : "sendInvitations"
@@ -14,15 +15,12 @@ CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template());
     this.$el.append(this.contactAutofill.render().$el);
-    this.$el.addClass("invite-menu");
     return this;
   },
 
   sendInvitations: function(event) {
     event.preventDefault();
     var that = this;
-
-  console.log(this.eventId);
 
     this.contactAutofill.userIds.forEach(function(receiverId){
       inv = new CrowdSurfing.Models.Request();

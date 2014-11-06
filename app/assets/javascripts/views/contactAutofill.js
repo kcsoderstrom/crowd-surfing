@@ -51,11 +51,12 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   selectReceiver: function(event) {
     this.receiver = $(event.currentTarget).text();
     var $toField = this.$("input");
-    this.$el.append(this.receiver);
+    this.$("ul.selected-users").append("<li>" + this.receiver + "</li>");
 
     this.userIds.push($(event.currentTarget).data("userId"));
 
-    $toField.empty();
+    console.log($toField);
+    $toField.val("");
     $("ul.found-users").empty();
   },
 
