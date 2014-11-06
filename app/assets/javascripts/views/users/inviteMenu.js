@@ -14,7 +14,7 @@ CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template());
-    this.$el.append(this.contactAutofill.render().$el);
+    this.$("div").html(this.contactAutofill.render().$el);
     return this;
   },
 

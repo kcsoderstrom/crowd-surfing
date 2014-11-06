@@ -13,44 +13,26 @@
       </div>
 
     </section>
+
+    <section class="contacts-list">
+      <h2>Your contacts</h2>
+
+      <% if (model.contacts && model.contacts.length > 0) { %>
+        <ul class="contacts">
+          <% model.contacts.forEach(function(contact){ %>
+            <li><a href="#/users/<%= contact.id %>"><%= contact.name %></a></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>Hey so you know you don't have any contacts.</p>
+        <p>You should maybe think about <a href="#/search">searching for some?</a></p>
+      <% } %>
+
+    </section>
+
   </section>
 
   <section class="right-side">
-    <section class="profile-requests">
-      <h2>Sent requests</h2>
-
-      <ul>
-      YOU SHOULD GET RID OF THIS
-      <% if (model.sentRequests) { %>
-        <% model.sentRequests.forEach(function(req) { %>
-          <li><%= req.escape("title") %> To <a href="#/users/<%= req.escape("receiver_id") %>">
-                 <%= req.escape("receiver") %></a>,
-                 status <%= req.escape("status") %>,
-                 sent at <%= req.escape("created_at") %></li>
-        <% })  %>
-      <% } %>
-      </ul>
-
-      <a href="#">Edit</a>
-
-    </section>
-
-    <section class="profile-requests">
-      <h2>Received requests</h2>
-
-      <ul>
-      YOU SHOULD GET RID OF THIS
-      <% if (model.receivedRequests) { %>
-        <% model.receivedRequests.forEach(function(req) { %>
-          <li>From user <%= req.escape("sender") %>, status <%= req.escape("status") %></li>
-        <% })  %>
-      <% } %>
-      </ul>
-
-      <a href="#">Edit</a>
-
-    </section>
-
     <section class="events">
     </section>
   </section>

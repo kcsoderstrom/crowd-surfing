@@ -3,6 +3,7 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
 
   events: {
     "keyup input" : "quickSearch",
+    "keydown input" : "selectReceiver",
     "click input" : "stopAutofilling",
     "mousedown ul.found-users > li" : "selectReceiver",
     "blur input" : "removeFoundUsersList"
@@ -49,13 +50,25 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   },
 
   selectReceiver: function(event) {
-    this.receiver = $(event.currentTarget).text();
+    var $userLl;
+
+    if(event.type === "keydown") {
+      if(event.keyCode !== 13) {
+        return;
+      }
+
+      event.preventDefault();
+      $userLi =  $("ul.found-users").first();
+    } else {
+      $userLi = $(event.currentTarget);
+    }
+
+    this.receiver = $userLi.text();
     var $toField = this.$("input");
     this.$("ul.selected-users").append("<li>" + this.receiver + "</li>");
 
-    this.userIds.push($(event.currentTarget).data("userId"));
+    this.userIds.push($userLi.data("userId"));
 
-    console.log($toField);
     $toField.val("");
     $("ul.found-users").empty();
   },

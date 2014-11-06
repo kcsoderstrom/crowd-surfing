@@ -1,20 +1,34 @@
 <h2>Events</h2>
 <a class="button" href="#/events/new">New event</a>
 
-<% console.log(collection) %>
+<% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
+<% console.log("TODO: THIS NEEDS TO BE ESCAPED") %>
 
 <ul>
   <% collection.forEach(function(evt) { %>
     <li data-event-id="<%= evt.id %>">
     <h3><%= evt.escape("title") %></h3>
       <ul class="info">
+        <% if(evt.get("is_authored")) { %>
+          <li>YOU MADE THIS EVENT</li>
+          <li>Maybe this should be an option to delete it.</li>
+        <% } %>
         <li>Are you attending? <button>YES</button></li>
         <li>Happens at this time: <%= evt.get("time") %></li>
         <li>Happens on this day: <%= evt.get("date") %></li>
-        <li>You've invited</li>
-        <li>You created this event: <%= evt.get("is_authored") %></li>
-        <li>You were invited to this event: <%= evt.get("received_invitation") %></li>
-        <li>You requested an invitation to this event: <%= evt.get("sent_request") %></li>
+
+        <% if(evt.invitation_receivers && evt.invitation_receivers.length > 0) { %>
+          <li>You've invited <%= evt.invitation_receivers.map(getName).join(" and ") %>.</li>
+        <% } %>
+
+        <% if(evt.get("received_invitation")) { %>
+          <li><%= evt.invitation_senders.map(getName).join(" and ") %> invited you to this event.</li>
+        <% } %>
+
+        <% if(evt.get("sent_request")) { %>
+          <li>You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
+        <% } %>
+
       </ul>
       <a class="invite" href="#">Invite people</a>
     </li>

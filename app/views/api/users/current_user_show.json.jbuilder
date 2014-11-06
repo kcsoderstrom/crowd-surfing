@@ -24,7 +24,7 @@ json.received_requests @user.received_requests do |req|
   json.title req.event.title
 end
 
-json.contacts @user.friends
+json.contacts @user.friends.map(&:profile).map{|profile| {name: profile.name, id: profile.user.id}}
 json.profile @user.profile
 
 json.photos @user.profile.photos do |photo|
