@@ -20,20 +20,23 @@ CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
 
   sendInvitations: function(event) {
     event.preventDefault();
-    // ok I need the event's id OK I HAVE IT it is
-    this.eventId;
-    // I also need all the ids of all the people in the list OK I HAVE IT IT IS
+    var that = this;
+
+  console.log(this.eventId);
+
     this.contactAutofill.userIds.forEach(function(receiverId){
       inv = new CrowdSurfing.Models.Request();
       inv.save({
+        event_id: that.eventId,
         receiver_id: receiverId,
         details: "",
         status: "",
-        invitation: true },
-        {success: function() {console.log("I guess it saved?");}})
+        invitation: true }, {
+          success: function() {
+            Backbone.history.navigate("", {trigger: true});
+          }
+        })
     });
-    // this is where I will send invitations once I fix that in the controller
-    // the controller will accept the event id and the user ids; is that all?
   },
 
   leave: function() {

@@ -3,7 +3,8 @@ class Photo < ActiveRecord::Base
     :big => "600x600>",
     :small => "50x50#",
     :thumb => "28x28#"
-  }
+  }, :default_url => "/images/:style_missing.png"
+
   validates_attachment_content_type(
     :pic,
     :content_type => /\Aimage\/.*\Z/

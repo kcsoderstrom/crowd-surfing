@@ -58,6 +58,55 @@ module Api
 
     end
 
+    def index
+      #TODO: IS THIS RIGHT AT ALL!?!?!?!?!???
+      # ok so I want to get all of the events that the user has made
+      where_string = "("
+      where_string += "(requests.sender_id = ?)"
+      where_string += "AND ()"
+      where_string += "AND ()"
+
+      current_user_id = current_user.id
+
+      Event.where()
+
+      @events = Event.includes(requests: [:sender, :receiver]).find_by_sql(<<-SQL
+        SELECT events.*
+        FROM events
+        LEFT OUTER JOIN requests AS sent_requests
+        ON sent_requests.event_id = events.id
+        LEFT OUTER JOIN requests AS received_invitations
+        ON received_invitations.event_id = events.id
+        WHERE ((
+            sent_requests.sender_id = #{current_user_id}
+          AND
+            sent_requests.invitation = FALSE
+          AND
+            sent_requests.status != 'rejected'
+        ) OR (
+            received_invitations.receiver_id = #{current_user_id}
+          AND
+            received_invitations.invitation = TRUE
+          AND
+            received_invitations.status != 'rejected'
+        ) OR (
+          events.user_id = #{current_user_id}
+        ))
+        ORDER BY
+          events.date
+      SQL
+      )
+
+      puts "HERE ARE THE EVENTS OK"
+      p @events
+
+      render :index
+
+      # and all of the people they've invited
+      # and I want all the ones they've requested invitations to
+      # that haven't been declined
+    end
+
     private
     def event_params
       params.require(:event).permit(:title, :location, :time, :date, :description)

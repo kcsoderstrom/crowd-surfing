@@ -2,24 +2,26 @@ json.extract! @user, :id, :email
 
 json.received_messages @user.received_messages do |msg|
   json.extract! msg, :subject, :body, :created_at, :sender_id, :receiver_id
-  json.sender msg.sender.username
-  json.receiver msg.receiver.username
+  json.sender msg.sender.profile.name
+  json.receiver msg.receiver.profile.name
 end
 
 json.sent_messages @user.sent_messages do |msg|
   json.extract! msg, :subject, :body, :created_at, :sender_id, :receiver_id
-  json.sender msg.sender.username
-  json.receiver msg.receiver.username
+  json.sender msg.sender.profile.name
+  json.receiver msg.receiver.profile.name
 end
 
 json.sent_requests @user.sent_requests do |req|
   json.extract! req, :invitation, :status, :created_at, :sender_id, :receiver_id
-  json.receiver req.receiver.username
+  json.receiver req.receiver.profile.name
+  json.title req.event.title
 end
 
 json.received_requests @user.received_requests do |req|
   json.extract! req, :invitation, :status, :created_at, :sender_id, :receiver_id
-  json.sender req.sender.username
+  json.sender req.sender.profile.name
+  json.title req.event.title
 end
 
 json.contacts @user.friends

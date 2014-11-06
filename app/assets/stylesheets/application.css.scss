@@ -34,6 +34,7 @@ body {
 input {
   background-color: white;
   border-radius: 5px;
+  padding: 5px;
   width: 90%;
 }
 
@@ -429,6 +430,9 @@ ul.dropdown.active {
 
 // END HEADER
 
+
+// THIS IS FOR SEARCH
+
 div.tabs > button.tab {
   border-top: 1px solid black;
   border-left: 1px solid black;
@@ -462,8 +466,10 @@ div.tabs:after {
 
 section.search {
   display: none;
-  
+
   &.active {
     display: block
   }
 }
+
+// END SEARCH

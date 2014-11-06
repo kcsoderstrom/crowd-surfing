@@ -12,7 +12,6 @@ CrowdSurfing.Views.EventNew = Backbone.View.extend({
                                 { receiver: localStorage.getItem("reqToName"),
                                   id: "req-receiver",
                                   name: "receiver" });
-    this.listenTo(this.matches, "sync", this.subRender);
   },
 
   render: function() {

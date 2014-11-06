@@ -13,7 +13,8 @@ module Api
     def create
       @request = Request.new(request_params)
 
-      puts @request
+      puts "HEY LOOK AT THE REQUEST OK"
+      p @request
       if @request.save
         render json: @request
       else
@@ -41,10 +42,11 @@ module Api
 
     private
     def request_params
-      { sender_id: current_user.id,
+      { event_id: params[:event_id],
+        sender_id: current_user.id,
         receiver_id: params[:receiver_id],
         details: params[:details],
-        status: params[:status],
+        status: params[:status].present? ? params[:status] : "pending",
         invitation: params[:invitation] }
     end
 

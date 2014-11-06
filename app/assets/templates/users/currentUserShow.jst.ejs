@@ -20,9 +20,10 @@
       <h2>Sent requests</h2>
 
       <ul>
+      YOU SHOULD GET RID OF THIS
       <% if (model.sentRequests) { %>
         <% model.sentRequests.forEach(function(req) { %>
-          <li>To <a href="#/users/<%= req.escape("receiver_id") %>">
+          <li><%= req.escape("title") %> To <a href="#/users/<%= req.escape("receiver_id") %>">
                  <%= req.escape("receiver") %></a>,
                  status <%= req.escape("status") %>,
                  sent at <%= req.escape("created_at") %></li>
@@ -38,6 +39,7 @@
       <h2>Received requests</h2>
 
       <ul>
+      YOU SHOULD GET RID OF THIS
       <% if (model.receivedRequests) { %>
         <% model.receivedRequests.forEach(function(req) { %>
           <li>From user <%= req.escape("sender") %>, status <%= req.escape("status") %></li>
@@ -50,22 +52,6 @@
     </section>
 
     <section class="events">
-      <h2>Your events</h2>
-
-      <ul>
-      <% if (model.events) { %>
-        <% model.events.forEach(function(evt) { %>
-          <li data-event-id="<%= evt.id %>">
-            It is called <%= evt.escape("title") %> ok
-            <a class="invite" href="#">Invite people</a>
-          </li>
-        <% })  %>
-      <% } %>
-      </ul>
-
-      <a href="#">Edit</a>
-      <a href="#/events/new">New event</a>
-
     </section>
   </section>
 </div>

@@ -11,6 +11,13 @@
     width: 1000px;
     padding: 10px;
     margin: 0 auto;
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
   }
 
   section.left-side {
@@ -68,6 +75,7 @@ section.profile-invitations, section.profile-requests, section.events {
   width: 700px;
   margin-bottom: 30px;
   background: white;
+  position: relative;
 
   a {
     display: inline;
@@ -77,6 +85,10 @@ section.profile-invitations, section.profile-requests, section.events {
     position: relative;
   }
 
+  ul.info li {
+    padding: 5px 10px;
+  }
+
   section.invite-menu {
     position: absolute;
     right: 0;
@@ -84,14 +96,44 @@ section.profile-invitations, section.profile-requests, section.events {
     width: 200px;
     background: red;
     border: 2px solid black;
+    z-index: 15;
   }
+
+  h2 {
+    padding: 5px;
+    padding-top: 12px;
+    font-size: 18px;
+    height: 27px;
+  }
+
+  a.button {
+    height: 20px;
+    background: blue;
+    position: absolute;
+    right: 9px;
+    top: 11px;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    padding: 6px 15px 2px 15px;
+    color: rgb(238, 238, 238);
+    box-shadow: rgb(0, 0, 0) 0px 1px 0px 0px;
+    background-color: rgb(88, 97, 111);
+  }
+
+  h3 {
+    width: 670px;
+    background: #F4F6F9;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: rgb(88, 97, 111);
+  }
+
 }
 
-div.I-want-this-centered:after {
-  content: "";
-  display: block;
-  clear: both;
-}
 
 textarea {
   outline: none;
@@ -120,12 +162,12 @@ section.advMenu {
     border-radius: 10px;
     background: red;
     margin: 5px;
-  }
 
-  div.gender:after, div.sort:after {
-    content: "";
-    display: block;
-    clear: both;
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
   }
 
   section.age:after {

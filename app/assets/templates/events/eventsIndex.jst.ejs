@@ -1,0 +1,24 @@
+<h2>Events</h2>
+<a class="button" href="#/events/new">New event</a>
+
+<% console.log(collection) %>
+
+<ul>
+  <% collection.forEach(function(evt) { %>
+    <li data-event-id="<%= evt.id %>">
+    <h3><%= evt.escape("title") %></h3>
+      <ul class="info">
+        <li>Are you attending? <button>YES</button></li>
+        <li>Happens at this time: <%= evt.get("time") %></li>
+        <li>Happens on this day: <%= evt.get("date") %></li>
+        <li>You've invited</li>
+        <li>You created this event: <%= evt.get("is_authored") %></li>
+        <li>You were invited to this event: <%= evt.get("received_invitation") %></li>
+        <li>You requested an invitation to this event: <%= evt.get("sent_request") %></li>
+      </ul>
+      <a class="invite" href="#">Invite people</a>
+    </li>
+  <% })  %>
+</ul>
+
+<a href="#">Edit</a>

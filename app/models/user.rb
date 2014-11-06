@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
   include BCrypt
   after_initialize :ensure_session_token
+  
 
   def self.facebook_make(options)
     user = User.find_by(uid: options[:uid], provider: options[:provider])

@@ -14,10 +14,6 @@
   <section class="main">
   </section>
 
-  <footer>
-    <%= render partial: "layouts/footer" %>
-  </footer>
-
   <script>
     <% if logged_in? %>
       window.currentUserId = <%= current_user.id %> ;
