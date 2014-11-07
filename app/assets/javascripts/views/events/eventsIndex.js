@@ -1,6 +1,6 @@
 CrowdSurfing.Views.EventsIndex = Backbone.View.extend({
   template: JST["events/eventsIndex"],
-  
+
   initialize: function() {
     this.listenTo(this.collection, "sync", this.render);
   },

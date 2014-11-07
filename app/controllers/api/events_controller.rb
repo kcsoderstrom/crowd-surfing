@@ -112,6 +112,20 @@ module Api
       # that haven't been declined
     end
 
+    def update
+      @event = Event.find(params[:id])
+      unless params[:is_attending].nil?
+        is_attending = params[:is_attending]
+        if is_attending == "true"
+          current_user.received_requests.where(invitation: true).update_all(status: "accepted")
+        else
+          current_user.received_requests.where(invitation: true).update_all(status: "rejected")
+        end
+      end
+
+      render json: @event
+    end
+
     private
     def event_params
       params.require(:event).permit(:title, :location, :time, :date, :description)

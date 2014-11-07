@@ -4,23 +4,19 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
   className: "invite-menu transient active",
 
   events: {
-    "click" : "toggleAttendance"
+    "click li" : "toggleAttendance"
   },
 
   initialize: function (options) {
     this.eventId = options.eventId;
     this.attending = options.attending;
-
-    this.listenTo(this.model, "sync", this.render);
   },
 
   render: function() {
-    console.log("rendering?");
-    this.$el.html("<ul><li>Yes</li><li>No</li><li>Maybe</li></ul>");
-    this.$("div").html(this.attending);
+    this.$el.html('<ul><li id="true">Yes</li><li id="false">No</li></ul>');
 
-    this.$el.css("top", (this.yVal + 20) + 'px');
-    this.$el.css("left", (this.xVal + 20) + 'px');
+    this.$el.css("top", (this.yVal) + 'px');
+    this.$el.css("left", (this.xVal) + 'px');
     this.$el.css("position", "absolute");
     this.$el.css("background", "white");
     this.$el.css("border-radius", "5px");
@@ -33,7 +29,19 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
   },
 
   toggleAttendance: function(event) {
+    var $li = $(event.currentTarget);
+    var is_attending = $li.attr("id");
+    var evt = this.model;
 
+    if(this.model.is_attending != is_attending) {
+      console.log("in here at all I must be");
+      this.model.save({is_attending: is_attending}, {
+        success: function() {
+          evt.collection.fetch();
+        }
+      });
+    }
+    this.remove();
   },
 
   leave: function() {
