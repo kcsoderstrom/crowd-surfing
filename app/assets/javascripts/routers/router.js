@@ -48,7 +48,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   currentUserShow: function() {
     var user = this.collection.getOrFetch(window.currentUserId);
-    var showView = new CrowdSurfing.Views.CurrentUserShow({model: user, collection: this.collection});
+    var showView = new CrowdSurfing.Views.CurrentUserShow({model: user});
     this._swapView(showView);
   },
 

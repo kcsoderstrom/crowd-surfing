@@ -36,9 +36,10 @@ module Api
       end
 
       profile_updated = @user.profile.update(profile_params)
-      photo_created = @user.profile.photos.create(photo_params)
+      photo_created = @user.profile.photos.create(new_photo_params)
 
       if profile_updated && photo_created
+        @user.profile.primary_photo = @user.profile.photos.last
         render :show
       else
         render json: @user.errors.full_messages,
@@ -109,7 +110,7 @@ module Api
       params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword, :name)
     end
 
-    def photo_params
+    def new_photo_params
       params.permit(:pic)
     end
 

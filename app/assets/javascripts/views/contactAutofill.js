@@ -11,19 +11,33 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
 
   initialize: function(options) {
     options = options || {};
-    this.receiver = options.receiver;
-    this.name = options.name;
-    this.some_id = options.id;
-    this.receiverId = options.receiverId;
+    //this.receiver = options.receiver;
+    //this.name = options.name;
+    //this.some_id = options.id;
+    //this.receiverId = options.receiverId;
     this.matches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
     this.listenTo(this.matches, "sync", this.subrender);
     this.userIds = [];
+
   },
 
   render: function() {
-    console.log("THIS IS THE RENDERIN", this);
-    this.$el.html(this.template({ receiver: this.receiver, receiverId: this.receiverId, name: this.name, id: this.some_id }));
-    this.$("input").focus();
+    console.log("the events arrrre", this.$el.events);
+
+    console.log(this.model);
+    if(this.model && this.model.id) {
+      if(this.userIds.indexOf(this.model.id) === -1) {
+        this.userIds.push(this.model.id);
+      }
+    }
+
+    this.$el.html(this.template({ model: this.model, name: "FIX-THIS-LATER" }));
+
+    console.log("the el is alright mama's alright they just need a little wl;werjlgrlhgr", this.$el);
+
+    this.$el.on("keydown", "input", function() {
+      console.log("THIS SHOULDN'T WORK ANY BETTER BUT MAYYYYYBVE")
+    })
     return this;
   },
 
@@ -41,6 +55,7 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   },
 
   quickSearch: function(event) {
+    console.log("QUICKSEARCH IS GETTING TRIGGERED AT ALL EVEN A LITTLE BIT")
     var that = this;
     var $searchBar = $(event.currentTarget);
     var match = $searchBar.val();

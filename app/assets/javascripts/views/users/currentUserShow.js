@@ -8,7 +8,6 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.model, "sync update", this.render);
-    this.listenTo(this.collection, "sync", this.render);
 
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
@@ -16,9 +15,10 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   },
 
   render: function() {
+    console.log("I'M RENDERING FOR SOME REASON");
     this.eventsCollection.fetch();
     var that = this;
-    this.$el.html(this.template({model: this.model, collection: this.collection}));
+    this.$el.html(this.template({model: this.model}));
     this.$("section.events").append(this.eventsView.render().$el);
     return this;
   },

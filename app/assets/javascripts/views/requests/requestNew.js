@@ -1,29 +1,19 @@
 CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   template: JST["requests/requestNew"],
+  tagName: "section",
+  className: "new-request-modal currentUser", //TODO change that in the css and all
 
   events: {
-    "click button" : "sendRequest"
+    "submit form" : "sendRequest"
   },
 
   initialize: function(options) {
-    if(options) {
-      if(options.receiver) {
-        this.receiver = options.receiver;
-        this.listenTo(this.receiver, "sync", this.render);
-      }
-    }
-
-    this.$el.addClass("currentUser");  //TODO change that in the css and all
-    this.autofill = new CrowdSurfing.Views.ContactAutofill({
-      receiver: localStorage.getItem("reqToName"),
-      receiverId: localStorage.getItem("reqToId")
-    });
+    this.autofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model });
   },
 
   render: function() {
-    console.log("main thing is rendering");
-    this.$el.html(this.template({model: this.model, receiver: this.receiver}));
-    this.$("div").html(this.autofill.render().$el);
+    this.$el.html(this.template({ model: this.model }));
+    //this.$("div").html(this.autofill.render().$el);
     return this;
   },
 
@@ -41,8 +31,6 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   },
 
   leave: function() {
-    localStorage.removeItem("reqToName");
-    localStorage.removeItem("reqToId");
     this.autofill.leave();
     this.remove();
   }

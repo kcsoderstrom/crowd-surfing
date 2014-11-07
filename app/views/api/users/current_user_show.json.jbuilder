@@ -35,6 +35,7 @@ end
 if @user.profile.primary_photo
   json.profile_photo_url @user.profile.primary_photo.pic.url(:small)
   json.thumbnail_url @user.profile.primary_photo.pic.url(:thumb)
+  json.big_photo_url @user.profile.primary_photo.pic.url(:big)
 end
 
 json.events @user.events

@@ -26,7 +26,9 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     this.$el.addClass("currentUser");  //TODO change that in the css and all
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "user"});
-    this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "event"})
+    this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "event"});
+
+    this.search({type: undefined});
   },
 
   render: function() {

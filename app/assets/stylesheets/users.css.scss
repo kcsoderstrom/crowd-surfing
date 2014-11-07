@@ -217,6 +217,7 @@ textarea {
 }
 
 section.adv-menu {
+  position: fixed;
   background-color: lightgray;
 
   form {
@@ -341,3 +342,20 @@ section.user-show:after {
 img.selected {
   border: 2px solid blue;
 }
+
+// THIS IS FOR THE REQUEST MODAL
+
+section.new-request-modal {
+  display: none;
+  width: 500px;
+  z-index: 10;
+
+  &.active {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-250px);
+  }
+}
+
+// END REQUEST MODAL

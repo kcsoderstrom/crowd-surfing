@@ -24,7 +24,7 @@
       <% } %>
     </li>
   </ul>
-  <figure class="profile-photo"></figure>
+  <img src="<%= model.escape("big_photo_url") %>">
 
 </section>
 
@@ -36,3 +36,7 @@
     <li>Age: <%= model.profile().escape("age") %></li>
   </ul>
 </section>
+
+<section class="wax-paper"></section>
+
+<div class="new-request-modal"></div>

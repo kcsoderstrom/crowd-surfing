@@ -13,6 +13,10 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   },
 
   render: function() {
+    if(this.model.pic) {
+      console.log("trying to delete ok")
+      delete this.model.pic; // Clean out the file
+    }
     this.$el.html(this.template({model: this.model}));
     return this;
   },
@@ -22,6 +26,8 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     var that = this;
     var $form = this.$(".edit-profile");
     var formData = $form.serializeJSON();
+
+    console.log(formData);
 
     this.model.save(formData, {
       success: function() {

@@ -70,7 +70,7 @@ module Api
 
       Event.where()
 
-      @events = Event.includes(requests: [:sender, :receiver]).find_by_sql(<<-SQL
+      @events = Event.includes(requests: [{sender: :profile}, {receiver: :profile}, :invitation]).find_by_sql(<<-SQL
         SELECT events.*
         FROM events
         LEFT OUTER JOIN requests AS sent_requests

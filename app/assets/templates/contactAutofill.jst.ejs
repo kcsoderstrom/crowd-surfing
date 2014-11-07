@@ -1,8 +1,9 @@
 <ul class="selected-users">
-  <% if(receiver) { %>
-    <li data-user-id="<%= receiverId %>"><a href="javascript:void(0)"><%= receiver %></a></li>
+<% console.log("THE MODEL ISSSS", model) %>
+  <% if(model && model.get("name")) { %>
+    <li data-user-id="<%= model.id %>"><a href="javascript:void(0)"><%= model.escape("name") %></a></li>
   <% } %>
 </ul>
-<input id="<%= id %>" value="<%= receiver %>" name="<%= name %>" type="text" placeholder="Username">
+<input name="<%= name %>" type="text" placeholder="Username">
 <ul class="found-users">
 </ul>
