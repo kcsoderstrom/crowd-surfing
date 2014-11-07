@@ -15,9 +15,13 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
     //this.name = options.name;
     //this.some_id = options.id;
     //this.receiverId = options.receiverId;
+    this.userIds = [];
+    if(this.model) {
+      this.userIds.push(this.model.id);
+    }
     this.matches = new CrowdSurfing.Collections.SearchResults({modelsName: "users"});
     this.listenTo(this.matches, "sync", this.subrender);
-    this.userIds = [];
+
 
   },
 

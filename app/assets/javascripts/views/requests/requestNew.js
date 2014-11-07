@@ -8,29 +8,38 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.autofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model });
+    this.contactAutofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model });
   },
 
   render: function() {
     this.$el.html(this.template({ model: this.model }));
-    this.$("div").html(this.autofill.render().$el);
+    this.$("div").html(this.contactAutofill.render().$el);
     return this;
   },
 
   sendRequest: function(event) {
     event.preventDefault();
     var req = new CrowdSurfing.Models.Request();
-    var $form = $("form.request-new");
-    var formData = $form.serializeJSON();
-    // req.save(formData, {
-    //   success: function() {
-    //     Backbone.history.navigate("", {trigger: true});
-    //   }
-    // });
+
+    var details = $("input#req-details").val();
+    var eventId = $("input#req-evt-id").val();
+
+    this.contactAutofill.userIds.forEach(function(receiverId){
+      req = new CrowdSurfing.Models.Request();
+      req.save({
+        event_id: eventId,
+        receiver_id: receiverId,
+        details: details,
+        invitation: false }, {
+          success: function() {
+            Backbone.history.navigate("", {trigger: true});
+          }
+        })
+    });
   },
 
   leave: function() {
-    this.autofill.leave();
+    this.contactAutofill.leave();
     this.remove();
   }
 })

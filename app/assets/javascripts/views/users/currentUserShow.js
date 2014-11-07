@@ -18,7 +18,7 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     this.eventsCollection.fetch();
     var that = this;
     this.$el.html(this.template({model: this.model}));
-    this.$("section.events").append(this.eventsView.render().$el);
+    this.$("section.events-index").append(this.eventsView.render().$el);
     return this;
   },
 

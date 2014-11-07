@@ -13,8 +13,18 @@ module Api
     def create
       @request = Request.new(request_params)
 
-      puts "HEY LOOK AT THE REQUEST OK"
-      p @request
+      # I don't want to create it if there is already a request with the same
+      # sender_id, receiver_id, and event_id
+
+      duplicates = Request.where(sender_id: @request.sender_id)
+                          .where(receiver_id: @request.receiver_id)
+                          .where(event_id: @request.event_id)
+
+      if duplicates.length > 0
+        render json: @request, status: :unprocessable_entity
+        return
+      end
+
       if @request.save
         render json: @request
       else
