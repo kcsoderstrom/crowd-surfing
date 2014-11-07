@@ -197,12 +197,12 @@ section.user-show {
   width: 948px;
   margin: 0 auto;
   padding: 0 5px;
-  border-left: 1px solid #CBCBCB;
-  border-right: 1px solid #CBCBCB;
+  border: 1px solid #CBCBCB;
   background-color: white;
-  //padding-top: 30px;
-  padding-top: 100px;
-
+  padding-top: 30px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  
   section.left-side {
     width: 50%;
     float: left;

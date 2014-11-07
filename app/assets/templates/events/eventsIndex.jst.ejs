@@ -13,7 +13,7 @@
           <li>YOU MADE THIS EVENT</li>
           <li><button class="delete-event">Delete this event</button></li>
         <% } %>
-        <li>Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
+        <li class="attendance">Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
         <li>Happens at this time: <%= evt.get("time") %></li>
         <li>Happens on this day: <%= evt.get("date") %></li>
 

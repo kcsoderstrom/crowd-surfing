@@ -15,7 +15,7 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
   render: function() {
     this.$el.html('<ul><li id="true">Yes</li><li id="false">No</li></ul>');
 
-    this.$el.css("top", (this.yVal) + 'px');
+    this.$el.css("top", (this.yVal - 57) + 'px');
     this.$el.css("left", (this.xVal) + 'px');
     this.$el.css("position", "absolute");
     this.$el.css("background", "white");
@@ -34,7 +34,6 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
     var evt = this.model;
 
     if(this.model.is_attending != is_attending) {
-      console.log("in here at all I must be");
       this.model.save({is_attending: is_attending}, {
         success: function() {
           evt.collection.fetch();

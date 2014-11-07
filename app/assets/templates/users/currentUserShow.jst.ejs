@@ -5,7 +5,15 @@
       <div class="profile-subheader">
         <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
         <h2><%= model.profile().escape("name") %></h2>
-        <h3><%= model.profile().escape("location") %></h3>
+
+        <h3>
+          <% if(model.profile().escape("location")) { %>
+            <%= model.profile().escape("established") ? "Established in" : "New to" %>
+            <%= model.profile().escape("location") %>
+          <% } else { %>
+            No location given.
+          <% } %>
+        </h3>
       </div>
 
       <div class="profile-body">
@@ -17,20 +25,21 @@
     <section class="contacts-list">
       <h2>Your contacts</h2>
 
-      <% if (model.contacts && model.contacts.length > 0) { %>
-        <ul class="contacts">
-          <% model.contacts.forEach(function(contact){ %>
-            <li>
-                <a href="#/users/<%= contact.id %>"><%= contact.name %></a>
-                <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
-            </li>
-          <% }); %>
-        </ul>
-      <% } else { %>
-        <p>Hey so you know you don't have any contacts.</p>
-        <p>You should maybe think about <a href="#/search">searching for some?</a></p>
-      <% } %>
-
+      <div class="contacts-body">
+        <% if (model.contacts && model.contacts.length > 0) { %>
+          <ul class="contacts">
+            <% model.contacts.forEach(function(contact){ %>
+              <li>
+                  <a href="#/users/<%= contact.id %>"><%= contact.name %></a>
+                  <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
+              </li>
+            <% }); %>
+          </ul>
+        <% } else { %>
+          <p>Hey so you know you don't have any contacts.</p>
+          <p>You should maybe think about <a href="#/search">searching for some?</a></p>
+        <% } %>
+      </div>
     </section>
 
   </section>
