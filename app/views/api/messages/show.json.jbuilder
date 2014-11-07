@@ -1,3 +1,3 @@
 json.extract! @message, :body, :subject, :created_at, :sender_id, :receiver_id
-json.sender @message.sender.username
-json.receiver @message.receiver.username
+json.sender name: @message.sender.profile.name, id: @message.sender.id
+json.receiver name: @message.receiver.profile.name, id: @message.receiver.id

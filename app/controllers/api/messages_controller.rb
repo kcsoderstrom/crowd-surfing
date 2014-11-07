@@ -31,7 +31,7 @@ module Api
     private
     def message_params
       { sender_id: current_user ? current_user.id : 1,
-        receiver_id: User.find_by_username(params[:receiver]).id,
+        receiver_id: params[:receiver_id],
         body: params[:body],
         subject: params[:subject] }
     end

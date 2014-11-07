@@ -135,3 +135,15 @@ section.main {
 input {
   border: 1px solid black;
 }
+
+ul.messages {
+  padding: 20px;
+
+  h3 {
+    background-color: #ECEBE0
+  }
+
+  a {
+    display: inline-block;
+  }
+}

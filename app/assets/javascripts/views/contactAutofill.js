@@ -37,11 +37,6 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
 
     this.$el.html(this.template({ model: this.model, name: "FIX-THIS-LATER" }));
 
-    console.log("the el is alright mama's alright they just need a little wl;werjlgrlhgr", this.$el);
-
-    this.$el.on("keydown", "input", function() {
-      console.log("THIS SHOULDN'T WORK ANY BETTER BUT MAYYYYYBVE")
-    })
     return this;
   },
 
@@ -59,13 +54,12 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   },
 
   quickSearch: function(event) {
-    console.log("QUICKSEARCH IS GETTING TRIGGERED AT ALL EVEN A LITTLE BIT")
     var that = this;
     var $searchBar = $(event.currentTarget);
     var match = $searchBar.val();
 
     if(match.length > 1) {
-      this.matches.fetch({data: { match: match, contacts_only: true, exclude: this.userIds }});
+      this.matches.fetch({data: { user_match: match, contacts_only: true, exclude: this.userIds }});
     } else {
       this.removeFoundUsersList();
     }

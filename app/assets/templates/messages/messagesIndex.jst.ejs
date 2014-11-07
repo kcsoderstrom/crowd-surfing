@@ -1,7 +1,16 @@
-<h1>All messages</h1>
+<h2>All messages</h2>
+<a class="button" href="#/events/new">New event</a>
 
-<ul>
+<% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
+
+<ul class="messages">
   <% collection.forEach(function(model) { %>
-    <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
-  <% }); %>
+    <h3><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></h3>
+      <ul class="info">
+        <li>From <%= getName(model.get("sender")) %></li>
+        <li>To <%= getName(model.get("receiver")) %></li>
+        <li><%= model.escape("created_at") %></li>
+      </ul>
+    </li>
+  <% })  %>
 </ul>
