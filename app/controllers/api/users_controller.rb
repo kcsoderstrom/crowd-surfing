@@ -59,7 +59,7 @@ module Api
 
     def search
 
-      match = params[:match].present? ? params[:match] : nil
+      match = params[:user_match].present? ? params[:user_match] : nil
       exclusions = params[:exclude].present? ? params[:exclude] : nil
 
       p exclusions
@@ -115,7 +115,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
+      params.require(:filter_by).permit(:user_match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
     end
 
     def new_photo_params

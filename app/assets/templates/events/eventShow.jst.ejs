@@ -16,4 +16,15 @@
 
   <li>Date: <%= model.escape("date") %></li>
   <li>Descrition: <%= model.escape("description") %></li>
+  <li>Attendees: <% if(model.attendees) { %>
+    <ul class="attendee-images">
+    <% model.attendees.forEach(function(user) { %>
+      <li><img src="<%= user.photo_url %>">
+          <a href="#/users/<%= user.id %>"><%= user.name %></li></a>
+    <% }) %>
+    </ul>
+    <% } else { %>
+      None
+    <% } %>
+  </li>
 </ul>

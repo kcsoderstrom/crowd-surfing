@@ -29,7 +29,7 @@ module Api
 
     def search
 
-      match = params[:match] && params[:match].length > 0 ? params[:match] : nil
+      match = params[:event_match].present? ? params[:event_match] : nil
 
       if params[:filter_by]
         location = filter_params[:location]
@@ -140,7 +140,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:location, :date_lower, :date_upper, :event_keyword)
+      params.require(:filter_by).permit(:location, :date_lower, :date_upper, :event_keyword, :event_match)
     end
 
   end

@@ -95,12 +95,10 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   },
 
   fetchResults: function(collection) {
-    var name = $("input#user-name").val();
     var that = this;
 
-    if(this.modelsName === "events") {
-      name = $("input#event-title").val();
-    }
+    var userName = $("input#user-name").val();
+    var eventName = $("input#event-title").val();
 
     var $filterForm = $("form.filter-criteria");
     var filterData = $filterForm.serializeJSON();
@@ -109,7 +107,8 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     collection.modelsName = this.modelsName;
     collection.fetch({
-                        data: { match: name,
+                        data: { user_match: userName,
+                                event_match: eventName,
                                 filter_by: filterData,
                                 sort_by: sortCriterion,
                                 page: this.page },

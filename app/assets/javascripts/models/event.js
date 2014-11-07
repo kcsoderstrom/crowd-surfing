@@ -14,6 +14,12 @@ CrowdSurfing.Models.Event = Backbone.Model.extend({
       this.invitation_senders = jsonResp.invitation_senders;
       delete jsonResp.invitation_senders;
     }
+
+    if(jsonResp.attendees) {
+      this.attendees = jsonResp.attendees;
+      delete jsonResp.attendees;
+    }
+    
     return jsonResp;
   }
 })

@@ -6,7 +6,7 @@ div.tabs > button.tab {
   border-right: 1px solid #B3B3B3;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 10px 5px 0 5px;
+  padding: 7px 10px 0 10px;
   margin-right: 20px;
   outline: none;
   float: left;
@@ -25,7 +25,7 @@ div.tabs {
   position: fixed;
   left: 50%;
   transform: translateX(-470px);
-  top: 120px;
+  top: 123px;
   z-index: 5;
 }
 
@@ -109,25 +109,32 @@ li.search-result {
 }
 
 section.adv-menu {
-  background-color: lightgray;
+  background-color: white;
   padding: 7px;
 
   > label {
     display: block;
     clear: both;
-    background: red;
+    background: #DFDFDF;
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 50px;
     margin: 5px;
 
+    &:hover {
+      background: #A9A9A9;
+    }
   }
 
   form {
     display: none;
     clear: both;
     width: 50%;
-    border: 3px solid blue;
+    margin-left: 20px;
+    border: 1px solid #CBCBCB;
+    border-radius: 5px;
+    width: 120px;
+    font-size: 14px;
 
     &.active {
       display: block;
@@ -138,6 +145,7 @@ section.adv-menu {
       content: "";
       display: block;
     }
+
   }
 
   input.user-age {
@@ -150,7 +158,7 @@ section.adv-menu {
     width: 100px;
     padding: 5px;
     border-radius: 10px;
-    background: red;
+    background: #CBCBCB;
     margin: 5px;
 
     &:after {
@@ -310,6 +318,39 @@ section.user-show {
 
   input#user-age {
     width: 30px;
+  }
+
+  ul.attendee-images {
+    padding: 20px;
+  }
+
+  ul.attendee-images li {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    border-radius: 5px;
+
+    a {
+      display: none;
+      text-align: center;
+      padding-top: 20px;
+      height: 30px;
+      width: 50px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #DBDBDB;
+      font-size: 10px;
+      word-wrap: break-word;
+      text-decoration: none;
+      color: #8B8B8B;
+      border-radius: 5px;
+    }
+
+    &:hover a {
+      display: block;
+    }
   }
 
 }

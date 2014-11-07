@@ -7,7 +7,7 @@
 <ul>
   <% collection.forEach(function(evt) { %>
     <li data-event-id="<%= evt.id %>">
-    <h3><%= evt.escape("title") %></h3>
+    <h3><a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a></h3>
       <ul class="info">
         <% if(evt.get("is_authored")) { %>
           <li>YOU MADE THIS EVENT</li>

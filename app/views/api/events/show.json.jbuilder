@@ -24,3 +24,5 @@ json.description @event.description
 json.location @event.location
 json.author_name @event.user.profile.name
 json.author_id @event.user.id
+
+json.attendees @event.requests.select{ |req| req.status == "accepted" }.map{ |req| req.invitation ? req.receiver : req.sender }.push(@event.user).map{|user| { photo_url: user.profile.primary_photo.pic.url(:small), name: user.profile.name, id: user.id }}
