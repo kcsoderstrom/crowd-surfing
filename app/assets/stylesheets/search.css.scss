@@ -1,18 +1,18 @@
 // THIS IS FOR SEARCH
 
 div.tabs > button.tab {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid #B3B3B3;
+  border-left: 1px solid #B3B3B3;
+  border-right: 1px solid #B3B3B3;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 10px 5px 0 5px;
   margin-right: 20px;
   outline: none;
-  border-bottom: 1px solid black;
   float: left;
   position: relative;
   bottom: -1px;
+  background: white;
 
   &.active {
     border-bottom: 1px solid white;
@@ -21,8 +21,12 @@ div.tabs > button.tab {
 
 div.tabs {
   margin-bottom: 20px;
-  border-bottom: 1px solid black;
-  position: relative;
+  border-bottom: 1px solid #B3B3B3;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-470px);
+  top: 120px;
+  z-index: 5;
 }
 
 div.tabs:after {
@@ -39,8 +43,13 @@ section.search {
   }
 
   div.full-adv-menu {
-    float: left;
     width: 200px;
+    position: fixed;
+    top: 150px;
+    border: 1px solid #B3B3B3;
+    border-radius: 5px;
+    padding: 5px;
+    background: white;
   }
 }
 
@@ -58,7 +67,8 @@ a.load-more {
 
 ul.search-results {
   width: 50%;
-  float: left;
+  position: relative;
+  left: 300px;
   padding-bottom: 60px;
 }
 
@@ -96,6 +106,122 @@ li.search-result {
     content: "";
     clear: both;
   }
+}
+
+section.adv-menu {
+  background-color: lightgray;
+
+  form {
+    position: relative;
+    width: 50%;
+  }
+
+  input.user-age {
+    width: 20px;
+    float: left;
+  }
+
+  div.gender, div.sort {
+    position: relative;
+    width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    background: red;
+    margin: 5px;
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+
+  section.age:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  label {
+    float: left;
+  }
+
+  input[type="radio"] {
+    width: 20px;
+    float: left;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+section.user-show {
+
+  width: 948px;
+  margin: 0 auto;
+  padding: 0 5px;
+  border-left: 1px solid #CBCBCB;
+  border-right: 1px solid #CBCBCB;
+  background-color: white;
+  padding-top: 30px;
+
+  section.left-side {
+    width: 50%;
+    float: left;
+  }
+
+  section.right-side {
+    width: 50%;
+    float: left;
+  }
+
+  figure {
+    height: 300px;
+    width: 200px;
+    background-color: blue;
+    margin: 0 auto;
+  }
+
+  a.request-button {
+    color: black;
+    font-weight: bold;
+    width: 300px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid red;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 5px 0;
+    margin: 20px auto;
+  }
+
+  a.request-button:hover {
+    background-color: red;
+    color: white;
+  }
+
+  ul.nav {
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  ul.nav:after {
+    display: block;
+    clear: both;
+    content: "";
+    li {
+      float: left;
+    }
+  }
+
+  ul li {
+    display: block;
+  }
+
 }
 
 // END SEARCH

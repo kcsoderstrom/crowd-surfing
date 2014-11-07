@@ -28,7 +28,11 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "user"});
     this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "event"});
 
+    this.modelsName = "events";
     this.search({type: undefined});
+    this.modelsName = "users";
+    this.search({type: undefined});
+
   },
 
   render: function() {
