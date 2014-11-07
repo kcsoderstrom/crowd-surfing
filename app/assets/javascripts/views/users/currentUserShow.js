@@ -20,6 +20,10 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     var that = this;
     this.$el.html(this.template({model: this.model}));
     this.$("section.events-index").append(this.eventsView.render().$el);
+
+    if(this.attendanceView) {
+      this.$el.append(this.attendanceView.render().$el);
+    }
     return this;
   },
 
@@ -49,7 +53,6 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   openAttendanceView: function(event) {
     event.preventDefault();
 
-    console.log("clicking?");
     if(this.attendanceView) {
       this.attendanceView.leave();
     }
@@ -58,10 +61,16 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     var evt = this.eventsCollection.getOrFetch($li.data("eventId"));
     this.attendanceView = new CrowdSurfing.Views.AttendanceMenu({model: evt});
-    $li.append(this.attendanceView.render().$el);
+
+    this.attendanceView.xVal = event.pageX;
+    this.attendanceView.yVal = event.pageY;
+
+    this.$el.append(this.attendanceView.render().$el);
+
   },
 
   leave: function() {
+    this.attendanceView && this.attendanceView.leave();
     this.inviteView && this.inviteView.leave();
     this.remove();
   }
