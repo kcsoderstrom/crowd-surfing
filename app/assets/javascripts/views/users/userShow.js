@@ -1,6 +1,5 @@
 CrowdSurfing.Views.UserShow = Backbone.View.extend({
   template: JST["users/userShow"],
-
   tagName: "section",
   className: "user-show",
 
