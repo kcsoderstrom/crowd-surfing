@@ -60,7 +60,7 @@ module Api
         gender = filter_params[:gender]
         age_lower = filter_params[:age_lower].present? ? Integer(filter_params[:age_lower]) : nil
         age_upper = filter_params[:age_upper].present? ? Integer(filter_params[:age_upper]) : nil
-        keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
+        keywords = filter_params[:user_keyword].present? ? filter_params[:user_keyword] : nil
       end
 
       @users = User.includes(:profile).all
@@ -77,17 +77,14 @@ module Api
                      .where("profiles.age > ?", age_lower - 1) if age_lower
       @users = @users.joins(:profile)
                      .where("profiles.age < ? ", age_upper + 1) if age_upper
-
-                     puts "HERE ARE THE EXCLUSIONS"
-                     p exclusions
-
+      @users = @users.joins(:profile)
+                     .where("profiles.about ~* ?", keywords) if keywords
 
       if params[:sort_by]
         if params[:sort_by] == "last-login"
           @users = @users.order(:updated_at)
         end
       end
-
 
       @users = @users.limit(10) if params[:page]
       @users = @users.offset(Integer(params[:page])*10) if params[:page]
@@ -107,7 +104,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :keyword, :name)
+      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :user_keyword, :name)
     end
 
     def new_photo_params

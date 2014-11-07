@@ -9,7 +9,9 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     "keydown input" : "search",
 
     "click a#load-more" : "loadMore",
-    "click button.tab" : "swapTabs"
+    "click button.tab" : "swapTabs",
+
+    "click label" : "loadForm"
   },
 
   initialize: function() {
@@ -25,8 +27,8 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.moreMatches = { users: this.moreUserMatches, events: this.moreEventMatches };
 
     this.$el.addClass("currentUser");  //TODO change that in the css and all
-    this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "user"});
-    this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelName: "event"});
+    this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "users"});
+    this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "events"});
 
     this.modelsName = "events";
     this.search({type: undefined});
@@ -117,6 +119,20 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
                         }
                       });
 
+  },
+
+  loadForm: function(event) {
+    $label = $(event.currentTarget);
+    $labelId = $label.attr("id");
+
+    if($labelId === "sort-label") {
+      $("form.sort-criterion").toggleClass("active");
+    } else if ($labelId === "filter-label") {
+      $("form.filter-criteria").toggleClass("active");
+    } else if ($labelId === "name-label") {
+      $("form.search").toggleClass("active");
+    }
+    console.log($label.attr("id"))
   },
 
   leave: function() {

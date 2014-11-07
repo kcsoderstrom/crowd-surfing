@@ -1,5 +1,5 @@
+<label id="sort-label" class="form-label">Sort</label>
 <form class="sort-criterion">
-  <h1>Sort by</h1>
     <div class="sort">
       <input type="radio" name="sort-criterion" value="last-login" id="sort-last-login">
       <label for="sort-last-login">Last login</label>
@@ -11,9 +11,8 @@
     </div>
 </form>
 
+<label id="filter-label" class="form-label">Filter</label>
 <form class="filter-criteria">
-  <h1>Filter by</h1>
-
   <section class="age">
     <h2>Age</h2>
       <div class="age">
@@ -43,6 +42,13 @@
   </section>
 
   <h2>Keyword</h2>
-    <input name="keyword" id="keyword">
+    <input name="user_keyword" id="keyword">
 
+</form>
+
+<label id="name-label" class="form-label">Search by name</label>
+<form class="search">
+  <label for="user-name">Search by name</label>
+  <input id="user-name" name="match">
+  <button type="submit">Search</button>
 </form>

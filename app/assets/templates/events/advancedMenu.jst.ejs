@@ -1,0 +1,59 @@
+<label id="sort-label" class="form-label">Sort</label>
+<form class="sort-criterion">
+    <div class="sort">
+      <input type="radio" name="sort-criterion" value="alphabetical" id="sort-alphabetical">
+      <label for="sort-alphabetical">Title</label>
+    </div>
+
+    <div class="sort">
+      <input type="radio" name="sort-criterion" value="date" id="sort-date">
+      <label for="sort-date">Date</label>
+    </div>
+
+    <div class="sort">
+      <input type="radio" name="sort-criterion" value="proximity" id="sort-proximity">
+      <label for="sort-proximity">Proximity</label>
+    </div>
+</form>
+
+<label id="filter-label" class="form-label">Filter</label>
+<form class="filter-criteria">
+  <section class="date">
+    <h2>Date</h2>
+      <div class="date">
+        <input id="date-lower" name="date_lower" class="event-date" type="date">
+      </div>
+
+      <div class="date">
+        <label for="date-upper">to</label>
+        <input id="date-upper" name="date_upper" class="event-date" type="date">
+      </div>
+  </section>
+
+  <section class="time">
+    <h2>Time</h2>
+      <div class="time">
+        <input id="time-lower" name="time_lower" class="event-time" type="time">
+      </div>
+
+      <div class="date">
+        <label for="time-upper">to</label>
+        <input id="time-upper" name="time_upper" class="event-time" type="time">
+      </div>
+  </section>
+
+
+  <h2>Keyword</h2>
+    <input name="event_keyword" id="event_keyword">
+
+  <h2>Location</h2>
+    <input name="location" id="location">
+
+</form>
+
+<label id="name-label" class="form-label">Search by title</label>
+<form class="search">
+  <label for="event-title">Search by title</label>
+  <input id="event-title" name="match">
+  <button type="submit">Search</button>
+</form>

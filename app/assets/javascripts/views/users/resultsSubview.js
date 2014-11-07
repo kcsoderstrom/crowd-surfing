@@ -2,7 +2,6 @@ CrowdSurfing.Views.ResultsSubview = Backbone.View.extend({
   template: function(args) {
     var filepath = this.modelsName + "/resultsSubview";
     return JST[filepath].bind(this, args);
-
   },
 
   initialize: function(options) {

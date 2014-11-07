@@ -33,9 +33,9 @@ module Api
 
       if params[:filter_by]
         location = filter_params[:location]
-        date_lower = Integer(filter_params[:date_lower]) if filter_params[:date_lower] && filter_params[:date_lower].length > 0
-        date_upper = Integer(filter_params[:date_upper]) if filter_params[:date_upper] && filter_params[:date_upper].length > 0
-        keywords = filter_params[:keyword] ? filter_params[:keyword].split(//) : nil
+        date_lower = Date.parse(filter_params[:date_lower]) if filter_params[:date_lower].present?
+        date_upper = Date.parse(filter_params[:date_upper]) if filter_params[:date_upper].present?
+        keywords = filter_params[:event_keyword] ? filter_params[:event_keyword] : nil
       end
 
       @events = Event.all
@@ -43,10 +43,15 @@ module Api
       @events = @events.where("title ~* ?", match) if match
       @events = @events.where("date < ?", date_upper + 1) if date_upper
       @events = @events.where("date > ?", date_lower - 1) if date_lower
+      @events = @events.where("description ~* ?", keywords) if keywords
 
       if params[:sort_by]
-        if params[:sort_by] == "last-login"
-          @users = @users.order(:updated_at)
+        if params[:sort_by] == "alphabetical"
+          @events = @events.order(:title)
+        elsif params[:sort_by] == "date"
+          @events = @events.order(:date)
+        elsif parmas[:sort_by] == "proximity"
+          # write something
         end
       end
 
@@ -113,7 +118,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:location, :date_lower, :date_upper)
+      params.require(:filter_by).permit(:location, :date_lower, :date_upper, :event_keyword)
     end
 
   end
