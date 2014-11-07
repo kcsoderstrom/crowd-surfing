@@ -24,9 +24,25 @@ html, ol, body, ul, li, input, a, button, form, label, textarea, h1, h2, h3, nav
   text-decoration: none;
 }
 
+button, input[type="submit"] {
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
+}
+
+html {
+  min-height: 100%;
+}
+
 body {
   font-family: sans-serif;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   position: relative;
   overflow-x: hidden;
@@ -70,9 +86,10 @@ h1 {
 }
 
 section.main {
-  padding-top: 57px;
-  padding-bottom: 120px;
+  //padding-top: 57px;
+  //padding-bottom: 120px;
   width: 100%;
+  height: 100%;
 
   &:after {
     clear: both;
@@ -96,8 +113,9 @@ a {
   border: 1px solid #CBCBCB;
   border-radius: 5px;
   background-color: white;
-  padding-top: 30px;             //TESTING TESTING
+  //padding-top: 30px;             //TESTING TESTING
   position: relative;
+  padding-top: 100px;
 
   &:after {
     clear: both;

@@ -1,8 +1,19 @@
-<h1><%= model.escape("title") %></h1>
+<section class="profile-subheader">
+  <h1><%= model.escape("title") %></h1>
+  <% if (model.get("author_name") && model.get("location")) { %>
+    By <a href="#/users/<%= model.escape('author_id') %>"><%= model.escape("author_name") %></a> in <%= model.escape("location") %></li>
+  <% } else if (model.get("author_name")) { %>
+    By <a href="#/users/<%= model.escape('author_id') %>"><%= model.escape("author_name") %></a>
+  <% } else if (model.get("location")) { %>
+    In <%= model.escape("location") %>
+  <% } %>
+</section>
+
 <ul class="event-info">
-  <li>By <a href="#/users/<%= model.escape('author_id') %>"><%= model.escape("author_name") %></a></li>
-  <li>Time: <%= model.escape("time") %></li>
+  <% if(model.escape("time")) {%>
+    Time: <%= model.escape("time") %>
+  <% } %>
+
   <li>Date: <%= model.escape("date") %></li>
-  <li>Location: <%= model.escape("location") %></li>
   <li>Descrition: <%= model.escape("description") %></li>
 </ul>

@@ -1,8 +1,10 @@
 <section class="profile-subheader">
   <h1><%= model.profile().escape("name") %></h1>
   <% if(model.profile().escape("location")) {%>
+    <%= model.get("established") ? "Established in " : "New to" %>
     <%= model.profile().escape("location") %>
   <% } else { %>
+    <%= model.get("established") ? "Established" : "New in town" %>
     No location given.
   <% } %>
 </section>
@@ -13,6 +15,8 @@
     <li><a id="msg-send" href="#/messages/new">
       Send message
     </a></li>
+
+    <li> | </li>
 
     <li>
       <% if(!model.isContact) { %>

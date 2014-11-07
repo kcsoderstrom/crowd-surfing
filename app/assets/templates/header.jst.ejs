@@ -1,39 +1,42 @@
-<header>
-  <nav class="full-nav">
 
-    <figure class="logo"></figure>
-    <ul class="left-nav">
-      <li><a class="home" href="#">Home</a></li>
-      <li><a href="#/search">Search</a></li>
-    </ul>
+<% if (window.currentUserId) { %>
+  <header>
+    <nav class="full-nav">
 
-    <ul class="right-nav">
-      <li><a class="requests" href="#/requests" alt="Requests"></a></li>
-      <li><a class="messages" href="#/messages" alt="Messages"></a></li>
+      <figure class="logo"></figure>
+      <ul class="left-nav">
+        <li><a class="home" href="#">Home</a></li>
+        <li><a href="#/search">Search</a></li>
+      </ul>
 
-      <li><a class="user-img" href="javascript:void(0)" alt="HOWDY">
-          <img src="<%= model.get("thumbnail_url") %>"></a>
+      <ul class="right-nav">
+        <li><a class="requests" href="#/requests" alt="Requests"></a></li>
+        <li><a class="messages" href="#/messages" alt="Messages"></a></li>
 
-        <ul class="dropdown transient">
-          <li>
-            <a href="#">My Profile</a>
-          </li>
+        <li><a class="user-img" href="javascript:void(0)" alt="HOWDY">
+            <img src="<%= model.get("thumbnail_url") %>"></a>
 
-          <li>
-            <a href="#/edit">Account Settings</a>
-          </li>
+          <ul class="dropdown transient">
+            <li>
+              <a href="#">My Profile</a>
+            </li>
 
-          <li>
-            <form class="sign-out" method="POST" action="/session">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="hidden" name="authenticity_token" value="<%= window.authenticityToken %>">
-              <button type="submit">Sign Out</button>
-            </form>
-          </li>
+            <li>
+              <a href="#/edit">Account Settings</a>
+            </li>
 
-        </ul>
+            <li>
+              <form class="sign-out" method="POST" action="/session">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="authenticity_token" value="<%= window.authenticityToken %>">
+                <button type="submit">Sign Out</button>
+              </form>
+            </li>
 
-      </li>
-    </ul>
-  </nav>
-</header>
+          </ul>
+
+        </li>
+      </ul>
+    </nav>
+  </header>
+<% } %>

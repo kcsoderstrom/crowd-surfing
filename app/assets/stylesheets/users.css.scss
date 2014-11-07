@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .current-user-for-real {
   width: 100%;
   height: 100%;
   background-color: #F0F0F0;
+  //padding-bottom: 120px;
 
   .I-want-this-centered {
     width: 1000px;
@@ -18,6 +20,21 @@
       clear: both;
     }
 
+
+  }
+
+  &:before {
+    display: block;
+    content: "";
+    margin-top: 57px;
+  }
+
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+    margin-bottom: 120px;
+    border: 1px solid black;
   }
 
   section.left-side {
@@ -127,9 +144,11 @@ section.events-index {
       display: block;
       margin: 5px;
       float: left;
+      width: 100%;
+      margin-right: 5px;
     }
 
-    a {
+    a, button {
       display: block;
       height: 20px;
       text-align: left;
@@ -137,6 +156,7 @@ section.events-index {
       color: #737373;
       border-radius: 50px;
       background: #F8F8F8;
+      margin-right: 0;
 
       &:after {
         display: block;
@@ -146,19 +166,19 @@ section.events-index {
       }
     }
 
-    button {
-      display: block;
-      height: 30px;
-      width: 150px;
-      text-align: left;
-      padding: 6px 12px 4px 12px;
-      color: #737373;
-      border: 1px solid black;
-      border-radius: 5px;
-      margin: 0 auto;
-      text-align: center;
-      margin-top: 5px;
-    }
+    // button {
+    //   display: block;
+    //   height: 30px;
+    //   width: 150px;
+    //   text-align: left;
+    //   padding: 6px 12px 4px 12px;
+    //   color: #737373;
+    //   border: 1px solid black;
+    //   border-radius: 5px;
+    //   margin: 0 auto;
+    //   text-align: center;
+    //   margin-top: 5px;
+    // }
 
     button:hover, a:hover {
       background: #F2F2F2;

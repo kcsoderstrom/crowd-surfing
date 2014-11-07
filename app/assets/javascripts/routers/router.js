@@ -18,10 +18,10 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.$headerEl = options.$headerEl;
     this.collection = options.collection;
     this.collection.fetch();
-    var headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
+    this.headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
                                                     model: this.collection.getOrFetch(window.currentUserId)});
     // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
-    headerView.render();
+    this.headerView.render();
     // this.$headerEl.on("mouseup", function(event) {
     //   $(".transient.active").removeClass("active");
     // });
@@ -111,6 +111,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.leave();
     this._currentView = newView;
     this.$el.html(newView.render().$el);
+    this.headerView.render();
   }
 
 });

@@ -1,5 +1,7 @@
 CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   template: JST["users/currentUserEdit"],
+  className: "user-show",
+  tagName: "section",
 
   events: {
     "click button" : "updateProfile",
