@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def login_user!(user)
     user.reset_session_token!
     session[:session_token] = user.session_token
+    user.update(last_login: Time.zone.now)
   end
 
   def logged_in?

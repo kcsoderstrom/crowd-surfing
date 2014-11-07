@@ -13,10 +13,7 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   },
 
   render: function() {
-    if(this.model.pic) {
-      console.log("trying to delete ok")
-      delete this.model.pic; // Clean out the file
-    }
+    this.model.set({pic: ""});
     this.$el.html(this.template({model: this.model}));
     return this;
   },
@@ -46,6 +43,7 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     var reader = new FileReader();
     reader.onload = function(event) {
       // note that this isn't saving
+      console.log("THE RESULT IS", this.result);
       view.model.set('pic', this.result);
     }
     reader.readAsDataURL(file);

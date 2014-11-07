@@ -10,10 +10,12 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
   initialize: function (options) {
     this.eventId = options.eventId;
     this.attending = options.attending;
+    this.listenTo(this.model, "sync", this.render);
   },
 
   render: function() {
-    this.$el.html("");
+    console.log("rendering?");
+    this.$el.html("<div>HEYY LOOK AT MEEEE</div>");
     this.$("div").html(this.attending);
     return this;
   },

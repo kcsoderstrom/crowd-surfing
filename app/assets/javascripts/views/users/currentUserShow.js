@@ -49,13 +49,15 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   openAttendanceView: function(event) {
     event.preventDefault();
 
+    console.log("clicking?");
     if(this.attendanceView) {
       this.attendanceView.leave();
     }
 
     var $li = $(event.currentTarget).closest("ul").closest("li");
 
-    this.attendanceView = new CrowdSurfing.Views.InviteMenu({eventId: $li.data("eventId")});
+    var evt = this.eventsCollection.getOrFetch($li.data("eventId"));
+    this.attendanceView = new CrowdSurfing.Views.AttendanceMenu({model: evt});
     $li.append(this.attendanceView.render().$el);
   },
 

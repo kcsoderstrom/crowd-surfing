@@ -27,6 +27,20 @@
           <%= model.profile().escape("gender") === "other" ? "checked" : "" %>>
     <label for="gender-other">Other</label>
 
+  <h2>Are you new in town?</h2>
+    <input type="radio"
+           name="user[profile][established]"
+           value="false"
+           id="established-no"
+           <%= model.get("established") ? "" : "checked" %>>
+    <label for="established-no">Yes</label>
+    <input type="radio"
+           name="user[profile][established]"
+           value="true"
+           id="established-yes"
+          <%= model.get("established") ? "checked" : "" %>>
+    <label for="gender-male">No</label>
+
   <label for="user-age">Age</label>
   <input id="user-age" name="user[profile][age]" value="<%= model.profile().escape("age") %>">
 
@@ -43,7 +57,7 @@
     <% }) %>
   <% } %>
 
-  <input type="hidden" id="profile-photo" name="user[profile][primary_photo_id]">
+  <input type="hidden" id="profile-photo" name="user[profile][primary_photo_id]" value="<%= model.get("primary_photo_id") %>">
 
   <button type="submit">Update Profile</button>
 </form>

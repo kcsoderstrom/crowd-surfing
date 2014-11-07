@@ -39,5 +39,7 @@ if @user.profile.primary_photo
 end
 
 json.events @user.events
+json.primary_photo_id @user.profile.primary_photo_id
+json.established @user.profile.established
 
 json.is_contact true

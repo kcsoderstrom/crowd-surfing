@@ -35,11 +35,19 @@ module Api
         return
       end
 
-      profile_updated = @user.profile.update(profile_params)
-      photo_created = @user.profile.photos.create(new_photo_params)
+      if new_photo_params && new_photo_params[:pic].present?
+        photo_created = @user.profile.photos.create(new_photo_params)
+        photo_ok = photo_created
+      else
+        photo_ok = true
+      end
 
-      if profile_updated && photo_created
-        @user.profile.primary_photo = @user.profile.photos.last
+      profile_updated = @user.profile.update(profile_params)
+
+      if profile_updated && photo_ok
+        puts "HERE IS THE ID OF THE PRIMARY PHOTO!!SDAJKASDFKLJASDFLJASGLJKSDFALKJASLKAFSDLJASFDLKJASFLSDFALJASDFLJKASFDLJASDFLJKADSF"
+        p @user.profile.primary_photo_id
+        @user.profile.primary_photo = @user.profile.photos.last if photo_created
         render :show
       else
         render json: @user.errors.full_messages,
@@ -61,6 +69,7 @@ module Api
         age_lower = filter_params[:age_lower].present? ? Integer(filter_params[:age_lower]) : nil
         age_upper = filter_params[:age_upper].present? ? Integer(filter_params[:age_upper]) : nil
         keywords = filter_params[:user_keyword].present? ? filter_params[:user_keyword] : nil
+        established = filter_params[:established]
       end
 
       @users = User.includes(:profile).all
@@ -79,10 +88,12 @@ module Api
                      .where("profiles.age < ? ", age_upper + 1) if age_upper
       @users = @users.joins(:profile)
                      .where("profiles.about ~* ?", keywords) if keywords
+      @users = @users.joins(:profile)
+                     .where("profiles.established = ?", established) unless established.nil?
 
       if params[:sort_by]
         if params[:sort_by] == "last-login"
-          @users = @users.order(:updated_at)
+          @users = @users.order(:last_login)
         end
       end
 
@@ -100,11 +111,11 @@ module Api
     end
 
     def profile_params
-      params.require(:user).require(:profile).permit(:about, :gender, :age, :location, :primary_photo_id, :name)
+      params.require(:user).require(:profile).permit(:about, :gender, :age, :location, :primary_photo_id, :name, :established)
     end
 
     def filter_params
-      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :user_keyword, :name)
+      params.require(:filter_by).permit(:match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
     end
 
     def new_photo_params
