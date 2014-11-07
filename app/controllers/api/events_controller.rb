@@ -66,11 +66,6 @@ module Api
     def index
       #TODO: IS THIS RIGHT AT ALL!?!?!?!?!???
       # ok so I want to get all of the events that the user has made
-      where_string = "("
-      where_string += "(requests.sender_id = ?)"
-      where_string += "AND ()"
-      where_string += "AND ()"
-
       current_user_id = current_user.id
 
       Event.where()
@@ -102,9 +97,6 @@ module Api
       SQL
       )
 
-      puts "HERE ARE THE EVENTS OK"
-      p @events
-
       render :index
 
       # and all of the people they've invited
@@ -134,6 +126,12 @@ module Api
       else
         render json: @event.errors.full_messages, status: :unprocessable_entity
       end
+    end
+
+    def show
+      @event = Event.includes(:user, requests: [{sender: :profile}, {receiver: :profile}]).find(params[:id])
+      #render json: @event
+      render :show
     end
 
     private
