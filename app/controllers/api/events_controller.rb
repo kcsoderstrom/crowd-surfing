@@ -126,6 +126,16 @@ module Api
       render json: @event
     end
 
+    def destroy
+      @event = Event.find(params[:id])
+
+      if @event.destroy
+        render json: @event
+      else
+        render json: @event.errors.full_messages, status: :unprocessable_entity
+      end
+    end
+
     private
     def event_params
       params.require(:event).permit(:title, :location, :time, :date, :description)

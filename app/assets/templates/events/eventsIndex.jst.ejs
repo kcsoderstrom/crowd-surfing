@@ -11,7 +11,7 @@
       <ul class="info">
         <% if(evt.get("is_authored")) { %>
           <li>YOU MADE THIS EVENT</li>
-          <li>Maybe this should be an option to delete it.</li>
+          <li><button class="delete-event">Delete this event</button></li>
         <% } %>
         <li>Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
         <li>Happens at this time: <%= evt.get("time") %></li>

@@ -5,7 +5,8 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   events: {
     "click a.invite" : "openInviteView",
     "click button.delete-contact" : "removeContact",
-    "click button.attendance" : "openAttendanceView"
+    "click button.attendance" : "openAttendanceView",
+    "click button.delete-event" : "deleteEvent"
   },
 
   initialize: function() {
@@ -67,6 +68,13 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     this.$el.append(this.attendanceView.render().$el);
 
+  },
+
+  deleteEvent: function(event) {
+    var $li = $(event.currentTarget).closest("ul").closest("li");
+    var evt = this.eventsCollection.getOrFetch($li.data("eventId"));
+
+    evt.destroy();
   },
 
   leave: function() {
