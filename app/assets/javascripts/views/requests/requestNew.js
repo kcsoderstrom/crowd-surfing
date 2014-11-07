@@ -13,7 +13,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ model: this.model }));
-    //this.$("div").html(this.autofill.render().$el);
+    this.$("div").html(this.autofill.render().$el);
     return this;
   },
 
@@ -22,12 +22,11 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
     var req = new CrowdSurfing.Models.Request();
     var $form = $("form.request-new");
     var formData = $form.serializeJSON();
-    req.set(formData);
-    req.save({}, {
-      success: function() {
-        Backbone.history.navigate("", {trigger: true});
-      }
-    });
+    // req.save(formData, {
+    //   success: function() {
+    //     Backbone.history.navigate("", {trigger: true});
+    //   }
+    // });
   },
 
   leave: function() {

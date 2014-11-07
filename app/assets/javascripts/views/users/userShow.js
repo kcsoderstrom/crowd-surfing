@@ -12,13 +12,12 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model});
   },
 
   render: function() {
     console.log("rendering for some reason");
+    this.requestModal && this.requestModal.leave();
     this.$el.html(this.template({model: this.model}));
-    this.$("div.new-request-modal").html(this.requestModal.render().$el);
     return this;
   },
 
@@ -40,20 +39,22 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
 
   sendRequest: function(event) {
     event.preventDefault();
+    if(!this.requestModal) {
+      this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model});
+      this.$("div.new-request-modal").html(this.requestModal.render().$el);
+    }
 
     this.$(".wax-paper").addClass("shady");
     this.$("section.new-request-modal").addClass("active");
   },
 
   removeModal: function(event) {
-    console.log("WHAT MAKES YOU THINK THIS IS HAPPENING!?");
-    console.log(event);
     $(".wax-paper").removeClass("shady");
     $(".new-request-modal").removeClass("active");
   },
 
   leave: function() {
-    this.requestModal.leave();
+    this.requestModal && this.requestModal.leave();
     this.remove();
   }
 })

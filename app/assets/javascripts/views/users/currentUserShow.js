@@ -1,5 +1,6 @@
 CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   template: JST["users/currentUserShow"],
+  className: "current-user-for-real",
 
   events: {
     "click a.invite" : "openInviteView",
@@ -11,11 +12,9 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
-    this.$el.addClass("current-user-for-real");
   },
 
   render: function() {
-    console.log("I'M RENDERING FOR SOME REASON");
     this.eventsCollection.fetch();
     var that = this;
     this.$el.html(this.template({model: this.model}));
