@@ -76,10 +76,19 @@ a.messages {
   background: image-url("messages.png") no-repeat 6px -8px;
 }
 
-a.requests {
+//TODO: THIS DOESN'T GO HERE ANYMORE!!
+
+a.events {
   height: 36px;
-  width: 100%;
+  width: 60px;
+  background: black;
+  position: absolute;
+  left: -5px;
+  margin: 0;
+  top: 3px;
+
   background: image-url("disco.png") no-repeat 8px;
+  display: block;
 }
 
 a.user-img {
