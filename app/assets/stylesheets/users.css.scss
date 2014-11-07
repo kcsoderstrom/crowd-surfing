@@ -228,6 +228,11 @@ img.selected {
   border: 2px solid blue;
 }
 
+img.full-photo {
+  display: block;
+  margin: 0 auto;
+}
+
 // THIS IS FOR THE REQUEST MODAL
 
 section.new-request-modal {

@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   has_attached_file :pic, :styles => {
-    :big => "600x600>",
+    :big => "300x300>",
     :small => "50x50#",
     :thumb => "28x28#"
   }, :default_url => "/images/:style_missing.png"

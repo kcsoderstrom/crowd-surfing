@@ -4,13 +4,12 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "_=_" : "currentUserShow",
     "edit" : "currentUserEdit",
     "users/:id" : "userShow",
-    "users/:id/requests/new" : "requestNewForUser",
     "search" : "search",
     "messages" : "messagesIndex",
     "messages/new" : "messageNew",
     "messages/:id" : "messageShow",
-    "requests/new" : "requestNew",
     "events/new" : "eventNew",
+    "events/:id" : "eventShow",
     "sad_face" : "loginErrors"
   },
 
@@ -90,16 +89,17 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this._swapView(showView);
   },
 
-  requestNew: function() {
-    var req = new CrowdSurfing.Models.Request();
-    var newView = new CrowdSurfing.Views.RequestNew({model: req});
-    this._swapView(newView);
-  },
-
   eventNew: function() {
     var evt = new CrowdSurfing.Models.Event();
     var newView = new CrowdSurfing.Views.EventNew({model: evt});
     this._swapView(newView);
+  },
+
+  eventShow: function(id) {
+    var evt = new CrowdSurfing.Models.Event(); //TODO: MAKE THIS FASTER!!
+    evt.set({id: id});
+    var showView = new CrowdSurfing.Views.EventShow({model: evt});
+    this._swapView(showView);
   },
 
   loginErrors: function() {
