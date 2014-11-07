@@ -145,12 +145,10 @@ section.events-index {
       display: block;
       margin: 5px;
       float: left;
-      width: 100%;
       margin-right: 5px;
     }
 
     a, button {
-      display: block;
       height: 20px;
       text-align: left;
       padding: 7px 12px 3px 12px;
@@ -158,13 +156,23 @@ section.events-index {
       border-radius: 50px;
       background: #F8F8F8;
       margin-right: 0;
+      //background: red;
 
-      &:after {
-        display: block;
-        float: right;
-        content: "X";
-        color: #959595;
-      }
+    }
+
+    button.inv-menu-button {
+      margin: 5px auto;
+    }
+
+    li.autofill {
+      float: left;
+    }
+
+    li.autofill:after {
+      display: block;
+      float: right;
+      content: "X";
+      color: #959595;
     }
 
     // button {
