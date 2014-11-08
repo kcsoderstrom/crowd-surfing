@@ -84,7 +84,6 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   messageShow: function(id) {
     var message = new CrowdSurfing.Models.Message();
     message.set({id: id});
-    message.fetch();
     var showView = new CrowdSurfing.Views.MessageShow({model: message});
     this._swapView(showView);
   },

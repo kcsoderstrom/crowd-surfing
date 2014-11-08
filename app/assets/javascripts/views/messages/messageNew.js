@@ -1,5 +1,6 @@
 CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   template: JST["messages/messageNew"],
+  className: "currentUser", //TODO change that in the css and all
 
   events: {
     "click button" : "sendMessage"
@@ -8,7 +9,6 @@ CrowdSurfing.Views.MessageNew = Backbone.View.extend({
   initialize: function(options) {
 
     this.listenTo(this.model, "sync", this.render);
-    this.$el.addClass("currentUser");  //TODO change that in the css and all
     this.contactAutofill = new CrowdSurfing.Views.ContactAutofill(
                                 { receiver: localStorage.getItem("msgToName"),
                                   id: "msg-receiver",
