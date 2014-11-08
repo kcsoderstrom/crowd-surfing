@@ -1,4 +1,4 @@
-CrowdSurfing.Collections.SearchResults = Backbone.Collection.extend({
+CrowdSurfing.Collections.SearchResults = CrowdSurfing.Collections.Collection.extend({
   url: function() {
     return "api/" + this.modelsName + "/search";
   },
