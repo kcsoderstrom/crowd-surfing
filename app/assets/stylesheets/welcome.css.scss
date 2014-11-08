@@ -64,7 +64,8 @@ section.sign-in, section.sign-up {
     color: white;
     border: 1px solid #2E4977;
     border-radius: 4px;
-    background: #395B94;
+    background: #395B94 image-url("facebook_f.png") no-repeat 0 -4px;
+    background-size: 50px;
     padding-left: 40px;
     padding-right: 20px;
     padding-top: 8px;
@@ -74,15 +75,18 @@ section.sign-in, section.sign-up {
     font-size: 18px;
     position: relative;
 
-    figure {
-      //background-image: image-url('facebook_f.png');
-      background: black;
-      top: -18px;
-      left: -40px;
+    &:before{
       display: block;
       position: absolute;
-      height: 50px;
-      width: 50px;
+      top: 2px;
+      left: 0px;
+      width: 40px;
+      height: 34px;
+      // background: white;
+      content: "";
+      box-shadow: rgba(255, 255, 255, 0.247059) 1px 0px 0px 0px;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+
     }
   }
 
