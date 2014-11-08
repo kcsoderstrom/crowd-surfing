@@ -76,33 +76,6 @@ a.messages {
   background: image-url("messages.png") no-repeat 6px -8px;
 }
 
-//TODO: THIS DOESN'T GO HERE ANYMORE!!
-
-a.events {
-  height: 36px;
-  width: 60px;
-  background: black;
-  position: absolute;
-  left: -5px;
-  margin: 0;
-  top: 3px;
-
-  background: image-url("disco.png") no-repeat 8px;
-  display: block;
-}
-
-a.user-img {
-  height: 36px;
-  width: 100%;
-
-  img {
-    display: block;
-    border-radius: 50%;
-    border: 2px solid #D4480D;
-    background-size: cover;
-  }
-}
-
 ul.dropdown {
   display: none;
   position: absolute;
@@ -138,6 +111,19 @@ ul.dropdown {
   button:hover, a:hover {
     background: #F2F2F2;
     color: black;
+  }
+}
+
+
+a.user-img {
+  height: 36px;
+  width: 100%;
+
+  img {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #D4480D;
+    background-size: cover;
   }
 }
 

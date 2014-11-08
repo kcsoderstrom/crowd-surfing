@@ -64,7 +64,7 @@ section.sign-in, section.sign-up {
     color: white;
     border: 1px solid #2E4977;
     border-radius: 4px;
-    background-color: #395B94;
+    background: #395B94;
     padding-left: 40px;
     padding-right: 20px;
     padding-top: 8px;
@@ -72,6 +72,18 @@ section.sign-in, section.sign-up {
     cursor: pointer;
     box-shadow: rgba(255, 255, 255, 0.121569) 1px 0px 0px 0px inset, rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px;
     font-size: 18px;
+    position: relative;
+
+    figure {
+      //background-image: image-url('facebook_f.png');
+      background: black;
+      top: -18px;
+      left: -40px;
+      display: block;
+      position: absolute;
+      height: 50px;
+      width: 50px;
+    }
   }
 
   button {
@@ -81,7 +93,7 @@ section.sign-in, section.sign-up {
     color: white;
     border-radius: 5px;
     padding: 11px 0;
-    height: 42px;
+    height: 20px;
     -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
     border: 1px solid rgba(0, 0, 0, 0.0980392);
     margin-bottom: 20px;
@@ -104,88 +116,80 @@ section.sign-in, section.sign-up {
     color: #333;
   }
 
+  &.active {
+    display: block;
+    z-index: 100;
+    top: 60px;
+    opacity: 100;
+  }
 }
 
-section.active.sign-in, section.active.sign-up {
-  display: block;
-  z-index: 100;
-  top: 60px;
-  opacity: 100;
-}
-
-.shady {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
-
-section.welcome > a {
-  width: 200px;
-  height: 26px;
-  padding: 10px 0 14px 0;
-  border-radius: 5px;
-  font-size: 26px;
-  margin-top: 33px;
-}
-
-a.sign-up {
-  float: left;
-  margin-left: 150px;
-  margin-right: 21px;
-  background-image: linear-gradient(to bottom, #58616f,#373f49);
-  color: white;
-}
-
-a.sign-in {
-  float: left;
-  background-image: linear-gradient(to bottom, #dcdee0,#9c9c9c);
-  color: #363636;
-}
 
 section.welcome {
+
   position: relative;
   width: 720px;
   height: 550px;
   padding: 90px 12px 0 12px;
   margin: 0 auto;
   text-align: center;
-  //margin-top: -57px;            // THIS IS TERRIBLE AND HACKY
+
+  p.welcome {
+    color: white;
+    font-size: 21px;
+    padding: 0 100px;
+    margin-top: 33px;
+    margin-bottom: 10px;
+  }
+
+  > a {
+    width: 200px;
+    height: 26px;
+    padding: 10px 0 14px 0;
+    border-radius: 5px;
+    font-size: 26px;
+    margin-top: 33px;
+  }
+
+  > h1 {
+    font-weight: bold;
+    margin-top: 33px;
+    font-size: 60px;
+    color: white;
+  }
+
 }
 
 section.welcome-body {
   background: image-url("couchsurfing_bg.jpg") no-repeat center;
-}
 
-section.welcome:after {
-  content: "";
-  display: block;
-  clear: both;
-}
+  figure.brand {
+    width: 350px;
+    height: 100px;
+    background: image-url("brand.png") no-repeat;
+    margin: 0 auto;
+  }
 
-section.welcome > h1 {
-  font-weight: bold;
-  margin-top: 33px;
-  font-size: 60px;
-  color: white;
-}
+  a.sign-up {
+    float: left;
+    margin-left: 150px;
+    margin-right: 21px;
+    background-image: linear-gradient(to bottom, #58616f,#373f49);
+    color: white;
+  }
 
-p.welcome {
-  color: white;
-  font-size: 21px;
-  padding: 0 100px;
-  margin-top: 33px;
-  margin-bottom: 10px;
-}
+  a.sign-in {
+    float: left;
+    background-image: linear-gradient(to bottom, #dcdee0,#9c9c9c);
+    color: #363636;
+  }
 
-figure.brand {
-  width: 350px;
-  height: 100px;
-  background: image-url("brand.png") no-repeat;
-  margin: 0 auto;
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
 }
 
 // END WELCOME PAGE

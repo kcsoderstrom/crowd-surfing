@@ -1,0 +1,161 @@
+// EVENTS INDEX LOGO
+
+a.events {
+  height: 36px;
+  width: 60px;
+  background: black;
+  position: absolute;
+  left: -5px;
+  margin: 0;
+  top: 3px;
+
+  background: image-url("disco.png") no-repeat 8px;
+  display: block;
+}
+
+// END LOGO
+
+section.events-index {
+  float: right;
+  width: 700px;
+  margin-bottom: 30px;
+  background: white;
+  position: relative;
+
+  a {
+    display: inline;
+  }
+
+  li {
+    position: relative;
+  }
+
+  ul.info li {
+    padding: 5px 10px;
+    position: relative;
+  }
+
+  section.invite-menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #B3B3B3;
+    z-index: 15;
+    padding: 5px;
+    width: 250px;
+
+    ul.selected-users:after {
+      clear: both;
+      content: "";
+      display: block;
+    }
+
+    li {
+      position: relative;
+      display: block;
+      margin: 5px;
+      float: left;
+      margin-right: 5px;
+    }
+
+    a, button {
+      height: 20px;
+      text-align: left;
+      padding: 7px 12px 3px 12px;
+      color: #737373;
+      border-radius: 50px;
+      background: #F8F8F8;
+      margin-right: 0;
+      //background: red;
+
+    }
+
+    button.inv-menu-button {
+      margin: 5px auto;
+    }
+
+    li.autofill {
+      float: left;
+    }
+
+    li.autofill:after {
+      display: block;
+      float: right;
+      content: "X";
+      color: #959595;
+    }
+
+    // button {
+    //   display: block;
+    //   height: 30px;
+    //   width: 150px;
+    //   text-align: left;
+    //   padding: 6px 12px 4px 12px;
+    //   color: #737373;
+    //   border: 1px solid black;
+    //   border-radius: 5px;
+    //   margin: 0 auto;
+    //   text-align: center;
+    //   margin-top: 5px;
+    // }
+
+    button:hover, a:hover {
+      background: #F2F2F2;
+      color: black;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    input {
+      outline: none
+    }
+  }
+
+  h2 {
+    position: relative;
+    padding: 5px;
+    padding-left: 50px;
+    padding-top: 12px;
+    font-size: 18px;
+    height: 27px;
+  }
+
+  a.button {
+    height: 20px;
+    background: blue;
+    position: absolute;
+    right: 9px;
+    top: 11px;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    padding: 6px 15px 2px 15px;
+    color: rgb(238, 238, 238);
+    box-shadow: rgb(0, 0, 0) 0px 1px 0px 0px;
+    background-color: rgb(88, 97, 111);
+  }
+
+  h3 {
+    width: 670px;
+    background: #F4F6F9;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: rgb(88, 97, 111);
+  }
+
+}
+
+
+textarea {
+  outline: none;
+  border: 1px solid black;
+  padding: 5px;
+}

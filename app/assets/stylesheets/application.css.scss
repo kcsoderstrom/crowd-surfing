@@ -14,6 +14,8 @@
  *= require_tree .
  */
 
+// RESETS
+
 html, ol, body, ul, li, input, a, button, form, label, textarea, h1, h2, h3, nav, header {
   border: 0;
   margin: 0;
@@ -36,6 +38,10 @@ button, input[type="submit"] {
   color: inherit;
 }
 
+// END RESETS
+
+// PREP FOR LAYOUT
+
 html {
   height: 100%;
 }
@@ -49,45 +55,10 @@ body {
   overflow-y: hidden;
 }
 
-input {
-  background-color: white;
-  border-radius: 5px;
-  padding: 5px;
-  width: 90%;
-}
-
-textarea {
-  background-color: white;
-  width: 90%;
-  border-radius: 5px;
-  height: 40px;
-}
-
-footer {
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  height: 150px;
-  background: green;
-  width: 100%;
-}
-
-footer:hover {
-  outline: 2px solid blue;
-}
-
-
-
-
-
-h1 {
-  font-size: 20px;
-  color: black;
-}
-
 section.main {
   //padding-top: 57px;
   //padding-bottom: 120px;
+  background-color: #ECEBE0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -102,15 +73,37 @@ section.main {
   }
 }
 
-button {
+// END PREP FOR LAYOUT
+
+// GENERAL NICE DEFAULTS
+
+input {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  width: 90%;
+  border: 1px solid black;
+}
+
+textarea {
+  background-color: white;
+  width: 90%;
+  border-radius: 5px;
+  height: 40px;
+}
+
+
+h1 {
+  font-size: 20px;
+  color: black;
+}
+
+button, a {
   cursor: pointer;
 }
 
-a {
-  cursor: pointer;
-}
 
-.currentUser {
+.currentUser {  // TODO: CALL THIS SOMETHING ELSE!!
   width: 960px;
   margin: 0 auto;
   padding: 0 5px;
@@ -125,25 +118,5 @@ a {
     clear: both;
     display: block;
     content: "";
-  }
-}
-
-section.main {
-  background-color: #ECEBE0;
-}
-
-input {
-  border: 1px solid black;
-}
-
-ul.messages {
-  padding: 20px;
-
-  h3 {
-    background-color: #ECEBE0
-  }
-
-  a {
-    display: inline-block;
   }
 }

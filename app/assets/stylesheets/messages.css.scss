@@ -12,3 +12,15 @@ ul.found-users li {
   padding: 5px;
   border-radius: 5px;
 }
+
+ul.messages {
+  padding: 20px;
+
+  h3 {
+    background-color: #ECEBE0
+  }
+
+  a {
+    display: inline-block;
+  }
+}
