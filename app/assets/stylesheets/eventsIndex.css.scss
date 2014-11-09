@@ -68,39 +68,22 @@ section.events-index {
       color: #737373;
       border-radius: 50px;
       background: #F8F8F8;
-      margin-right: 0;
-      //background: red;
-
+      margin: 15px 0;
     }
 
-    button.inv-menu-button {
-      margin: 5px auto;
-    }
-
-    li.autofill {
-      float: left;
-    }
-
-    li.autofill:after {
-      display: block;
-      float: right;
-      content: "X";
+    a:after {
+      content: " ×";
       color: #959595;
     }
 
-    // button {
-    //   display: block;
-    //   height: 30px;
-    //   width: 150px;
-    //   text-align: left;
-    //   padding: 6px 12px 4px 12px;
-    //   color: #737373;
-    //   border: 1px solid black;
-    //   border-radius: 5px;
-    //   margin: 0 auto;
-    //   text-align: center;
-    //   margin-top: 5px;
-    // }
+    button.inv-menu-button {
+      margin: 5px 60px;
+    }
+
+    ul.selected-users li {
+      float: left;
+      margin: 8px 4px;
+    }
 
     button:hover, a:hover {
       background: #F2F2F2;

@@ -1,5 +1,4 @@
 <ul class="selected-users">
-<% console.log("THE MODEL ISSSS", model) %>
   <% if(model && model.get("name")) { %>
     <li data-user-id="<%= model.id %>" class="autofill"><a href="javascript:void(0)"><%= model.escape("name") %></a></li>
   <% } %>
