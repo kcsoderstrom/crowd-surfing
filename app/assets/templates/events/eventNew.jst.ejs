@@ -1,8 +1,6 @@
 <form class="event-new">
-  <label for="inv-receiver">Invite<label>
-  <input id="inv-receiver" name="invitation[receiver]" value="<%= localStorage.getItem("invToName") %>">
-  <ul class="found-users">
-  </ul>
+  Send invitations
+  <div class="receiver"></div>
 
   <label for="evt-title">Title</label>
   <input id="evt-title" name="event[title]" value="<%= model.escape("title") %>">

@@ -1,25 +1,18 @@
-CrowdSurfing.Views.EventNew = Backbone.View.extend({
+CrowdSurfing.Views.EventNew = CrowdSurfing.Views.New.extend({
   template: JST["events/eventNew"],
+  className: "currentUser",  //TODO change that in the css and all
 
-  events: {
-    "click button" : "createEvent",
-  },
+
 
   initialize: function(options) {
     this.listenTo(this.model, "sync", this.render);
-    this.$el.addClass("currentUser");  //TODO change that in the css and all
-    this.autofillSubview = new CrowdSurfing.Views.ContactAutofill(
+    this.contactAutofill = new CrowdSurfing.Views.ContactAutofill(
                                 { receiver: localStorage.getItem("reqToName"),
                                   id: "req-receiver",
                                   name: "receiver" });
   },
 
-  render: function() {
-    this.$el.html(this.template({model: this.model, receiver: this.receiver}));
-    return this;
-  },
-
-  createEvent: function(event) {
+  createNewModel: function(event) {
     event.preventDefault();
     var evt = new CrowdSurfing.Models.Event();
     var $form = $("form.event-new");
@@ -30,12 +23,6 @@ CrowdSurfing.Views.EventNew = Backbone.View.extend({
         Backbone.history.navigate("/messages", {trigger: true});
       }
     });
-  },
-
-  leave: function() {
-    localStorage.removeItem("msgToName");
-    this.autofillSubview.leave();
-    this.remove();
   }
 
 })
