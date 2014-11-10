@@ -1,15 +1,13 @@
-// EVENTS INDEX LOGO
-
 a.events {
   height: 36px;
   width: 60px;
   background: black;
   position: absolute;
   left: -5px;
-  margin: 0;
+  margin: 2px;
   top: 3px;
 
-  background: image-url("disco.png") no-repeat 8px;
+  background: image-url("disco.png") no-repeat 6px 0;
   display: block;
 }
 
@@ -102,8 +100,10 @@ section.events-index {
   h2 {
     position: relative;
     padding: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
     padding-left: 50px;
-    padding-top: 12px;
+    padding-top: 16px;
     font-size: 18px;
     height: 27px;
   }

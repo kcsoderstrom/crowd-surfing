@@ -30,6 +30,11 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     //     $(".transient.active").removeClass("active");
     //   }
     // })
+
+    $("body").on("click", ".wax-paper.shady", function(event) {
+      $(event.currentTarget).removeClass("shady");
+      $(".modal").removeClass("active");
+    });
   },
 
   landingPage: function() {

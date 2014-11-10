@@ -15,7 +15,6 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("rendering for some reason");
     this.requestModal && this.requestModal.leave();
     this.$el.html(this.template({model: this.model}));
     return this;
@@ -34,7 +33,7 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
 
   sendMessage: function(event) {
     localStorage.setItem("msgToName", this.model.get("name"));
-    localStorage.setItem("msgToId", this.model.get("name"));
+    localStorage.setItem("msgToId", this.model.get("id"));
   },
 
   sendRequest: function(event) {
@@ -44,13 +43,12 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
       this.$("div.new-request-modal").html(this.requestModal.render().$el);
     }
 
-    this.$(".wax-paper").addClass("shady");
-    this.$("section.new-request-modal").addClass("active");
+    $(".wax-paper").addClass("shady");
+    this.$(".modal").addClass("active");
   },
 
   removeModal: function(event) {
-    $(".wax-paper").removeClass("shady");
-    $(".new-request-modal").removeClass("active");
+    $(".modal").removeClass("active");
   },
 
   leave: function() {

@@ -1,6 +1,7 @@
 CrowdSurfing.Views.MessageNew = CrowdSurfing.Views.New.extend({
   template: JST["messages/messageNew"],
-  className: "currentUser", //TODO change that in the css and all
+  tagName: "section",
+  className: "new-message-modal modal currentUser", //TODO change that in the css and all
 
   initialize: function(options) {
     this.listenTo(this.model, "sync", this.render);

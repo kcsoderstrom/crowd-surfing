@@ -20,13 +20,13 @@ CrowdSurfing.Views.Welcome = Backbone.View.extend({
   signUpModal: function(event) {
     event.preventDefault();
     $(".sign-up").addClass("active");
-    $(".wax-paper").addClass("shady");
+    $("section.wax-paper").addClass("shady");
   },
 
   signInModal: function(event) {
     event.preventDefault();
     $(".sign-in").addClass("active");
-    $(".wax-paper").addClass("shady");
+    $("section.wax-paper").addClass("shady");
   },
 
   removeModals: function(event) {
