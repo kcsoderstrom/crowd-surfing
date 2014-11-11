@@ -1,5 +1,10 @@
 <% collection.forEach(function(evt) { %>
   <li class="search-result">
     <a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a>
+    <ul>
+      <li>Date: <%= evt.escape("date") %></li>
+      <li>Time: <%= evt.escape("time") %></li>
+      <li>Description: <%= evt.escape("description") %></li>
+    </ul>
   </li>
 <% }); %>
