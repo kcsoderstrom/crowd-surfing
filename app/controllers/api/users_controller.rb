@@ -68,7 +68,7 @@ module Api
         age_upper = filter_params[:age_upper].present? ? Integer(filter_params[:age_upper]) : nil
         keywords = filter_params[:user_keyword].present? ? filter_params[:user_keyword] : nil
         established = filter_params[:established]
-        location = filter_params[:location]
+        location = filter_params[:user_location]
       end
 
       @users = User.includes(:profile).all
@@ -116,7 +116,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:location, :user_match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
+      params.require(:filter_by).permit(:user_location, :user_match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
     end
 
     def new_photo_params

@@ -15,6 +15,9 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     if(this.model.contacts) {
       this.listenTo(this.model.contacts, "add", this.render);
     }
+    if(this.model.sentRequests) {
+      this.listenTo(this.model.sentRequests, "add", this.render);
+    }
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
   },

@@ -30,18 +30,12 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "users"});
     this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "events"});
 
-    if(options.location) {
-      this.modelsName = "events";
+    this.firstLocation = options.location;
 
-    } else {
-      this.modelsName = "events";
-      this.search({type: undefined});
-      this.modelsName = "users";
-      this.search({type: undefined});
-    }
-
-
-
+    this.modelsName = "events";
+    this.search({type: undefined});
+    this.modelsName = "users";
+    this.search({type: undefined});
   },
 
   render: function() {
@@ -64,6 +58,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     this.eventsAdvMenu.$el = this.$(".adv-menu.events");
     this.eventsAdvMenu.render();
+
     return this;
   },
 
@@ -104,11 +99,20 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   fetchResults: function(collection) {
     var that = this;
 
+    if(this.firstLocation) {
+      $("input#user_location").val(this.firstLocation);
+      $("input#event_location").val(this.firstLocation);
+    }
+
     var userName = $("input#user-name").val();
     var eventName = $("input#event-title").val();
 
     var $filterForm = $("form.filter-criteria");
-    var filterData = $filterForm.serializeJSON();
+    if($filterForm.length) {
+      var filterData = $filterForm.serializeJSON();
+    } else {
+      var filterData = {user_location: this.firstLocation, event_location: this.firstLocation}
+    }
 
     var sortCriterion = $("form.sort-criterion").find("input:checked").val();
 

@@ -9,6 +9,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
 
   initialize: function(options) {
     this.contactAutofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model });
+    this.currentUser = options.currentUser;
   },
 
   render: function() {
@@ -20,6 +21,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   sendRequest: function(event) {
     event.preventDefault();
     var req = new CrowdSurfing.Models.Request();
+    var that = this;
 
     var details = $("input#req-details").val();
     var eventId = $("input#req-evt-id").val();
@@ -32,7 +34,9 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
         details: details,
         invitation: false }, {
           success: function() {
+            that.currentUser.sentRequests.add(req)
             Backbone.history.navigate("", {trigger: true});
+            //TODO: We don't need to be navigatin
           }
         })
     });

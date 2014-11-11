@@ -11,7 +11,9 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.contacts = options.contacts;
+    this.currentUser = options.currentUser;
+    // this.contacts = options.contacts;
+    // this.requests = options.requests;
     this.listenTo(this.model, "sync", this.render);
   },
 
@@ -30,7 +32,7 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
     newContact.save({friend_id: this.model.id}, {
       success: function() {
         user.fetch();
-        that.contacts.add({name: user.profile().get("name"), id: user.id});
+        that.currentUser.contacts.add({name: user.profile().get("name"), id: user.id});
       }
     });
   },
@@ -43,7 +45,7 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   sendRequest: function(event) {
     event.preventDefault();
     if(!this.requestModal) {
-      this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model});
+      this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model, currentUser: this.currentUser});
       this.$("div.new-request-modal").html(this.requestModal.render().$el);
     }
 

@@ -32,14 +32,16 @@ module Api
       match = params[:event_match].present? ? params[:event_match] : nil
 
       if params[:filter_by]
-        location = filter_params[:location]
+        location = filter_params[:event_location]
         date_lower = Date.parse(filter_params[:date_lower]) if filter_params[:date_lower].present?
         date_upper = Date.parse(filter_params[:date_upper]) if filter_params[:date_upper].present?
         keywords = filter_params[:event_keyword] ? filter_params[:event_keyword] : nil
       end
 
       @events = Event.all
-      @events = @events.where("location ~ ?", location) if location
+      @events = @events.joins(:user)
+                       .joins("INNER JOIN profiles ON users.id = profiles.user_id")
+                       .where("profiles.location ~ ?", location) if location
       @events = @events.where("title ~* ?", match) if match
       @events = @events.where("date < ?", date_upper + 1) if date_upper
       @events = @events.where("date > ?", date_lower - 1) if date_lower
@@ -140,7 +142,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:location, :date_lower, :date_upper, :event_keyword, :event_match)
+      params.require(:filter_by).permit(:event_location, :date_lower, :date_upper, :event_keyword, :event_match)
     end
 
   end
