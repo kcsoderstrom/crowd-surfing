@@ -17,9 +17,10 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.$el = options.$el;
     this.$headerEl = options.$headerEl;
     this.collection = options.collection;
-    this.collection.fetch();
+    // this.collection.fetch();
+    this.currentUser = this.collection.getOrFetch(window.currentUserId);
     this.headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
-                                                    model: this.collection.getOrFetch(window.currentUserId)});
+                                                     model: this.currentUser});
     // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
     this.headerView.render();
     // this.$headerEl.on("mouseup", function(event) {
@@ -51,13 +52,13 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   },
 
   currentUserShow: function() {
-    var user = this.collection.getOrFetch(window.currentUserId);
+    var user = this.currentUser;
     var showView = new CrowdSurfing.Views.CurrentUserShow({model: user});
     this._swapView(showView);
   },
 
   currentUserEdit: function() {
-    var user = this.collection.getOrFetch(window.currentUserId);
+    var user = this.currentUser;
     var editView = new CrowdSurfing.Views.CurrentUserEdit({model: user});
     this._swapView(editView);
   },
@@ -76,6 +77,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   messageNew: function() {
     var msg = new CrowdSurfing.Models.Message();
     var newView = new CrowdSurfing.Views.MessageNew({model: msg});
+    newView.$el.addClass("active");
     this._swapView(newView);
   },
 

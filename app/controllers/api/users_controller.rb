@@ -43,11 +43,17 @@ module Api
       end
 
       profile_updated = @user.profile.update(profile_params)
+      puts "HERE IS WHETHER THE PROFILE WAS UPDATED OK"
+      puts profile_updated
 
       if profile_updated && photo_ok
         puts "HERE IS THE ID OF THE PRIMARY PHOTO!!SDAJKASDFKLJASDFLJASGLJKSDFALKJASLKAFSDLJASFDLKJASFLSDFALJASDFLJKASFDLJASDFLJKADSF"
         p @user.profile.primary_photo_id
-        @user.profile.primary_photo = @user.profile.photos.last if photo_created
+        # @user.profile.primary_photo = @user.profile.photos.last if photo_created
+        @user.profile.update(primary_photo: @user.profile.photos.last) if photo_created
+        puts "PHOTO WAS CREATED" if photo_created
+        puts "HERE IS THE NEW ID"
+        puts @user.profile.primary_photo_id
         render :show
       else
         render json: @user.errors.full_messages,
@@ -70,6 +76,7 @@ module Api
         age_upper = filter_params[:age_upper].present? ? Integer(filter_params[:age_upper]) : nil
         keywords = filter_params[:user_keyword].present? ? filter_params[:user_keyword] : nil
         established = filter_params[:established]
+        location = filter_params[:location]
       end
 
       @users = User.includes(:profile).all
@@ -90,6 +97,8 @@ module Api
                      .where("profiles.about ~* ?", keywords) if keywords
       @users = @users.joins(:profile)
                      .where("profiles.established = ?", established) unless established.nil?
+      @users = @users.joins(:profile)
+                     .where("profiles.location ~* ?", location) if location.present?
 
       if params[:sort_by]
         if params[:sort_by] == "last-login"
@@ -115,7 +124,7 @@ module Api
     end
 
     def filter_params
-      params.require(:filter_by).permit(:user_match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
+      params.require(:filter_by).permit(:location, :user_match, :age_upper, :age_lower, :gender, :user_keyword, :name, :established)
     end
 
     def new_photo_params

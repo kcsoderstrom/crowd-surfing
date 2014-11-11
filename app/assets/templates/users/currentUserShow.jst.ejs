@@ -9,7 +9,9 @@
         <h3>
           <% if(model.profile().escape("location")) { %>
             <%= model.profile().escape("established") ? "Established in" : "New to" %>
-            <%= model.profile().escape("location") %>
+            <a href="#/search?location=<%= model.profile().escape("location") %>">
+              <%= model.profile().escape("location") %>
+            </a>
           <% } else { %>
             No location given.
           <% } %>

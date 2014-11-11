@@ -60,3 +60,4 @@ gem 'aws-sdk'
 gem 'figaro'
 
 gem 'omniauth-facebook'
+gem 'geocoder'

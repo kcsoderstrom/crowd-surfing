@@ -12,6 +12,7 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
   },
 
   render: function() {
+    console.log("rendered with", this.model);
     this.$el.html(this.template({model: this.model}));
     return this;
   },
