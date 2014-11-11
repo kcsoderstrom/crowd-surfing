@@ -11,10 +11,10 @@
 
   &.active {
     display: block;
-    position: absolute;
+    position: fixed;
     left: 50%;
+    top: 30%;
     transform: translateX(-250px);
-    top: 50px;
   }
 }
 

@@ -13,17 +13,20 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
     this.$el.addClass("currentUser");
+    this.showAlbum = false;
   },
 
   render: function() {
     this.model.set({pic: ""});
     this.$el.html(this.template({model: this.model}));
+    if($("div.wax-paper").hasClass("shady")) {
+      this.showImages();
+    }
     return this;
   },
 
   updateProfile: function(event) {
     event.preventDefault();
-    var that = this;
     var $form = this.$(".edit-profile");
     var formData = $form.serializeJSON();
 
@@ -44,7 +47,11 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     var reader = new FileReader();
     reader.onload = function(event) {
       // note that this isn't saving
+      var $form = view.$(".edit-profile");
+      var formData = $form.serializeJSON();
+      view.model.set(formData);
       view.model.set('pic', this.result);
+      view.model.save();
     }
     reader.readAsDataURL(file);
   },
@@ -54,11 +61,18 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     $("img.selected").removeClass("selected");
     $selectedPhoto.addClass("selected");
     $("input#profile-photo").val($selectedPhoto.data("id"));
+    var that = this;
+
+    var $form = this.$(".edit-profile");
+    var formData = $form.serializeJSON();
+    this.model.save(formData);
   },
 
   showImages: function(event) {
-    event.preventDefault();
-    console.log("getting in here at all even a little bit")
+    if(event) {
+      event.preventDefault();
+    }
+
     $(".modal").addClass("active");
     $(".wax-paper").addClass("shady");
   },

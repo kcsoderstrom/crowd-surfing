@@ -3,7 +3,7 @@ THIS IS WHERE IMAGES GO
 <% console.log("THIS IS RENDERING") %>
   <% if (collection) { %>
     <% collection.forEach( function(photo) { %>
-      <img class="photo" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
+      <img class="photo <%= model._profile && photo.id === model._profile.get("primary_photo_id") ? "selected" : "" %>" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
     <% }) %>
   <% } %>
 </section>
