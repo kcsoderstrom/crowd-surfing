@@ -1,0 +1,9 @@
+<section class="images-modal modal currentUser">
+THIS IS WHERE IMAGES GO
+<% console.log("THIS IS RENDERING") %>
+  <% if (collection) { %>
+    <% collection.forEach( function(photo) { %>
+      <img class="photo" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
+    <% }) %>
+  <% } %>
+</section>

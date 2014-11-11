@@ -20,7 +20,7 @@
         <label for="gender-male">No</label>
     </section>
 
-    <button class="request-button" type="submit">Update Profile</button>
+    <button class="update request-button" type="submit">Update Profile</button>
 
   </section>
 
@@ -30,12 +30,8 @@
     <input id="photo" type="file" class="my-photo-upload">
     <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
 
-    THIS IS WHERE PHOTOS GO
-    <% if (model.photos) { %>
-      <% model.photos.forEach( function(photo) { %>
-        <img class="photo" data-id="<%= photo.id %>" src="<%= photo.src_url %>">
-      <% }) %>
-    <% } %>
+    <%= JST["users/album-modal"]({collection: model.photos}) %>
+    <button class="show-images">Change image</button>
 
   </section>
 
@@ -73,6 +69,8 @@
       <input type="hidden" id="profile-photo" name="user[profile][primary_photo_id]" value="<%= model.get("primary_photo_id") %>">
 
   </section>
-  
+
   <div class="new-request-modal"></div>
 </form>
+
+<% console.log(model) %>

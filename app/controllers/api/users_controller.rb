@@ -14,7 +14,6 @@ module Api
                   .find(params[:id])
 
       if @user.id == current_user.id
-
         render :current_user_show
       else
         render :show
@@ -43,16 +42,9 @@ module Api
       end
 
       profile_updated = @user.profile.update(profile_params)
-      puts "HERE IS WHETHER THE PROFILE WAS UPDATED OK"
-      puts profile_updated
 
       if profile_updated && photo_ok
-        puts "HERE IS THE ID OF THE PRIMARY PHOTO!!SDAJKASDFKLJASDFLJASGLJKSDFALKJASLKAFSDLJASFDLKJASFLSDFALJASDFLJKASFDLJASDFLJKADSF"
-        p @user.profile.primary_photo_id
-        # @user.profile.primary_photo = @user.profile.photos.last if photo_created
         @user.profile.update(primary_photo: @user.profile.photos.last) if photo_created
-        puts "PHOTO WAS CREATED" if photo_created
-        puts "HERE IS THE NEW ID"
         puts @user.profile.primary_photo_id
         render :show
       else

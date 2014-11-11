@@ -4,9 +4,10 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   tagName: "section",
 
   events: {
-    "click button" : "updateProfile",
+    "click button.update" : "updateProfile",
     "change .my-photo-upload": "handleFile",
-    "click img.photo" : "selectProfilePhoto"
+    "click img.photo" : "selectProfilePhoto",
+    "click button.show-images" : "showImages"
   },
 
   initialize: function() {
@@ -53,6 +54,13 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     $("img.selected").removeClass("selected");
     $selectedPhoto.addClass("selected");
     $("input#profile-photo").val($selectedPhoto.data("id"));
+  },
+
+  showImages: function(event) {
+    event.preventDefault();
+    console.log("getting in here at all even a little bit")
+    $(".modal").addClass("active");
+    $(".wax-paper").addClass("shady");
   },
 
   leave: function() {
