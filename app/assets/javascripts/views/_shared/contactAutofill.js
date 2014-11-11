@@ -26,9 +26,6 @@ CrowdSurfing.Views.ContactAutofill = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("the events arrrre", this.$el.events);
-
-    console.log(this.model);
     if(this.model && this.model.id) {
       if(this.userIds.indexOf(this.model.id) === -1) {
         this.userIds.push(this.model.id);

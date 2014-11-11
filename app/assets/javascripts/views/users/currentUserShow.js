@@ -17,7 +17,6 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("full page load with", this.model);
     this.eventsCollection.fetch();
     var that = this;
     this.$el.html(this.template({model: this.model}));

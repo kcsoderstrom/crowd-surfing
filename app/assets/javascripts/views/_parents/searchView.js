@@ -131,7 +131,6 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     } else if ($labelId === "name-label") {
       $("form.search").toggleClass("active");
     }
-    console.log($label.attr("id"))
   },
 
   leave: function() {
