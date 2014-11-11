@@ -148,11 +148,13 @@ div.contacts-body {
   }
 
   a:hover ~ button {
-    display: inline-block;
+    display: block;
+    float: left;
   }
 
   button:hover {
-    display: inline-block;
+    display: block;
+    float: left;
   }
 }
 

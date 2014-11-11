@@ -28,11 +28,11 @@
       <h2>Your contacts</h2>
 
       <div class="contacts-body">
-        <% if (model.contacts && model.contacts.length > 0) { %>
+        <% if (model.contacts) { %>
           <ul class="contacts">
-            <% model.contacts.forEach(function(contact){ %>
+            <% model.contacts.each(function(contact){ %>
               <li>
-                  <a href="#/users/<%= contact.id %>"><%= contact.name %></a>
+                  <a href="#/users/<%= contact.id %>"><%= contact.escape("name") %></a>
                   <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
               </li>
             <% }); %>

@@ -5,6 +5,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "edit" : "currentUserEdit",
     "users/:id" : "userShow",
     "search" : "search",
+    "search/location=:location" : "searchByLocation",
     "messages" : "messagesIndex",
     "messages/new" : "messageNew",
     "messages/:id" : "messageShow",
@@ -17,11 +18,9 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.$el = options.$el;
     this.$headerEl = options.$headerEl;
     this.collection = options.collection;
-    // this.collection.fetch();
     this.currentUser = this.collection.getOrFetch(window.currentUserId);
     this.headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
                                                      model: this.currentUser});
-    // THIS NEEDS TO NOT BE THERE ON THE LANDING PAGE!!
     this.headerView.render();
     // this.$headerEl.on("mouseup", function(event) {
     //   $(".transient.active").removeClass("active");
@@ -65,8 +64,14 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
 
   userShow: function(id) {
     var user = this.collection.getOrFetch(id);
-    var showView = new CrowdSurfing.Views.UserShow({model: user});
+    var contacts = this.currentUser.contacts;
+    var showView = new CrowdSurfing.Views.UserShow({model: user, contacts: contacts});
     this._swapView(showView);
+  },
+
+  searchByLocation: function(location) {
+    var searchView = new CrowdSurfing.Views.SearchView({collection: this.collection, location: location});
+    this._swapView(searchView);
   },
 
   search: function() {

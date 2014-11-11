@@ -10,7 +10,8 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
     "click .wax-paper.shady" : "removeModal"
   },
 
-  initialize: function() {
+  initialize: function(options) {
+    this.contacts = options.contacts;
     this.listenTo(this.model, "sync", this.render);
   },
 
@@ -23,10 +24,13 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   addContact: function(event) {
     event.preventDefault();
     var user = this.model;
+    console.log("THE USER IS", user);
+    var that = this;
     var newContact = new CrowdSurfing.Models.Contact();
     newContact.save({friend_id: this.model.id}, {
       success: function() {
         user.fetch();
+        that.contacts.add({name: user.profile().get("name"), id: user.id});
       }
     });
   },

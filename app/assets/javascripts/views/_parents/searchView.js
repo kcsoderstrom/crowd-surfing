@@ -14,7 +14,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     "click label" : "loadForm"
   },
 
-  initialize: function() {
+  initialize: function(options) {
     this.page = 0;
     this.modelsName = "users";
 
@@ -30,10 +30,17 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "users"});
     this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "events"});
 
-    this.modelsName = "events";
-    this.search({type: undefined});
-    this.modelsName = "users";
-    this.search({type: undefined});
+    if(options.location) {
+      this.modelsName = "events";
+
+    } else {
+      this.modelsName = "events";
+      this.search({type: undefined});
+      this.modelsName = "users";
+      this.search({type: undefined});
+    }
+
+
 
   },
 

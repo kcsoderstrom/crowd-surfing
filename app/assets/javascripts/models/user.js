@@ -29,7 +29,7 @@ CrowdSurfing.Models.User = Backbone.Model.extend({
     }
 
     if(jsonResp.contacts) {
-      this.contacts = jsonResp.contacts;
+      this.contacts = new CrowdSurfing.Collections.Users(jsonResp.contacts);
       delete jsonResp.contacts;
     }
 

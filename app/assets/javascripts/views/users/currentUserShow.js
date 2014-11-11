@@ -6,12 +6,15 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     "click a.invite" : "openInviteView",
     "click button.delete-contact" : "removeContact",
     "click button.attendance" : "openAttendanceView",
-    "click button.delete-event" : "deleteEvent"
+    "click button.delete-event" : "deleteEvent",
+    "click a#location" : "searchByLocation"
   },
 
   initialize: function() {
     this.listenTo(this.model, "sync update", this.render);
-
+    if(this.model.contacts) {
+      this.listenTo(this.model.contacts, "add", this.render);
+    }
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
   },
@@ -74,8 +77,12 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   deleteEvent: function(event) {
     var $li = $(event.currentTarget).closest("ul").closest("li");
     var evt = this.eventsCollection.getOrFetch($li.data("eventId"));
-
     evt.destroy();
+  },
+
+  searchByLocation: function(event) {
+    event.preventDefault();
+    Backbone.history.navigate("search?location=" + this.model.profile().get("location"), {trigger: true});
   },
 
   leave: function() {
