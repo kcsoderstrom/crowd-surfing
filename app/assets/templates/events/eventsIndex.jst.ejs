@@ -10,7 +10,7 @@
     <h3><a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a></h3>
       <ul class="info">
         <% if(evt.get("is_authored")) { %>
-          <li>YOU MADE THIS EVENT</li>
+          <li>You created this event; double-click properties to edit.</li>
           <li><button class="delete-event">Delete this event</button></li>
         <% } %>
         <li class="attendance">Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
@@ -30,7 +30,7 @@
         <% } %>
 
       </ul>
-      <a class="invite transient-friend" href="#">Invite people</a>
+      <a class="invite transient-friend request-button" href="#">Invite people</a>
     </li>
   <% })  %>
 </ul>

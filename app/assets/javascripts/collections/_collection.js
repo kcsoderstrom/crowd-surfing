@@ -11,8 +11,7 @@ CrowdSurfing.Collections.Collection = Backbone.Collection.extend({
           that.add(model);
         }
       });
-
-      return model;
     }
+    return model;
   }
 })

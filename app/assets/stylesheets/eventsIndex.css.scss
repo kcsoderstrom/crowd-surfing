@@ -24,6 +24,10 @@ section.events-index {
     display: inline;
   }
 
+  a.invite {
+    display: block;
+  }
+
   li {
     position: relative;
   }
@@ -67,6 +71,10 @@ section.events-index {
       border-radius: 50px;
       background: #F8F8F8;
       margin: 15px 0;
+    }
+
+    a.invite {
+      display: block;
     }
 
     a:after {

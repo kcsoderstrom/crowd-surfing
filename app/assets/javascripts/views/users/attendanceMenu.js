@@ -33,7 +33,8 @@ CrowdSurfing.Views.AttendanceMenu = Backbone.View.extend({
     var is_attending = $li.attr("id");
     var evt = this.model;
 
-    if(this.model.is_attending != is_attending) {
+    console.log("running at all");
+    if(this.model.get("is_attending") != is_attending) {
       this.model.save({is_attending: is_attending}, {
         success: function() {
           evt.collection.fetch();

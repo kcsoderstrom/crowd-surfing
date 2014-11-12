@@ -5,7 +5,9 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
 
   events: {
     "click a#add-contact" : "addContact",
-    "click a#new-msg" : "newMessage"
+    "click a#new-msg" : "newMessage",
+    "click h2#inbox-header" : "inboxDisplay",
+    "click h2#sent-header" : "sentMessagesDisplay"
   },
 
   initialize: function() {
@@ -31,6 +33,16 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
   removeModal: function(event) {
     $(".wax-paper").removeClass("shady");
     $(".modal").removeClass("active");
+  },
+
+  inboxDisplay: function() {
+    $("ul#inbox").addClass("active");
+    $("ul#sent-messages").removeClass("active");
+  },
+
+  sentMessagesDisplay: function() {
+    $("ul#sent-messages").addClass("active");
+    $("ul#inbox").removeClass("active");
   },
 
   leave: function() {

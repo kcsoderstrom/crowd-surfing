@@ -22,14 +22,6 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this.headerView = new CrowdSurfing.Views.Header({el: this.$headerEl,
                                                      model: this.currentUser});
     this.headerView.render();
-    // this.$headerEl.on("mouseup", function(event) {
-    //   $(".transient.active").removeClass("active");
-    // });
-    // this.$el.on("mousedown", function(event){
-    //   if(!$(event.target).hasClass("transient") && !$(event.target).hasClass("transient-friend")) {
-    //     $(".transient.active").removeClass("active");
-    //   }
-    // })
 
     $("body").on("click", ".wax-paper.shady", function(event) {
       $(event.currentTarget).removeClass("shady");

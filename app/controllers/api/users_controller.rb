@@ -58,9 +58,7 @@ module Api
     def search
 
       match = params[:user_match].present? ? params[:user_match] : nil
-      exclusions = params[:exclude].present? ? params[:exclude] : nil
-
-      p exclusions
+      exclusions = params[:exclude].present? ? params[:exclude].select{|int| int.present? } : nil
 
       if params[:filter_by]
         gender = filter_params[:gender]

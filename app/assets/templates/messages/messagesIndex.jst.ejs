@@ -1,18 +1,36 @@
-<h2>All messages</h2>
-<a id="new-msg" href="#/messages/new">New message</a>
-
 <% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
 
-<ul class="messages">
+<h2 id="inbox-header">Inbox</h2>
+<h2 id="sent-header">Sent messages</h2>
+
+<ul class="messages active" id="inbox">
   <% collection.forEach(function(model) { %>
-    <h3><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></h3>
-      <ul class="info">
-        <li>From <%= getName(model.get("sender")) %></li>
-        <li>To <%= getName(model.get("receiver")) %></li>
-        <li><%= model.escape("created_at") %></li>
-      </ul>
-    </li>
+    <% if(model.get("sender").id !== window.currentUserId) { %>
+      <li>
+        <ul class="info">
+            <li>From <%= getName(model.get("sender")) %></li>
+            <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
+            <li><%= model.escape("created_at") %></li>
+        </ul>
+      </li>
+    <% } %>
+  <% })  %>
+</ul>
+
+<ul class="messages" id="sent-messages">
+  <% collection.forEach(function(model) { %>
+    <% if(model.get("sender").id === window.currentUserId) { %>
+      <li>
+        <ul class="info">
+            <li>To <%= getName(model.get("receiver")) %></li>
+            <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
+            <li><%= model.escape("created_at") %></li>
+        </ul>
+      </li>
+    <% } %>
   <% })  %>
 </ul>
 
 <div class="new-message-modal"></div>
+
+<a id="new-msg" href="#/messages/new" class="request-button">New message</a>

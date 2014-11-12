@@ -1,5 +1,26 @@
 // THIS IS FOR THE USER'S SHOW PAGE
 
+.request-button {
+  color: black;
+  font-weight: bold;
+  width: 300px;
+  height: 20px;
+  border-radius: 10px;
+  border: 1px solid red;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 0 5px 0;
+  display: block;
+  appearance: none;
+  margin: 20px auto;
+}
+
+.request-button:hover {
+  background-color: red;
+  color: white;
+}
+
+
 section.user-show {
 
   width: 948px;
@@ -26,26 +47,6 @@ section.user-show {
     width: 200px;
     background-color: blue;
     margin: 0 auto;
-  }
-
-  .request-button {
-    color: black;
-    font-weight: bold;
-    width: 300px;
-    height: 20px;
-    border-radius: 10px;
-    border: 1px solid red;
-    text-align: center;
-    text-decoration: none;
-    padding: 8px 0 5px 0;
-    display: block;
-    appearance: none;
-    margin: 20px auto;
-  }
-
-  .request-button:hover {
-    background-color: red;
-    color: white;
   }
 
   ul.nav {

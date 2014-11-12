@@ -7,3 +7,29 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
+
+//TODO: This doesn't exactly go here
+.transient {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+.common-modal {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 5px;
+  border: 1px solid #CBCBCB;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: white;
+  padding-top: 30px;             //TESTING TESTING
+  position: relative;
+
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
+}

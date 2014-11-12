@@ -2,8 +2,8 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
   template: JST["header"],
 
   events: {
-    "click .user-img" : "toggleDropdown",
-    "click ul.dropdown" : "toggleDropdown",
+    "mouseup .user-img" : "toggleDropdown",
+    "mouseup ul.dropdown" : "toggleDropdown",
     "click" : "removeDropdown"
   },
 
@@ -23,7 +23,13 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
       $dropdown.removeClass("active");
     } else {
       $dropdown.addClass("active");
+      $("body").one("mousedown", function(event) {
+        if(!$(event.target).closest("ul").hasClass("transient")) {
+          $(".active").removeClass("active");
+        }
+      });
     }
+
   },
 
   removeDropdown: function(event) {

@@ -1,8 +1,6 @@
 CrowdSurfing.Views.EventNew = CrowdSurfing.Views.New.extend({
   template: JST["events/eventNew"],
-  className: "currentUser",  //TODO change that in the css and all
-
-
+  className: "common-modal",  //TODO change that in the css and all
 
   initialize: function(options) {
     this.listenTo(this.model, "sync", this.render);

@@ -45,6 +45,12 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     this.inviteView = new CrowdSurfing.Views.InviteMenu({eventId: $li.data("eventId")});
     $li.append(this.inviteView.render().$el);
+
+    $("body").on("mousedown", function(event) {
+      if(!$(event.target).closest(".invite-menu").hasClass("transient")) {
+        $(".invite-menu").removeClass("active");
+      }
+    })
   },
 
   removeContact: function(event) {
@@ -59,7 +65,6 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
   openAttendanceView: function(event) {
     event.preventDefault();
-    console.log("IN")
 
     if(this.attendanceView) {
       this.attendanceView.leave();
@@ -74,6 +79,12 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     this.attendanceView.yVal = event.pageY - $("div.current-user-for-real").offset().top + 57;
 
     this.$el.append(this.attendanceView.render().$el);
+
+    $("body").on("mousedown", function(event) {
+      if(!$(event.target).closest(".invite-menu").hasClass("transient")) {
+        $(".invite-menu").removeClass("active");
+      }
+    })
 
   },
 

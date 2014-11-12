@@ -1,7 +1,7 @@
 CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   template: JST["requests/requestNew"],
   tagName: "section",
-  className: "new-request-modal modal currentUser", //TODO change that in the css and all
+  className: "new-request-modal modal common-modal", //TODO change that in the css and all
 
   events: {
     "submit form" : "sendRequest"
