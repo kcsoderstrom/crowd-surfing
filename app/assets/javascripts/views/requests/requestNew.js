@@ -34,7 +34,8 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
         details: details,
         invitation: false }, {
           success: function() {
-            that.currentUser.sentRequests.add(req)
+            that.currentUser.sentRequests.add(req);
+            $(".wax-paper").removeClass("shady");
             Backbone.history.navigate("", {trigger: true});
             //TODO: We don't need to be navigatin
           }
