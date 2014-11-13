@@ -21,11 +21,14 @@
   margin: 0 auto;
   padding: 0 5px;
   border: 1px solid #CBCBCB;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px;
   background-color: white;
-  padding-top: 30px;             //TESTING TESTING
+  padding: 30px;             //TESTING TESTING
   position: relative;
+
+  div.recipients {
+    width: 262px;
+  }
 
   &:after {
     clear: both;

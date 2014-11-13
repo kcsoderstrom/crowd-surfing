@@ -14,6 +14,11 @@ CrowdSurfing.Views.Welcome = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({loginErrors: this.loginErrors}));
+    window.navigator.geolocation.getCurrentPosition( function(pos) {
+      var loc = [pos.coords.latitude, pos.coords.longitude];
+      $("form.sign-in").append('<input type="hidden" name="user[location]" value="' + loc + '">');
+      $("form.sign-up").append('<input type="hidden" name="user[location]" value="' + loc + '">');
+    } )
     return this;
   },
 

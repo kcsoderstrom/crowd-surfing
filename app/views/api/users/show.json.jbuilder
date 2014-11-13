@@ -21,3 +21,4 @@ json.is_contact current_user.friends.include?(@user)
 json.established @user.profile.established
 
 json.name @user.profile.name
+json.events @user.events

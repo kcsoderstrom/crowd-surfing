@@ -8,7 +8,8 @@
 
         <h3>
           <% if(model.profile().escape("location")) { %>
-            <%= model.profile().escape("established") ? "Established in" : "New to" %>
+          <% console.log(model.profile().escape("established")) %>
+            <%= model.profile().get("established") ? "Established in" : "New to" %>
             <a href="#/search/location=<%= model.profile().escape("location") %>">
               <%= model.profile().escape("location") %>
             </a>

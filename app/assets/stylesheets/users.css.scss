@@ -42,9 +42,8 @@
   }
 
   section.profile-main {
-    height: 160px;
     width: 280px;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
 
     div.profile-subheader {
       background: #F4F6F9;
@@ -69,6 +68,10 @@
       h3 {
         color: black;
         margin-left: 80px;
+      }
+
+      a {
+        display: inline-block;
       }
     }
 

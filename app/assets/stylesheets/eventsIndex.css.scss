@@ -20,6 +20,14 @@ section.events-index {
   background: white;
   position: relative;
 
+  div, input.time, input.date {
+    display: inline-block;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
   a {
     display: inline;
   }
@@ -32,9 +40,13 @@ section.events-index {
     position: relative;
   }
 
-  ul.info li {
-    padding: 5px 10px;
-    position: relative;
+  ul.info {
+    padding: 10px 20px 0 20px;
+
+    li {
+      padding: 5px 10px;
+      position: relative;
+    }
   }
 
   section.invite-menu {
