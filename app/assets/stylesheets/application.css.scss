@@ -26,6 +26,10 @@ html, ol, body, ul, li, input, a, button, form, label, textarea, h1, h2, h3, nav
   text-decoration: none;
 }
 
+.hidden {
+  display: none;
+}
+
 button, input[type="submit"] {
   -webkit-appearance: none;
   display: inline-block;

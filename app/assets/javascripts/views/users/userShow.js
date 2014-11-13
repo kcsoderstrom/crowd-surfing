@@ -26,7 +26,6 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   addContact: function(event) {
     event.preventDefault();
     var user = this.model;
-    console.log("THE USER IS", user);
     var that = this;
     var newContact = new CrowdSurfing.Models.Contact();
     newContact.save({friend_id: this.model.id}, {

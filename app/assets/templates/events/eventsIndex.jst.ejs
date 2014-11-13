@@ -14,8 +14,16 @@
           <li><button class="delete-event">Delete this event</button></li>
         <% } %>
         <li class="attendance">Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
-        <li>Happens at this time: <%= evt.get("time") %></li>
-        <li>Happens on this day: <%= evt.get("date") %></li>
+        <li class="time">Happens at this time: <%= evt.get("is_authored") ? "<div>" + evt.get("time") + "</div>" : evt.get("time") %>
+                         <% if(evt.get("is_authored")) { %>
+                           <input class="hidden time" type="text" value="<%= evt.get("time") %>">
+                         <% } %>
+        </li>
+        <li class="date">Happens on this day: <%= evt.get("is_authored") ? "<div>" + evt.get("date") + "</div>" : evt.get("date") %>
+                         <% if(evt.get("is_authored")) { %>
+                           <input class="hidden date" type="text" value="<%= evt.get("date") %>">
+                         <% } %>
+        </li>
 
         <% if(evt.invitation_receivers && evt.invitation_receivers.length > 0) { %>
           <li>You've invited <%= evt.invitation_receivers.map(getName).join(" and ") %>.</li>

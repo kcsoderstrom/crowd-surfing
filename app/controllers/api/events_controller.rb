@@ -10,10 +10,6 @@ module Api
       end
     end
 
-    def update
-
-    end
-
     def show
       @event = Event.find(params[:id])
       if @event
@@ -117,7 +113,13 @@ module Api
         end
       end
 
-      render json: @event
+      if @event.user == current_user && @event.update!(event_params)
+        puts " HEREEEEEEE"
+        puts event_params
+        render json: @event
+      else
+        render json: "Log in!", status: :unprocessable_entity
+      end
     end
 
     def destroy

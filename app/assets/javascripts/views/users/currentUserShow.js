@@ -7,11 +7,15 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     "click button.delete-contact" : "removeContact",
     "click button.attendance" : "openAttendanceView",
     "click button.delete-event" : "deleteEvent",
-    "click a#location" : "searchByLocation"
+    "click a#location" : "searchByLocation",
+    "dblclick li.time" : "editProperty",
+    "dblclick li.date" : "editProperty",
+    "blur input.time" : "updateProperty",
+    "blur input.date" : "updateProperty"
   },
 
   initialize: function() {
-    this.listenTo(this.model, "sync update", this.render);
+    this.listenTo(this.model, "sync", this.render);
     if(this.model.contacts) {
       this.listenTo(this.model.contacts, "add", this.render);
     }
@@ -97,6 +101,31 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   searchByLocation: function(event) {
     event.preventDefault();
     Backbone.history.navigate("search?location=" + this.model.profile().get("location"), {trigger: true});
+  },
+
+  editProperty: function(event) {
+    var $li = $(event.currentTarget);
+    $li.find("div").addClass("hidden");
+    $li.find("input").removeClass("hidden");
+    $li.find("input").focus();
+  },
+
+  updateProperty: function(event) {
+    var $li = $(event.currentTarget).closest("li");
+    var property = $(event.currentTarget).attr("class");
+
+    $li.find("div").removeClass("hidden");
+    $(event.currentTarget).addClass("hidden");
+    var $li = $(event.currentTarget).closest("ul").closest("li");
+    var evt = this.eventsCollection.getOrFetch($li.data("eventId"));
+
+    var newVal = $(event.currentTarget).val();
+
+    if(property === "time") {
+      evt.save({time: newVal}, {success: function(data) { console.log(data)}});
+    } else if(property === "date") {
+      evt.save({date: newVal}, {success: function(data) { console.log(data)}});
+    }
   },
 
   leave: function() {
