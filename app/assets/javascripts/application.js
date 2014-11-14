@@ -13,6 +13,7 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require jquery.serializejson.min
+//= require jquery-ui.min
 //= require underscore
 //= require backbone
 //= require crowd-surfing.js

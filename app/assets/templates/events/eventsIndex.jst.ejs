@@ -43,7 +43,9 @@
         <% } %>
 
       </ul>
-      <a class="invite transient-friend request-button" href="#">Invite people</a>
+      <% if(evt.get("is_attending")) { %>
+        <a class="invite transient-friend request-button" href="#">Invite contacts</a>
+      <% } %>
     </li>
   <% })  %>
 </ul>

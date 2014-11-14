@@ -59,6 +59,8 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.eventsAdvMenu.$el = this.$(".adv-menu.events");
     this.eventsAdvMenu.render();
 
+    this.$(".draggable").draggable();
+
     return this;
   },
 
@@ -70,6 +72,9 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
     tab.addClass("active");
     $("section#" + tab.attr("id")).addClass("active");
+    $("section.adv-menu." + tab.attr("id")).addClass("active");
+
+    console.log($("section#" + tab.attr("id")))
 
     this.modelsName = tab.data("models-name");
   },
@@ -134,13 +139,14 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
   loadForm: function(event) {
     $label = $(event.currentTarget);
     $labelId = $label.attr("id");
+    $menu = $label.closest("section.adv-menu");
 
     if($labelId === "sort-label") {
-      $("form.sort-criterion").toggleClass("active");
+      $menu.find("form.sort-criterion").toggleClass("active");
     } else if ($labelId === "filter-label") {
-      $("form.filter-criteria").toggleClass("active");
+      $menu.find("form.filter-criteria").toggleClass("active");
     } else if ($labelId === "name-label") {
-      $("form.search").toggleClass("active");
+      $menu.find("form.search").toggleClass("active");
     }
   },
 

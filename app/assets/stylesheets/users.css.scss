@@ -113,7 +113,7 @@ section.user-show:after {
 }
 
 img.selected {
-  border: 2px solid blue;
+  outline: 2px solid blue;
 }
 
 img.full-photo {
@@ -160,4 +160,22 @@ div.contacts-body {
 
 li.attendance {
   position: relative;
+}
+
+.images-modal {
+  h2 {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  li {
+    float: left;
+    margin: 10px;
+  }
+
+  ul:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
 }

@@ -31,7 +31,7 @@ CrowdSurfing.Views.InviteMenu = Backbone.View.extend({
         status: "",
         invitation: true }, {
           success: function() {
-            Backbone.history.navigate("", {trigger: true});
+            Backbone.history.loadUrl();
           }
         })
     });

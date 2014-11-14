@@ -55,3 +55,9 @@ li.search-result {
     clear: both;
   }
 }
+
+
+section.draggable {
+  position: absolute;
+  z-index: 200;
+}

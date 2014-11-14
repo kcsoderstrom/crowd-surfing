@@ -26,12 +26,9 @@
 
   <section class="left-side">
 
-    <label for="photo">Upload photo</label>
-    <input id="photo" type="file" class="my-photo-upload">
-    <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
-
-    <%= JST["users/album-modal"]({collection: model.photos}) %>
     <button class="show-images">Change image</button>
+    <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
+    <%= JST["users/album-modal"]({collection: model.photos}) %>
 
   </section>
 

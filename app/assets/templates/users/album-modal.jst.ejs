@@ -1,9 +1,17 @@
 <section class="images-modal modal common-modal">
-THIS IS WHERE IMAGES GO
-<% console.log("THIS IS RENDERING") %>
   <% if (collection) { %>
-    <% collection.forEach( function(photo) { %>
-      <img class="photo <%= model._profile && photo.id === model._profile.get("primary_photo_id") ? "selected" : "" %>" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
-    <% }) %>
+    <h2>Select from your album</h2>
+    <ul class="album">
+      <% collection.forEach( function(photo) { %>
+        <li>
+          <img class="photo <%= model._profile && photo.id === model._profile.get("primary_photo_id") ? "selected" : "" %>" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
+        </li>
+      <% }) %>
+    </ul>
   <% } %>
+
+  <h2>or upload a new photo</h2>
+  <input id="photo" type="file" class="my-photo-upload">
+
+
 </section>

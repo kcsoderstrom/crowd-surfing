@@ -22,7 +22,7 @@ div.tabs > button.tab {
 div.tabs {
   margin-bottom: 20px;
   border-bottom: 1px solid #B3B3B3;
-  position: fixed;
+  position: absolute;
   left: 50%;
   transform: translateX(-470px);
   top: 123px;
@@ -124,13 +124,29 @@ section.search {
     display: block
   }
 
-  div.full-adv-menu {
-    width: 200px;
-    position: fixed;
-    top: 150px;
-    border: 1px solid #B3B3B3;
-    border-radius: 5px;
-    padding: 5px;
-    background: white;
+}
+
+div.full-adv-menu {
+  // width: 200px;
+  // position: absolute;
+  // top: 150px;
+  // border: 1px solid #B3B3B3;
+  // border-radius: 5px;
+  // padding: 5px;
+  // background: white;
+}
+
+
+section.adv-menu {
+  display: none;
+  width: 200px;
+  position: absolute;
+  top: 150px;
+  border: 1px solid #B3B3B3;
+  border-radius: 5px;
+  padding: 5px;
+  background: white;
+  &.active {
+    display: block;
   }
 }
