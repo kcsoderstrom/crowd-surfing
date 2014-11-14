@@ -1,5 +1,6 @@
 is_authored = (@event.user_id == current_user.id)
-json.extract! @event, :title, :time, :date, :user_id, :id
+json.extract! @event, :title, :time, :user_id, :id
+json.date @event.date.strftime("%B %d, %Y")
 json.is_authored is_authored
 unless is_authored
   if @event.requests.map(&:receiver).include?(current_user)

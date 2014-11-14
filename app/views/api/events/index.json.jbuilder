@@ -1,6 +1,7 @@
 json.array! @events do |event|
   is_authored = (event.user_id == current_user.id)
-  json.extract! event, :title, :time, :date, :user_id, :id
+  json.extract! event, :title, :time, :location, :user_id, :id
+  json.date event.date.strftime("%B %d, %Y")
   json.is_authored is_authored
   unless is_authored
     if event.requests.map(&:receiver).include?(current_user)
@@ -16,7 +17,6 @@ json.array! @events do |event|
       approved_request = requests.select{|req| req.status == "accepted"}.count > 0
       json.request_receivers requests.map(&:receiver).map{|user| {name: user.profile.name, id: user.id}}
     end
-    # I thought this wouldn't work?
   end
 
   json.is_attending (is_authored || accepted_invitation || approved_request)

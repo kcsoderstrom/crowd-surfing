@@ -1,9 +1,11 @@
 <% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
 
+<h1 class="subject"><%= model.escape("subject") %></h1>
 <ol>
-  <li class="subject">Subject: <%= model.escape("subject") %></li>
-  <li class="from">From: <%= model.get("sender") ? getName(model.get("sender")) : "" %></li>
-  <li class="to">To: <%= model.get("receiver") ? getName(model.get("receiver")) : "" %></li>
-  <li class="timestamp">at <%= model.escape("created_at") %></li>
-  <li class="body">Body: <%= model.escape("body") %></li>
+  <li class="from"><%= model.get("sender") ? getName(model.get("sender")) : "" %></li>
+  <li class="timestamp"><%= model.escape("created_at") %> ago</li>
+  <li class="to">To <%= model.get("receiver") ? getName(model.get("receiver")) : "" %></li>
+  <li class="body"><%= model.escape("body") %></li>
 </ol>
+
+<a class="back" href="#/messages">Back</a>

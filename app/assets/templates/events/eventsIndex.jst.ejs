@@ -9,32 +9,37 @@
     <li data-event-id="<%= evt.id %>">
     <h3><a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a></h3>
       <ul class="info">
-        <% if(evt.get("is_authored")) { %>
-          <li>You created this event; double-click properties to edit.</li>
-          <li><button class="delete-event">Delete this event</button></li>
-        <% } %>
-        <li class="attendance">Are you attending? <button class="attendance"><%= evt.get("is_attending") ? "YES" : "NO" %></button></li>
-        <li class="time">Happens at this time: <%= evt.get("is_authored") ? "<div>" + evt.get("time") + "</div>" : evt.get("time") %>
+        <li class="time">At <%= evt.get("is_authored") ? "<div>" + evt.get("time") + "</div>" : evt.get("time") %>
                          <% if(evt.get("is_authored")) { %>
                            <input class="hidden time" type="text" value="<%= evt.get("time") %>">
                          <% } %>
         </li>
-        <li class="date">Happens on this day: <%= evt.get("is_authored") ? "<div>" + evt.get("date") + "</div>" : evt.get("date") %>
+        <li class="date">on <%= evt.get("is_authored") ? "<div>" + evt.get("date") + "</div>" : evt.get("date") %>
                          <% if(evt.get("is_authored")) { %>
                            <input class="hidden date" type="text" value="<%= evt.get("date") %>">
                          <% } %>
         </li>
+        <% if(evt.get("location")) { %>
+          <li class="location">at <%= evt.escape("location") %></li>
+        <% } %>
+
+        <% if(evt.get("is_authored")) { %>
+          <li class="created">You created this event; double-click properties to edit.
+          <button class="delete-event">Delete this event</button></li>
+        <% } else { %>
+        <li class="attendance"><%= evt.get("is_attending") ? "Attending" : "Not attending" %> <button class="attendance">Edit</button></li>
+        <% } %>
 
         <% if(evt.invitation_receivers && evt.invitation_receivers.length > 0) { %>
-          <li>You've invited <%= evt.invitation_receivers.map(getName).join(" and ") %>.</li>
+          <li class="invitations">You invited <%= evt.invitation_receivers.map(getName).join(" and ") %>.</li>
         <% } %>
 
         <% if(evt.get("received_invitation")) { %>
-          <li><%= evt.invitation_senders.map(getName).join(" and ") %> invited you to this event.</li>
+          <li class="invitations"><%= evt.invitation_senders.map(getName).join(" and ") %> invited you to this event.</li>
         <% } %>
 
         <% if(evt.get("sent_request")) { %>
-          <li>You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
+          <li class="invitations">You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
         <% } %>
 
       </ul>

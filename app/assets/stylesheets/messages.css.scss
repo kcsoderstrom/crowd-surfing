@@ -73,3 +73,39 @@ ul.messages {
     display: inline-block;
   }
 }
+
+.message-show {
+  li.from {
+    float: left;
+  }
+
+  li.timestamp {
+    float: right;
+  }
+
+  li.to {
+    clear: both;
+  }
+
+  a {
+    display: inline;
+  }
+
+  a.back {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: #EEE;
+    cursor: pointer;
+    width: 200px;
+    margin: 20px auto;
+    display: block;
+    &:hover {
+      background: #CCC;
+    }
+  }
+
+  li.body {
+    padding: 10px;
+  }
+}

@@ -46,6 +46,48 @@ section.events-index {
     li {
       padding: 5px 10px;
       position: relative;
+
+      &.created {
+        font-style: italic;
+      }
+
+      &.time {
+        float: left;
+        display: inline;
+        position: static;
+        padding: 5px 2px 5px 10px;
+
+      }
+
+      &.date, &.location {
+        float: left;
+        display: inline;
+        position: static;
+        padding: 5px 2px;
+      }
+
+      &.time input {
+        width: 50px;
+      }
+
+      &.date input {
+        width: 150px;
+      }
+
+      &.invitations, &.created, &.attendance {
+        display: block;
+        clear: both;
+
+        input {
+          width: 60px;
+        }
+      }
+
+      input {
+        display: inline-block;
+        margin-top: -5px;
+        margin-bottom: -5px;
+      }
     }
   }
 
@@ -161,4 +203,15 @@ textarea {
   outline: none;
   border: 1px solid black;
   padding: 5px;
+}
+
+button.attendance, button.delete-event {
+  font-style: normal;
+  display: inline-block;
+  //float: right;
+  font-size: 12px;
+  margin-left: 0px;
+  background: #CCC;
+  border-radius: 10px;
+  padding: 2px 5px;
 }

@@ -43,6 +43,7 @@ else
 end
 
 json.events @user.events
+
 json.primary_photo_id @user.profile.primary_photo_id
 json.established @user.profile.established
 
