@@ -44,9 +44,13 @@ module Api
       profile_updated = @user.profile.update(profile_params)
 
       if profile_updated && photo_ok
-        @user.profile.update(primary_photo: @user.profile.photos.last) if photo_created
-        puts @user.profile.primary_photo_id
-        render :show
+        if photo_created
+          @user.profile.update(primary_photo: @user.profile.photos.last)
+          puts "CAME IN HERE OK"
+        end
+        puts "HEY OK LOOOK HERE IS WHETHER IT WAS MADE OR NOT"
+        p photo_created
+        render :current_user_show
       else
         render json: @user.errors.full_messages,
                status: :unprocessable_entity

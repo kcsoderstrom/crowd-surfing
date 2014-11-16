@@ -25,7 +25,7 @@ CrowdSurfing.Views.Header = Backbone.View.extend({
       $dropdown.addClass("active");
       $("body").one("mousedown", function(event) {
         if(!$(event.target).closest("ul").hasClass("transient")) {
-          $(".active").removeClass("active");
+          $(".dropdown.active").removeClass("active");
         }
       });
     }

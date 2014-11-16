@@ -29,7 +29,7 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     event.preventDefault();
     var $form = this.$(".edit-profile");
     var formData = $form.serializeJSON();
-
+    console.log(formData);
     this.model.save(formData, {
       success: function() {
         Backbone.history.navigate("/", {trigger: true});
@@ -49,6 +49,7 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
       // note that this isn't saving
       var $form = view.$(".edit-profile");
       var formData = $form.serializeJSON();
+      console.log(formData);
       view.model.set(formData);
       view.model.set('pic', this.result);
       view.model.save();
