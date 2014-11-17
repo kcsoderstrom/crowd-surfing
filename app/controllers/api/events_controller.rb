@@ -57,36 +57,136 @@ module Api
       # ok so I want to get all of the events that the user has made
       current_user_id = current_user.id
 
-      Event.where()
 
-      @events = Event.includes(requests: [{sender: :profile}, {receiver: :profile}, :invitation]).find_by_sql(<<-SQL
-        SELECT events.*
-        FROM events
-        LEFT OUTER JOIN requests AS sent_requests
-        ON sent_requests.event_id = events.id
-        LEFT OUTER JOIN requests AS received_invitations
-        ON received_invitations.event_id = events.id
-        WHERE ((
-            sent_requests.sender_id = #{current_user_id}
+      @received_invitations = Request.find_by_sql(<<-SQL
+        SELECT requests.*, profiles.name AS sender_name, users.id AS sender_id
+        FROM requests
+        JOIN users
+        ON requests.sender_id = users.id
+        JOIN profiles
+        ON profiles.user_id = users.id
+        WHERE (
+            requests.receiver_id = #{current_user_id}
           AND
-            sent_requests.invitation = FALSE
+            requests.invitation = TRUE
           AND
-            sent_requests.status != 'rejected'
-        ) OR (
-            received_invitations.receiver_id = #{current_user_id}
-          AND
-            received_invitations.invitation = TRUE
-          AND
-            received_invitations.status != 'rejected'
-        ) OR (
-          events.user_id = #{current_user_id}
-        ))
-        ORDER BY
-          events.date
+            requests.status != 'rejected'
+        )
       SQL
       )
 
-      render :index
+      @sent_requests = Request.find_by_sql(<<-SQL
+        SELECT requests.*, profiles.name AS receiver_name, users.id AS receiver_id
+        FROM requests
+        JOIN users
+        ON requests.receiver_id = users.id
+        JOIN profiles
+        ON profiles.user_id = users.id
+        WHERE (
+            requests.sender_id = #{current_user_id}
+          AND
+            requests.invitation = FALSE
+          AND
+            requests.status != 'rejected'
+        )
+      SQL
+      )
+
+      # I don't actually need the requests here,
+      # just the recipients, so I'll leave the requests out for now.
+      @sent_invitations = Request.find_by_sql(<<-SQL
+        SELECT profiles.name AS receiver_name, users.id AS receiver_id
+        FROM requests
+        JOIN users
+        ON requests.receiver_id = users.id
+        JOIN profiles
+        ON profiles.user_id = users.id
+        WHERE (
+            requests.sender_id = #{current_user_id}
+          AND
+            requests.invitation = TRUE
+          AND
+            requests.status != 'rejected'
+        )
+      SQL
+      )
+
+      relevant_request_ids = (@received_invitations.map(&:id) + @sent_requests.map(&:id)).join(",")
+
+      if relevant_request_ids.length > 0
+        @events = Event.find_by_sql(<<-SQL
+          SELECT DISTINCT events.*
+          FROM events
+          LEFT OUTER JOIN requests
+          ON requests.event_id = events.id
+          WHERE (
+            requests.id IN (#{ relevant_request_ids })
+           OR
+            events.user_id = #{current_user_id}
+          )
+          ORDER BY
+            events.date
+        SQL
+        )
+      else
+        @events = Event.find_by_sql(<<-SQL
+          SELECT DISTINCT events.*
+          FROM events
+          WHERE
+            events.user_id = #{current_user_id}
+          ORDER BY
+            events.date
+        SQL
+        )
+      end
+
+
+      # @events = Event.includes(requests: [{sender: :profile}, {receiver: :profile}, :invitation]).find_by_sql(<<-SQL
+      #   SELECT DISTINCT events.*
+      #   FROM events
+      #   LEFT OUTER JOIN
+      #   ( SELECT requests.*
+      #     FROM requests
+      #     WHERE (
+      #         sender_id = #{current_user_id}
+      #       AND
+      #         invitation = FALSE
+      #       AND
+      #         status != 'rejected'
+      #     )
+      #   ) AS sent_requests
+      #   LEFT OUTER JOIN
+      #   ( SELECT requests.*
+      #     FROM requests
+      #     WHERE (
+      #         receiver_id = #{current_user_id}
+      #       AND
+      #         invitation = TRUE
+      #       AND
+      #         status != 'rejected'
+      #     )
+      #   )
+
+      #   requests AS sent_requests
+      #   ON sent_requests.event_id = events.id
+      #   LEFT OUTER JOIN requests AS received_invitations
+      #   ON received_invitations.event_id = events.id
+      #   WHERE ((
+      #
+      #   ) OR (
+      #       received_invitations.receiver_id = #{current_user_id}
+      #     AND
+      #       received_invitations.invitation = TRUE
+      #     AND
+      #       received_invitations.status != 'rejected'
+      #   ) OR (
+      #     events.user_id = #{current_user_id}
+      #   ))
+      #   ORDER BY
+      #     events.date
+      # SQL
+      # )
+      # render :index
 
       # and all of the people they've invited
       # and I want all the ones they've requested invitations to

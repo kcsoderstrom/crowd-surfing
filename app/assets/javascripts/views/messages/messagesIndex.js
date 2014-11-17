@@ -11,7 +11,7 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync", this.render); // THIS IS BAD BC IF THEY LOAD LATE YOU WILL BE CLICKING AND THEN BOOM
   },
 
   render: function() {

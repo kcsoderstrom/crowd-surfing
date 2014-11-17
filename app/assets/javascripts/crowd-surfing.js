@@ -11,6 +11,20 @@ window.CrowdSurfing = {
     new CrowdSurfing.Routers.Router({$el: this.$mainEl,
                                      $headerEl: this.$headerEl,
                                      collection: col});
+    // router.forEach(function (prop) {
+    //   if (router.hasOwnProperty(prop)) {
+    //     if (typeof prop === 'function') {
+    //       switch (prop) {
+    //       case: 'initialize'
+    //       case: '_swapView'
+    //       case: 'welcome'
+    //         break;
+    //       default:
+    //
+    //       }
+    //     }
+    //   }
+    //})
     Backbone.history.start();
   }
 };

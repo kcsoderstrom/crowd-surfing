@@ -2,16 +2,18 @@ module Api
   class UsersController < ApplicationController
 
     def index
-      render json: User.all.includes(:sent_messages, :received_messages, :sent_requests, :received_requests)
+      # @users = User.all.limit(10)
+      # render :index
     end
 
     def show
-      @user = User.includes(:events,
-                            sent_messages: [:sender, :receiver],
-                            received_messages: [:sender, :receiver],
-                            sent_requests: [:sender, :receiver],
-                            received_requests: [:sender, :receiver])
+      @user = User.includes(
+                            sent_messages: {receiver: :profile},
+                            received_messages: {sender: :profile},
+                            sent_requests: {receiver: :profile},
+                            received_requests: {sender: :profile})
                   .find(params[:id])
+
 
       if @user.id == current_user.id
         render :current_user_show
@@ -102,7 +104,6 @@ module Api
 
       @users = @users.limit(10) if params[:page]
       @users = @users.offset(Integer(params[:page])*10) if params[:page]
-
 
       render :search_results
 

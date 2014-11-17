@@ -43,34 +43,58 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   },
 
   currentUserShow: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var user = this.currentUser;
     var showView = new CrowdSurfing.Views.CurrentUserShow({model: user});
     this._swapView(showView);
   },
 
   currentUserEdit: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var user = this.currentUser;
     var editView = new CrowdSurfing.Views.CurrentUserEdit({model: user});
     this._swapView(editView);
   },
 
   userShow: function(id) {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var user = this.collection.getOrFetch(id);
     var showView = new CrowdSurfing.Views.UserShow({model: user, currentUser: this.currentUser});
     this._swapView(showView);
   },
 
   searchByLocation: function(location) {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var searchView = new CrowdSurfing.Views.SearchView({collection: this.collection, location: location});
     this._swapView(searchView);
   },
 
   search: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var searchView = new CrowdSurfing.Views.SearchView({collection: this.collection});
     this._swapView(searchView);
   },
 
   messageNew: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var msg = new CrowdSurfing.Models.Message();
     var newView = new CrowdSurfing.Views.MessageNew({model: msg});
     newView.$el.addClass("active");
@@ -78,6 +102,10 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   },
 
   messagesIndex: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var messages = new CrowdSurfing.Collections.Messages();
     messages.fetch();
     var indexView = new CrowdSurfing.Views.MessagesIndex({collection: messages});
@@ -85,6 +113,10 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   },
 
   messageShow: function(id) {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var message = new CrowdSurfing.Models.Message();
     message.set({id: id});
     var showView = new CrowdSurfing.Views.MessageShow({model: message});
@@ -92,12 +124,20 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
   },
 
   eventNew: function() {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var evt = new CrowdSurfing.Models.Event();
     var newView = new CrowdSurfing.Views.EventNew({model: evt});
     this._swapView(newView);
   },
 
   eventShow: function(id) {
+    if(!window.currentUserId) {
+      Backbone.history.navigate("#", {trigger: true});
+      return;
+    }
     var evt = new CrowdSurfing.Models.Event(); //TODO: MAKE THIS FASTER!!
     evt.set({id: id});
     var showView = new CrowdSurfing.Views.EventShow({model: evt});

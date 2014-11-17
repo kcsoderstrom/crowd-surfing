@@ -61,3 +61,6 @@ gem 'figaro'
 
 gem 'omniauth-facebook'
 gem 'geocoder'
+gem 'faker'
+
+gem 'sexmachine'
