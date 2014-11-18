@@ -122,9 +122,9 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     var newVal = $(event.currentTarget).val();
 
     if(property === "time") {
-      evt.save({time: newVal}, {success: function(data) { console.log(data)}});
+      evt.save({time: newVal}, {});
     } else if(property === "date") {
-      evt.save({date: newVal}, {success: function(data) { console.log(data)}});
+      evt.save({date: newVal}, {});
     }
   },
 

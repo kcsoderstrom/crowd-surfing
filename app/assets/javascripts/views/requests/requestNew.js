@@ -24,7 +24,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
     var that = this;
 
     var details = $("input#req-details").val();
-    var eventId = $("input#req-evt-id").val();
+    var eventId = $("select#req-evt").val();
 
     this.contactAutofill.userIds.forEach(function(receiverId){
       req = new CrowdSurfing.Models.Request();
@@ -36,7 +36,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
           success: function() {
             that.currentUser.sentRequests.add(req);
             $(".wax-paper").removeClass("shady");
-            Backbone.history.navigate("", {trigger: true});
+            that.$el.removeClass("active");
             //TODO: We don't need to be navigatin
           }
         })

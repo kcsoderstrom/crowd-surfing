@@ -41,7 +41,6 @@
         <% if(evt.get("sent_request")) { %>
           <li class="invitations">You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
         <% } %>
-
       </ul>
       <% if(evt.get("is_attending")) { %>
         <a class="invite transient-friend request-button" href="#">Invite contacts</a>

@@ -16,12 +16,14 @@ json.array! @events do |event|
       # accepted_invitation = invitations.select{|req| req.status == "accepted"}.count > 0
       # json.invitation_senders invitations.map(&:sender).map{|user| {name: user.profile.name, id: user.id}}
 
-    elsif @sent_requests.map(&:event_id).include?(event.id)
+    end
+
+    if @sent_requests.map(&:event_id).include?(event.id)
       json.sent_request true
       requests = @sent_requests.select{ |req| (req.event_id == event.id)}
 
       approved_request = @sent_requests.any?{ |req| req.status == "accepted" }
-      json.request_receivers = @sent_requests.map{ |req| {name: req.receiver_name, id: req.receiver_id} }
+      json.request_receivers @sent_requests.map{ |req| {name: req.receiver_name, id: req.receiver_id} }
     # elsif event.requests.map(&:sender).include?(current_user)
       # json.sent_request true
       # requests = event.requests.select{ |req| (req.sender == current_user) && (!req.invitation) }

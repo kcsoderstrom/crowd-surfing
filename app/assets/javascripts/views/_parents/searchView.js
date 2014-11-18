@@ -74,8 +74,6 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     $("section#" + tab.attr("id")).addClass("active");
     $("section.adv-menu." + tab.attr("id")).addClass("active");
 
-    console.log($("section#" + tab.attr("id")))
-
     this.modelsName = tab.data("models-name");
   },
 

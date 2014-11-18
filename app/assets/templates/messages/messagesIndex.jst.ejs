@@ -24,7 +24,6 @@
     <% collection.sent_messages && collection.sent_messages.forEach(function(model) { %>
       <li>
         <ul class="info">
-        <% console.log(model) %>
           <li>To <a href="#/users/<%= model.escape("receiver_id")%>"><%= model.escape("receiver_name") %></a></li>
           <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
           <li><%= model.escape("created_at") %> ago</li>
