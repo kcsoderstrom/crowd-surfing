@@ -36,3 +36,16 @@
     content: "";
   }
 }
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+// TODO: make this work for firefox too
+  outline: none;
+  width: 262px;
+  font-size: 16px;
+  padding: 8px 12px;
+  background: white;
+  border-image: none;
+  display: block;
+}

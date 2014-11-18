@@ -5,8 +5,12 @@
   <label for="req-details">Details</label>
   <input id="req-details" name="details">
 
-  <label for="req-evt-id">Event id</label>
-  <input id="req-evt-id" name="event[id]">
+  <label for="req-evt">Event you would like to attend</label>
+  <select id="req-evt" name="event[id]">
+    <% evts.forEach(function(evt) { %>
+      <option value="<%= evt.id %>"><%= evt.escape("title") %></option>
+    <% }); %>
+  </select>
 
   <button type="submit">Send</button>
 </form>

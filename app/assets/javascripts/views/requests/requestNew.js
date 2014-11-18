@@ -13,7 +13,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template({ model: this.model }));
+    this.$el.html(this.template({ evts: this.model.events }));
     this.$("div").html(this.contactAutofill.render().$el);
     return this;
   },
