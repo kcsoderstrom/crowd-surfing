@@ -1,8 +1,7 @@
 <h2><a class="events" href="#/events" alt="Events"></a>Events</h2>
 <a class="button" href="#/events/new">New event</a>
 
-<% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
-<% console.log("TODO: THIS NEEDS TO BE ESCAPED") %>
+<% var getName = function(user) { var badUser = new CrowdSurfing.Models.User(); badUser.set({name: user.name}); return '<a href="#/users/' + user.id + '">' + badUser.escape("name") + "</a>"; } %>
 
 <ul>
   <% collection.forEach(function(evt) { %>
@@ -39,6 +38,7 @@
         <% } %>
 
         <% if(evt.get("sent_request")) { %>
+        <% console.log(evt.request_receivers) %>
           <li class="invitations">You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
         <% } %>
       </ul>
@@ -48,5 +48,3 @@
     </li>
   <% })  %>
 </ul>
-
-<a href="#">Edit</a>

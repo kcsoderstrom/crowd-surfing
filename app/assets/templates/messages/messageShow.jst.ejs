@@ -1,4 +1,4 @@
-<% var getName = function(user) { return '<a href="#/users/' + user.id + '">' + user.name + "</a>"; } %>
+<% var getName = function(user) { var badUser = new CrowdSurfing.Models.User(); badUser.set({name: user.name}); return '<a href="#/users/' + user.id + '">' + badUser.escape("name") + "</a>"; } %>
 
 <h1 class="subject"><%= model.escape("subject") %></h1>
 <ol>
