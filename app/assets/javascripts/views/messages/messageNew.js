@@ -23,6 +23,7 @@ CrowdSurfing.Views.MessageNew = CrowdSurfing.Views.New.extend({
         subject: subject,
         body: body }, {
           success: function() {
+            $("div.wax-paper").removeClass("shady");
             Backbone.history.navigate("", {trigger: true});
           }
         })
