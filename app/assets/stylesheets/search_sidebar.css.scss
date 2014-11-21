@@ -53,9 +53,17 @@ section.adv-menu {
     float: left;
   }
 
-  section.age {
+
+  section.age, section.time, section.date {
+    &:after {
+      clear: both;
+      content: "";
+      display: block;
+    }
+    clear: both;
     margin: 17px 0;
     input {
+      float: left;
       width: 64px;
       height: 31px;
       padding: 3px;
