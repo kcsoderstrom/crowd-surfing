@@ -1,21 +1,41 @@
-<form class="event-new">
-  Send invitations
-  <div class="receiver"></div>
+<section class="typical">
+  <form class="event-new">
+    <h1>Create an Event</h1>
+    <ul>
 
-  <label for="evt-title">Title</label>
-  <input id="evt-title" name="event[title]" value="<%= model.escape("title") %>">
+      <li>
+        <h2>Event Name</h2>
+        <input type="text" id="evt-title" name="event[title]" value="<%= model.escape("title") %>">
+      </li>
 
-  <label for="evt-location">Location</label>
-  <input id="evt-location" name="event[location]" value="<%= model.escape("location") %>">
+      <li>
+        <h2>Where</h2>
+        <input type="text" id="evt-location" name="event[location]" value="<%= model.escape("location") %>" placeholder="Address, Venue, or City">
+      </li>
 
-  <label for="evt-time">Time</label>
-  <input id="evt-time" name="event[time]" value="<%= model.escape("time") %>">
+      <li>
+        <h2>When</h2>
+        <label><p>Time</p>
+          <input type="time" id="evt-time" name="event[time]" value="<%= model.escape("time") %>">
+        </label>
 
-  <label for="evt-date">Date</label>
-  <input type="date" id="evt-date" name="event[date]" value="<%= model.escape("date") %>">
+        <label><p>Date</p>
+          <input type="date" id="evt-date" name="event[date]" value="<%= model.escape("date") %>">
+        </label>
+      </li>
 
-  <label for="evt-description">Description</label>
-  <textarea id="evt-description" name="event[description]"><%= model.escape("description") %></textarea>
+      <li>
+        <h2>Description</h2>
+        <textarea id="evt-description" name="event[description]" placeholder="Describe your event."><%= model.escape("description") %></textarea>
+      </li>
 
-  <button type="submit">Create</button>
-</form>
+      <li>
+        <h2>Send invitations</h2>
+        <div class="receiver"></div>
+      </li>
+
+    </ul>
+
+    <button type="submit">Create Event</button>
+  </form>
+</section>

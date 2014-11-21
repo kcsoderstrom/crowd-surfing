@@ -1,6 +1,6 @@
 CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
   template: JST["users/currentUserShow"],
-  className: "current-user-for-real",
+  className: "I-want-this-centered",
 
   events: {
     "click a.invite" : "openInviteView",

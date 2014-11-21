@@ -15,7 +15,7 @@ a.events {
 
 section.events-index {
   float: right;
-  width: 700px;
+  width: 620px;
   margin-bottom: 30px;
   background: white;
   position: relative;
@@ -189,7 +189,7 @@ section.events-index {
   }
 
   h3 {
-    width: 670px;
+    width: 590px;
     background: #F4F6F9;
     padding: 10px 15px;
     font-size: 16px;
@@ -214,4 +214,90 @@ button.attendance, button.delete-event {
   background: #CCC;
   border-radius: 10px;
   padding: 2px 5px;
+}
+
+
+
+// Used this for the new events page. Probably recyclable.
+
+.typical {
+  width: 620px;
+  float: left;
+  background: white;
+  padding: 20px;
+  box-sizing: border-box;
+
+  h1 {
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 16px;
+    float: left;
+    clear: both;
+  }
+
+  label {
+    float: right;
+    // padding: 20px 0;
+    p {
+      margin-top: 7px;
+      float: left;
+    }
+  }
+
+  div.receiver {
+    float: right;
+  }
+
+  input[type="text"], input[type="time"], input[type="date"], textarea {
+    // clear: both;
+    width: 405px;
+    height: 31px;
+    float: right;
+    border: 1px solid rgb(189, 195, 199);
+    padding: 4.8px;
+    box-sizing: border-box;
+    display: inline;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    // margin: -8px 20px 10px 0;
+  }
+
+  button {
+    width: 114px;
+    height: 36px;
+    padding: 8px;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: rgb(41, 128, 185);
+    box-sizing: border-box;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  li {
+    min-height: 31px;
+    margin-top: 16px;
+    border-bottom: 1px dotted #EDF0F1;
+  }
+
+  li:last-child {
+    border-bottom: 2px solid #EDF0F1;
+  }
+
+  li:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
 }

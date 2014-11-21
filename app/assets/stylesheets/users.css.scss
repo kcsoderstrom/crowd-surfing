@@ -3,26 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.current-user-for-real {
-  width: 100%;
-  min-height: 100%;
-  background-color: #F0F0F0;
-  position: absolute;
-  top: 0;
+.I-want-this-centered {
+  width: 960px;
+  padding: 10px;
+  margin: 0 auto;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  // width: 100%;
+  // min-height: 100%;
+  // background-color: #F0F0F0;
+  // position: absolute;
+  // top: 0;
   //padding-bottom: 120px;
 
-  .I-want-this-centered {
-    width: 1000px;
-    padding: 10px;
-    margin: 0 auto;
-
-    &:after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-
-  }
 
   &:after {
     clear: both;
@@ -30,14 +28,15 @@
     content: "";
   }
 
+  // These names are about to get. crazy.
   section.left-side {
-    float: left;
-    width: 280px;
+    float: right;
+    width: 300px;
   }
 
   section.right-side {
     margin-left: 20px;
-    width: 700px;
+    width: 620px;
     float: left;
   }
 
