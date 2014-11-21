@@ -14,35 +14,43 @@
     clear: both;
   }
 
-  // width: 100%;
-  // min-height: 100%;
-  // background-color: #F0F0F0;
-  // position: absolute;
-  // top: 0;
-  //padding-bottom: 120px;
-
-
   &:after {
     clear: both;
     display: block;
     content: "";
   }
 
-  // These names are about to get. crazy.
-  section.left-side {
+  // These names are getting. crazy.
+  section.right-side {
     float: right;
     width: 300px;
   }
 
-  section.right-side {
+  section.left-side {
     margin-left: 20px;
     width: 620px;
     float: left;
   }
 
   section.profile-main {
-    width: 280px;
-    margin: 0 auto 20px auto;
+    width: 300px;
+    margin-bottom: 20px;
+    position: relative;
+
+    figure.profile-photo {
+      img.profile-photo {
+        width: 300px;
+        display: block;
+        position: absolute;
+        z-index: 0;
+      }
+
+      text-shadow: 0 10px 20px #000;
+      color: white;
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
 
     div.profile-subheader {
       background: #F4F6F9;
@@ -51,15 +59,6 @@
       padding: 20px 20px 0 20px;
       position: relative;
 
-      img.profile-photo {
-        position: absolute;
-        left: 15px;
-        top: 15px;
-        border: 2px solid #D4480D;
-        border-radius: 50%;
-        height: 60px;
-        width: 60px;
-      }
 
       h2 {
         width: 50px;
