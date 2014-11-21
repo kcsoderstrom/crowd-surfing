@@ -1,69 +1,72 @@
-<label id="sort-label" class="form-label">Sort</label>
-<form class="sort-criterion">
-    <div class="sort">
-      <input type="radio" name="sort-criterion" value="last-login" id="sort-last-login">
-      <label for="sort-last-login">Last login</label>
-    </div>
-
-    <div class="sort">
-      <input type="radio" name="sort-criterion" value="proximity" id="sort-proximity">
-      <label for="sort-proximity">Proximity</label>
-    </div>
-</form>
-
-<label id="filter-label" class="form-label">Filter</label>
 <form class="filter-criteria">
+  <h2>Keyword</h2>
+    <input name="user_keyword" id="keyword" type="text">
+
+  <section class="established">
+    <h3>Residency Status</h3>
+      <ul>
+        <li>
+          <input type="radio" name="established" value="true" id="established-true" class="established">
+          <label for="established-true" class="established">Established</label>
+        </li>
+        <li>
+          <input type="radio" name="established" value="false" id="established-false" class="established">
+          <label for="established-false" class="established">New in town</label>
+        </li>
+      </ul>
+  </section>
+
+  <section class="gender">
+    <h3>Gender</h3>
+      <ul>
+        <li>
+          <input type="radio" name="gender" value="female" id="gender-female" class="gender">
+          <label for="gender-female" class="gender">Female</label>
+        </li>
+        <li>
+          <input type="radio" name="gender" value="male" id="gender-male" class="gender">
+          <label for="gender-male" class="gender">Male</label>
+        </li>
+        <li>
+          <input type="radio" name="gender" value="male" id="gender-other" class="gender">
+          <label for="gender-other" class="gender">Other</label>
+        </li>
+      </ul>
+  </section>
+
   <section class="age">
     <h2>Age</h2>
       <div class="age">
-        <input id="age-lower" name="age_lower" class="user-age">
+        <input type="text" id="age-lower" name="age_lower" class="user-age">
       </div>
 
       <div class="age">
         <label for="age-upper">to</label>
-        <input id="age-upper" name="age_upper" class="user-age">
+        <input type = "text" id="age-upper" name="age_upper" class="user-age">
       </div>
   </section>
-
-  <section class="gender">
-    <h2>Gender</h2>
-      <div class="gender">
-        <input type="radio" name="gender" value="female" id="gender-female" class="gender">
-        <label for="gender-female" class="gender">Female</label>
-      </div>
-      <div class="gender">
-        <input type="radio" name="gender" value="male" id="gender-male" class="gender">
-        <label for="gender-male" class="gender">Male</label>
-      </div>
-      <div class="gender">
-        <input type="radio" name="gender" value="male" id="gender-other" class="gender">
-        <label for="gender-other" class="gender">Other</label>
-      </div>
-  </section>
-
-  <section class="established">
-    <h2>Residency Status</h2>
-      <div class="gender">
-        <input type="radio" name="established" value="true" id="established-true" class="established">
-        <label for="established-true" class="established">Established</label>
-      </div>
-      <div class="gender">
-        <input type="radio" name="established" value="false" id="established-false" class="established">
-        <label for="established-false" class="established">New in town</label>
-      </div>
-  </section>
-
-  <h2>Keyword</h2>
-    <input name="user_keyword" id="keyword" type="text">
 
   <h2>Location</h2>
     <input name="user_location" id="user_location" type="text">
 
 </form>
 
-<label id="name-label" class="form-label">Search by name</label>
+<h3>Sort</h3>
+<form class="sort-criterion">
+    <ul>
+      <li>
+        <input type="radio" name="sort-criterion" value="last-login" id="sort-last-login">
+        <label for="sort-last-login">Last login</label>
+      </li>
+
+      <li>
+        <input type="radio" name="sort-criterion" value="proximity" id="sort-proximity">
+        <label for="sort-proximity">Proximity</label>
+      </li>
+    </ul>
+</form>
+
 <form class="search">
-  <label for="user-name">Search by name</label>
-  <input id="user-name" name="user[match]">
-  <button type="submit">Search</button>
+  <h2>Search by name</h2>
+  <input type="text" id="user-name" name="user[match]">
 </form>

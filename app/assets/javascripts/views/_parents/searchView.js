@@ -2,6 +2,9 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
   template: JST["search"],
 
+  tagName: "section",
+  className: "search-body",
+
   events: {
     "click :radio" : "search",
     "blur input" : "search",
@@ -26,7 +29,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.matches = { users: this.userMatches, events: this.eventMatches };
     this.moreMatches = { users: this.moreUserMatches, events: this.moreEventMatches };
 
-    this.$el.addClass("currentUser");  //TODO change that in the css and all
+    // this.$el.addClass("left-search-column");  //TODO change that in the css and all
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "users"});
     this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "events"});
 

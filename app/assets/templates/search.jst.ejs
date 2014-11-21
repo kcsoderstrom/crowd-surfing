@@ -1,5 +1,15 @@
+<section id="users-search" class="search active">
+  <%= JST["users/usersSearch"]() %>
+</section>
+
+<section id="events-search" class="search">
+  <%= JST["events/eventsSearch"]() %>
+</section>
+
+
 <section class="search-menu ui-widget-content draggable">
   <div class="tabs">
+    <h2>Search Filters</h2>
     <button class="tab active" id="users-search" data-models-name="users">Users</button>
     <button class="tab" id="events-search" data-models-name="events">Events</button>
   </div>
@@ -11,13 +21,4 @@
   <div class="full-adv-menu">
     <section class="events-search events adv-menu"></section>
   </div>
-</section>
-
-
-<section id="users-search" class="search active">
-  <%= JST["users/usersSearch"]() %>
-</section>
-
-<section id="events-search" class="search">
-  <%= JST["events/eventsSearch"]() %>
 </section>

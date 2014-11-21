@@ -13,18 +13,25 @@ a.load-more {
 }
 
 ul.search-results {
-  width: 50%;
-  position: relative;
-  left: 300px;
+  width: 620px;
+  background: white;
   padding-bottom: 60px;
+  float: left;
+}
+
+section.search-body {
+  width: 940px;
+  margin-top: 20px;
+  margin-left: 50%;
+  transform: translateX(-470px);
 }
 
 li.search-result {
   border: 1px solid #dfdfdf;
-  padding: 12px;
-  margin: 12px;
-  border-radius: 5px;
+  border-bottom: none;
+  padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 
   img {
     height: 50px;
