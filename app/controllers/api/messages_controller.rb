@@ -6,7 +6,7 @@ module Api
         current_user_id = current_user.id
 
         @received_messages = Message.find_by_sql(<<-SQL
-          SELECT received_messages.*, profiles.name AS sender_name, profiles.id AS sender_id
+          SELECT received_messages.*, profiles.primary_photo_id AS photo_id, profiles.name AS sender_name, profiles.id AS sender_id
           FROM (
             SELECT * FROM messages
             WHERE receiver_id=#{current_user_id}
@@ -19,7 +19,7 @@ module Api
         )
 
         @sent_messages = Message.find_by_sql(<<-SQL
-          SELECT sent_messages.*, profiles.name AS receiver_name, profiles.id AS receiver_id
+          SELECT sent_messages.*, profiles.primary_photo_id AS photo_id, profiles.name AS receiver_name, profiles.id AS receiver_id
           FROM (
             SELECT * FROM messages
             WHERE sender_id=#{current_user_id}

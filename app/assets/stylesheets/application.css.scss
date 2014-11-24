@@ -61,8 +61,6 @@ body {
 }
 
 section.main {
-  //padding-top: 57px;
-  //padding-bottom: 120px;
   background-color: #ECEBE0;
   width: 100%;
   height: 100%;
@@ -108,7 +106,7 @@ button, a {
 }
 
 
-.currentUser {  // TODO: CALL THIS SOMETHING ELSE!!
+.currentUser {  // TODO: CALL THIS SOMETHING ELSE!! (Do I use this anymore?)
   width: 960px;
   margin: 0 auto;
   padding: 0 5px;
@@ -124,4 +122,10 @@ button, a {
     display: block;
     content: "";
   }
+}
+
+.I-want-this-centered.white {
+  background: white;
+  margin-top: 20px;
+  padding: 0px;
 }

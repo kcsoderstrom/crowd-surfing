@@ -6,6 +6,13 @@ ul.found-users {
   position: absolute;
 }
 
+.left-column {
+  width: 320px;
+  padding: 0;
+  float: left;
+  border-right: 1px solid rgb(189, 195, 199);
+}
+
 ul.found-users li {
   float: left;
   background: lightblue;
@@ -13,22 +20,44 @@ ul.found-users li {
   border-radius: 5px;
 }
 
+h1.messages {
+  width: 320px;
+  box-sizing: border-box;
+  padding: 20px 20px 10px 20px;
+  font-size: 36px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(236, 240, 241);
+}
+
 h2#inbox-header, h2#sent-header {
-  text-align: center;
+  float: left;
+  color: rgb(127, 140, 141);
   padding: 10px;
-  border-radius: 10px;
-  background: #EEE;
   cursor: pointer;
-  width: 200px;
-  margin: 20px auto;
+  font-size: 14px;
+  text-transform: uppercase;
+
   &:hover {
     background: #CCC;
   }
 }
 
+h2#inbox-header {
+  margin-left: 10px;
+}
+
 ul.messages {
+  clear: both;
   padding: 20px;
   display: none;
+
+  img {
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    display: block;
+    float: left;
+  }
 
   &.active {
     display: block;
@@ -36,7 +65,7 @@ ul.messages {
 
   > li {
     padding: 10px;
-    border-top: 1px solid #CCC;
+    border-top: 1px solid rgb(189, 195, 199);
 
     &:last-child {
       border-bottom: 1px solid #CCC;
@@ -51,14 +80,33 @@ ul.messages {
       float: left;
       display: block;
 
+      &:first-child a {
+        display: inline-block;
+        color: rgb(47, 47, 47);
+        font-weight: bold;
+        font-size: 14px;
+        margin-left: 22px;
+        margin-bottom: 3.5px;
+      }
+
       &:nth-child(2) {
-        position: absolute;
-        left: 160px;
+        display: block;
+        float: right;
+        font-size: 12px;
+        padding-top: 3px;
+        color: rgb(127, 140, 141);
+        margin-bottom: 3.5px;
       }
 
       &:nth-child(3) {
-        position: absolute;
-        right: 0;
+        clear: right;
+        float: right;
+        max-width: 250px;
+        overflow: hidden;
+        font-size: 12px;
+        a {
+          color: rgb(47, 47, 47);
+        }
       }
     }
 
@@ -67,10 +115,6 @@ ul.messages {
       display: block;
       clear: both;
     }
-  }
-
-  a {
-    display: inline-block;
   }
 }
 

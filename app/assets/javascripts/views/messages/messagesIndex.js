@@ -1,7 +1,7 @@
 CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
   template: JST["messages/messagesIndex"],
   tagName: "section",
-  className: "user-show", // TODO: stupid name
+  className: "I-want-this-centered white", // TODO: stupid name
 
   events: {
     "click a#add-contact" : "addContact",
