@@ -37,6 +37,7 @@
     position: relative;
     top: 0;
     z-index: 1;
+    border-bottom: 2px solid #bdc3c7;
 
     figure.profile-photo {
       img.profile-photo {
@@ -89,6 +90,7 @@ section.contacts-list {
   padding: 20px;
   background: white;
   box-sizing: border-box;
+  border-bottom: 2px solid #bdc3c7;
 
   h2 {
     font-size: 20px;
@@ -96,8 +98,25 @@ section.contacts-list {
     margin-bottom: 20px;
   }
 
+  li:first-child {
+    border: none;
+  }
+
   li {
+    font-size: 16px;
+    font-weight: bold;
     height: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #ecf0f1;
+  }
+
+  img {
+    float: left;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    display: block;
+    margin: -6px 10px;
   }
 }
 
@@ -118,7 +137,6 @@ img.full-photo {
 }
 
 div.contacts-body {
-  padding: 10px 20px;
 
   li:after {
     clear: both;
@@ -126,20 +144,12 @@ div.contacts-body {
     content: "";
   }
 
-  li:hover button {
-    display: block;
-    float: left;
-  }
-
   a {
     text-decoration: none;
     color: black;
-    display: block;
-    float: left;
 
     &:hover {
-      text-decoration: auto;
-      cursor: pointer;
+      text-decoration: underline;
     }
   }
 

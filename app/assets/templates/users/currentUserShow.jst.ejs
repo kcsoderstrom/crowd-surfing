@@ -30,6 +30,7 @@
           <ul class="contacts">
             <% model.contacts.each(function(contact){ %>
               <li>
+                  <img src="<%= contact.get("thumb_url") %>">
                   <a href="#/users/<%= contact.id %>"><%= contact.escape("name") %></a>
                   <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
               </li>
