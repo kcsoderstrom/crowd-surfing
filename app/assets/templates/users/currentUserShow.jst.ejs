@@ -2,7 +2,7 @@
     <section class="profile-main">
 
       <figure class="profile-photo">
-        <img src="<%= model.get("big_photo_url") %>" class="profile-photo">
+        <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
         <h2><%= model.profile().escape("name") %></h2>
         <h3>
           <% if(model.profile().escape("location")) { %>

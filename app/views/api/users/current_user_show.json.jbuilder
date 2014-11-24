@@ -17,13 +17,13 @@ json.photos @user.profile.photos do |photo|
 end
 
 if @user.profile.primary_photo
-  json.profile_photo_url @user.profile.primary_photo.pic.url(:small)
+  json.profile_photo_url @user.profile.primary_photo.pic.url(:big)
   json.thumbnail_url @user.profile.primary_photo.pic.url(:thumb)
-  json.big_photo_url @user.profile.primary_photo.pic.url(:big)
+  json.small_photo_url @user.profile.primary_photo.pic.url(:small)
 else
-  json.profile_photo_url image_path("small_missing.png")
+  json.small_photo_url image_path("small_missing.png")
   json.thumbnail_url image_path("thumb_missing.png")
-  json.big_photo_url image_path("big_missing.png")
+  json.profile_photo_url image_path("big_missing.png")
 end
 
 json.primary_photo_id @user.profile.primary_photo_id
