@@ -3,7 +3,7 @@ json.extract! @user, :id, :email
 json.contacts @contacts do |contact|
   json.extract! contact, :name, :id
   if contact.primary_photo_id
-    json.thumb_url Photo.find(contact.primary_photo_id).url(:thumb)
+    json.thumb_url Photo.find(contact.primary_photo_id).pic.url(:thumb)
   else
     json.thumb_url image_path("thumb_missing.png")
   end
