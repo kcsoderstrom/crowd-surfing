@@ -7,15 +7,35 @@ module Api
     end
 
     def show
-      @user = User.includes(
-                            sent_messages: {receiver: :profile},
-                            received_messages: {sender: :profile},
-                            sent_requests: {receiver: :profile},
-                            received_requests: {sender: :profile})
-                  .find(params[:id])
+      @user = User.find(params[:id])
+      current_user_id = current_user.id
 
+      if @user.id == current_user_id
 
-      if @user.id == current_user.id
+        @contacts = User.find_by_sql(<<-SQL
+          SELECT
+            profiles.name AS name, friends.friend_id AS id, profiles.primary_photo_id AS primary_photo_id, users.session_token
+          FROM (
+            SELECT
+              friend_id
+            FROM
+              contacts
+            WHERE
+              contacts.user_id = #{current_user_id}
+            ) AS friends
+          JOIN
+            users
+          ON
+            friends.friend_id = users.id
+          JOIN
+            profiles
+          ON
+            users.id = profiles.user_id
+        SQL
+        )
+
+        puts @contacts.first
+        puts @contacts.first.name
         render :current_user_show
       else
         render :show
