@@ -1,13 +1,11 @@
 a.events {
   height: 36px;
-  width: 60px;
-  background: black;
-  position: absolute;
-  left: -5px;
-  margin: 2px;
-  top: 3px;
+  width: 36px;
+  display: block;
+  float: left;
+  margin-right: 10px;
 
-  background: image-url("disco.png") no-repeat 6px 0;
+  background: image-url("disco.png") no-repeat -2px -5px;
   display: block;
 }
 
@@ -34,18 +32,34 @@ section.events-index {
 
   a.invite {
     display: block;
+    clear: both;
+  }
+
+  img {
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    display: block;
+    float: left;
   }
 
   li {
     position: relative;
+    padding: 20px;
   }
 
   ul.info {
-    padding: 10px 20px;
+    margin-left: 20px;
+    float: left;
+    // padding: 10px 20px;
+    max-width: 480px;
+    box-sizing: border-box;
+    font-size: 14px;
 
     li {
-      padding: 5px 10px;
+      padding: 0;
       position: relative;
+      color: rgb(127, 140, 141);
 
       &.created {
         font-style: italic;
@@ -55,8 +69,7 @@ section.events-index {
         float: left;
         display: inline;
         position: static;
-        padding: 5px 2px 5px 10px;
-
+        padding: 5px 2px 5px 0;
       }
 
       &.date, &.location {
@@ -160,14 +173,14 @@ section.events-index {
   }
 
   h2 {
+    line-height: 37px;
+    color: rgb(52, 73, 94);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 20px 12px 20px;
     position: relative;
-    padding: 5px;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-left: 50px;
-    padding-top: 16px;
-    font-size: 18px;
-    height: 27px;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   a.button {
@@ -189,11 +202,16 @@ section.events-index {
   }
 
   h3 {
-    width: 590px;
-    background: #F4F6F9;
-    padding: 10px 15px;
-    font-size: 16px;
-    color: rgb(88, 97, 111);
+    // background: #F4F6F9;
+    // padding: 10px 15px;
+    font-size: 20px;
+    a {
+      color: rgb(47, 47, 47);
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
 }
