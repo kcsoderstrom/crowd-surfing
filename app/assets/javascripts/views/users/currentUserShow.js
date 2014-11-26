@@ -52,7 +52,7 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     $("body").on("mousedown", function(event) {
       if(!$(event.target).closest(".invite-menu").hasClass("transient")) {
-        $(".invite-menu").removeClass("active");
+        $(".invite-menu.transient").removeClass("active");
       }
     })
   },
@@ -86,7 +86,7 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
 
     $("body").on("mousedown", function(event) {
       if(!$(event.target).closest(".invite-menu").hasClass("transient")) {
-        $(".invite-menu").removeClass("active");
+        $(".invite-menu.transient").removeClass("active");
       }
     })
 

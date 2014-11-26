@@ -28,14 +28,15 @@
         <h2>Description</h2>
         <textarea id="evt-description" name="event[description]" placeholder="Describe your event."><%= model.escape("description") %></textarea>
       </li>
-
-      <li>
-        <h2>Send invitations</h2>
-        <div class="receiver"></div>
-      </li>
-
     </ul>
 
     <button type="submit">Create Event</button>
   </form>
+</section>
+
+<section class="right-side">
+  <section class="invite-menu active lonely">
+    <h2>Send invitations</h2>
+    <div class="receiver"></div>
+  </section>
 </section>

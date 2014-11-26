@@ -19,6 +19,7 @@ section.events-index {
   position: relative;
   border-bottom: 2px solid #bdc3c7;
 
+
   div, input.time, input.date {
     display: inline-block;
 
@@ -107,74 +108,6 @@ section.events-index {
     }
   }
 
-  section.invite-menu {
-    display: none;
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    border-radius: 5px;
-    background: white;
-    border: 1px solid #B3B3B3;
-    z-index: 15;
-    padding: 5px;
-    width: 250px;
-
-    ul.selected-users:after {
-      clear: both;
-      content: "";
-      display: block;
-    }
-
-    li {
-      position: relative;
-      display: block;
-      margin: 5px;
-      float: left;
-      margin-right: 5px;
-    }
-
-    a, button {
-      height: 20px;
-      text-align: left;
-      padding: 7px 12px 3px 12px;
-      color: #737373;
-      border-radius: 50px;
-      background: #F8F8F8;
-      margin: 15px 0;
-    }
-
-    a.invite {
-      display: block;
-    }
-
-    a:after {
-      content: " ×";
-      color: #959595;
-    }
-
-    button.inv-menu-button {
-      margin: 5px 60px;
-    }
-
-    ul.selected-users li {
-      float: left;
-      margin: 8px 4px;
-    }
-
-    button:hover, a:hover {
-      background: #F2F2F2;
-      color: black;
-    }
-
-    &.active {
-      display: block;
-    }
-
-    input {
-      outline: none;
-    }
-  }
-
   h2 {
     line-height: 37px;
     color: rgb(52, 73, 94);
@@ -236,6 +169,86 @@ button.attendance, button.delete-event {
   padding: 2px 5px;
 }
 
+section.invite-menu {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid #B3B3B3;
+  z-index: 15;
+  padding: 5px;
+  width: 250px;
+
+  &.lonely {
+    position: static;
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  ul.selected-users:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  li {
+    padding: 5px;
+    border: 0;
+    position: relative;
+    display: block;
+    margin: 5px;
+    float: left;
+  }
+
+  a, button {
+    height: 20px;
+    text-align: left;
+    padding: 7px 12px 3px 12px;
+    color: #737373;
+    border-radius: 50px;
+    background: #F8F8F8;
+    // margin: 15px 0;
+  }
+
+  a.invite {
+    display: block;
+  }
+
+  a:after {
+    content: " ×";
+    color: #959595;
+  }
+
+  button.inv-menu-button {
+    margin: 5px 60px;
+  }
+
+  ul.selected-users li {
+    float: left;
+    margin: 4px;
+  }
+
+  button:hover, a:hover {
+    background: #F2F2F2;
+    color: black;
+  }
+
+  &.active {
+    display: block;
+  }
+
+  input {
+    outline: none;
+  }
+}
 
 
 // Used this for the new events page. Probably recyclable.
