@@ -12,7 +12,7 @@
             <ul class="info">
               <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
               <li><%= model.escape("created_at") %> ago</li>
-              <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
+              <li><%= model.escape("subject") ? model.escape("subject") : "(no subject)" %></li>
             </ul>
           </li>
       <% }) %>
@@ -28,7 +28,7 @@
           <ul class="info">
             <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
             <li><%= model.escape("created_at") %> ago</li>
-            <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
+            <li><%= model.escape("subject") ? model.escape("subject") : "(no subject)" %></li>
           </ul>
         </li>
       <% })  %>

@@ -11,7 +11,6 @@ CrowdSurfing.Models.Message = Backbone.Model.extend({
     }
 
     if(jsonResp.receiver || jsonResp.sender) {
-      console.log("hey we're here ok")
       var inInbox = jsonResp.receiver.id === window.currentUserId;
       var userId = (inInbox ? jsonResp.sender.id : jsonResp.receiver.id );
       var userName = (inInbox ? jsonResp.sender.name : jsonResp.receiver.name );

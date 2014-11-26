@@ -4,6 +4,9 @@
 <% var getName = function(user) { var badUser = new CrowdSurfing.Models.User(); badUser.set({name: user.name}); return '<a href="#/users/' + user.id + '">' + badUser.escape("name") + "</a>"; } %>
 
 <ul>
+  <% if(collection.models.length === 0) { %>
+    None. <a href="#/search">Search for new events.</a>
+  <% } %>
   <% collection.forEach(function(evt) { %>
     <li data-event-id="<%= evt.id %>">
       <img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/Clown_chili_peppers.jpg">
