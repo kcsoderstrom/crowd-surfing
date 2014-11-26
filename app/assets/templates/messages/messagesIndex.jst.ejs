@@ -3,14 +3,14 @@
   <h2 id="inbox-header">Inbox</h2>
   <h2 id="sent-header">Sent messages</h2>
 
-  <ul class="messages active" id="inbox">
+  <ul class="messages <%= active === "inbox" ? "active" : "" %>" id="inbox">
     <% if(!collection.received_messages || collection.received_messages.length === 0) { %>
       You have no messages in your inbox.
     <% } else { %>
       <% collection.received_messages.forEach(function(model) { %>
-          <li>
+          <li data-id="<%= model.id %>">
             <ul class="info">
-              <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.escape("sender_id")%>"><%= model.escape("sender_name") %></a></li>
+              <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
               <li><%= model.escape("created_at") %> ago</li>
               <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
             </ul>
@@ -19,14 +19,14 @@
     <% } %>
   </ul>
 
-  <ul class="messages" id="sent-messages">
+  <ul class="messages <%= active === "sent" ? "active" : "" %>" id="sent-messages">
     <% if(!collection.sent_messages || collection.sent_messages.length === 0) { %>
       You have no sent messages.
     <% } else { %>
       <% collection.sent_messages && collection.sent_messages.forEach(function(model) { %>
-        <li>
+        <li data-id="<%= model.id %>">
           <ul class="info">
-            <li><img src="<%= model.get("thumb_url") %>"><%= model.escape("receiver_name") %></a></li>
+            <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
             <li><%= model.escape("created_at") %> ago</li>
             <li><a href="#/messages/<%= model.id %>"><%= model.escape("subject") %></a></li>
           </ul>
@@ -38,4 +38,23 @@
   <div class="new-message-modal"></div>
 
   <a id="new-msg" href="#/messages/new" class="request-button">New message</a>
-</div>
+</section>
+
+<section class="right-column">
+  <% if(model) { %>
+    <% console.log(model) %>
+    <div class="msg-header">
+      <h2><a href="#/users/<%= model.user().id %>"><%= model.user().escape("name") %></a></h2>
+      <h3><a href="#/search"><%= model.user().escape("location") %></a></h3>
+    </div>
+
+    <img src="<%= model.get("thumb_url") %>">
+    <section class="message">
+      <h4><a href="#/users/<%= model.user().id %>"><%= model.user().escape("name") %></a>
+          <p><%= model.escape("created_at") %> ago</p></h4>
+      <p class="subject"><%= model.escape("subject") ? model.escape("subject") : "(no subject)" %></p>
+      <%= model.escape("body") %></li>
+      </ol>
+    </section>
+  <% } %>
+</section>

@@ -17,6 +17,7 @@ section.events-index {
   margin-bottom: 30px;
   background: white;
   position: relative;
+  border-bottom: 2px solid #bdc3c7;
 
   div, input.time, input.date {
     display: inline-block;
@@ -46,6 +47,7 @@ section.events-index {
   li {
     position: relative;
     padding: 20px;
+    border-bottom: 1px solid rgb(236, 240, 241);
   }
 
   ul.info {
@@ -60,6 +62,7 @@ section.events-index {
       padding: 0;
       position: relative;
       color: rgb(127, 140, 141);
+      border: 0;
 
       &.created {
         font-style: italic;
@@ -202,8 +205,7 @@ section.events-index {
   }
 
   h3 {
-    // background: #F4F6F9;
-    // padding: 10px 15px;
+    padding-bottom: 5px;
     font-size: 20px;
     a {
       color: rgb(47, 47, 47);
