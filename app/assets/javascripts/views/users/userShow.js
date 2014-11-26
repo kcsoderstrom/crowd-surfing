@@ -1,7 +1,7 @@
 CrowdSurfing.Views.UserShow = Backbone.View.extend({
   template: JST["users/userShow"],
   tagName: "section",
-  className: "user-show",
+  className: "I-want-this-centered",
 
   events: {
     "click a#add-contact" : "addContact",

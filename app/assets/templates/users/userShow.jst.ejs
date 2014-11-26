@@ -1,44 +1,67 @@
-<section class="profile-subheader">
-  <h1><%= model.profile().escape("name") %></h1>
-  <% if(model.profile().escape("location")) {%>
-    <%= model.get("established") ? "Established in " : "New to" %>
-    <%= model.profile().escape("location") %>
-  <% } else { %>
-    <%= model.get("established") ? "Established" : "New in town" %>
-    No location given.
-  <% } %>
+<section class="right-side">
+    <section class="profile-main">
+
+      <figure class="profile-photo">
+        <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
+        <h2><%= model.profile().escape("name") %></h2>
+        <h3>
+          <% if(model.profile().escape("location")) { %>
+            <%= model.profile().get("established") ? "Established in" : "New to" %>
+            <a href="#/search/location=<%= model.profile().escape("location") %>">
+              <%= model.profile().escape("location") %>
+            </a>
+          <% } else { %>
+            No location given.
+          <% } %>
+        </h3>
+      </figure>
+
+      <div class="profile-body">
+        <li><%= model.profile().escape("age") %>, <%= model.profile().escape("gender") %></li>
+      </div>
+
+    </section>
+
 </section>
 
 <section class="left-side">
-  <a id="req-send" class="request-button" href="#/requests/new">Send request</a>
-  <ul class="nav">
-    <li><a id="msg-send" href="#/messages/new">
-      Send message
-    </a></li>
-
-    <li> | </li>
-
-    <li>
-      <% if(!model.isContact) { %>
-        <a id="add-contact" href="#">
-          Add contact
+  <h1 class="user-name"><%= model.profile().escape("name") %></h1>
+    <h2 class="user-location">
+      <% if(model.profile().escape("location")) { %>
+        <%= model.profile().get("established") ? "Established in" : "New to" %>
+        <a href="#/search/location=<%= model.profile().escape("location") %>">
+          <%= model.profile().escape("location") %>
         </a>
       <% } else { %>
-        Already in contacts
+        No location given.
       <% } %>
-    </li>
-  </ul>
-  <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
+    </h2>
 
-</section>
+  <div class="user-nav">
 
-<section class="right-side">
-  <h2>About</h2>
-  <ul>
-    <li><%= model.profile().escape("about") %></li>
-    <li>Gender: <%= model.profile().escape("gender") %></li>
-    <li>Age: <%= model.profile().escape("age") %></li>
-  </ul>
+    <ul class="nav">
+      <li><a id="req-send" href="#/requests/new">Send request</a></li>
+      <li><a id="msg-send" href="#/messages/new">
+        Send message
+      </a></li>
+
+
+      <% if(!model.isContact) { %>
+        <li><a id="add-contact" href="#">
+          Add contact
+        </a></li>
+      <% } %>
+
+    </ul>
+  </div>
+
+  <div class="user-info">
+    <h2>About</h2>
+    <ul>
+      <li><%= model.profile().escape("about") %></li>
+    </ul>
+  </div>
+
 </section>
 
 <div class="new-request-modal modal"></div>
