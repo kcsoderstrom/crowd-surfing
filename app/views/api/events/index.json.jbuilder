@@ -22,5 +22,10 @@ json.array! @events do |event|
 
   json.is_attending (is_authored || accepted_invitation || approved_request)
   json.invitation_receivers @sent_invitations.map{|req| {name: req.receiver_name, id: req.receiver_id}}
-  
+
+  if event.photo_id
+    json.photo_url event.photo.pic.url(:small)
+  else
+    json.photo_url image_path("small_missing.png")
+  end
 end

@@ -19,16 +19,18 @@ ul.found-users {
   border-left: 1px solid rgb(189, 195, 199);
 
   div.msg-header {
-    padding: 20px 150px 10px 20px;
+    padding: 20px 20px 10px 20px;
     border-bottom: 4px solid rgb(236, 240, 241);
 
     h2 {
       font-size: 20px;
       font-weight: bold;
+      float: left;
     }
 
     h3 {
       font-size: 12px;
+      clear: left;
     }
 
     a {
@@ -37,16 +39,7 @@ ul.found-users {
         text-decoration: underline;
       }
     }
-  }
 
-  img {
-    margin: 10px 20px;
-    height: 28px;
-    width: 28px;
-    border-radius: 50%;
-    float: left;
-    display: block;
-    z-index: 0;
   }
 
   .message {
@@ -143,6 +136,7 @@ ul.messages {
   > li {
     padding: 10px;
     border-top: 1px solid rgb(189, 195, 199);
+    cursor: pointer;
 
     &:last-child {
       border-bottom: 1px solid #CCC;
@@ -229,4 +223,65 @@ ul.messages {
   li.body {
     padding: 10px;
   }
+}
+
+.new-message-modal {
+  width: 357px;
+  padding: 0;
+  padding: 20px;
+  border-radius: 0;
+  background: white;
+
+  h2 {
+    color: rgb(68, 68, 68);
+    background: rgb(236, 240, 241);
+    margin: -20px;
+    padding: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    margin-top: 10px;
+    float: left;
+  }
+
+  textarea {
+    border: 1px solid rgb(189, 195, 199);
+    width: 300px;
+    height: 100px;
+    float: right;
+    clear: right;
+    margin: 5px 0;
+  }
+
+  input {
+    border: 1px solid rgb(189, 195, 199);
+    width: 300px;
+    float: right;
+    clear: right;
+    margin: 5px 0;
+  }
+}
+
+button.smallish-button {
+  background-color: rgb(41, 128, 185);
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  float: left;
+  margin: 0 10px;
+  padding: 8px;
+  float: right;
+}
+
+img.round-thumb {
+  margin: 10px 20px;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  float: left;
+  display: block;
+  z-index: 0;
 }

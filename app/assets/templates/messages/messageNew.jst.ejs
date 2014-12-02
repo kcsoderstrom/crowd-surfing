@@ -1,12 +1,11 @@
 <form class="message-new">
-  <label for="msg-receiver">To<label>
+  <h2>Send a message to</h2>
+
+  <label for="msg-receiver">CC</label>
   <div class="recipients receiver"></div>
 
-  <label for="msg-subject">Subject</label>
-  <input id="msg-subject" name="subject" value="<%= model.escape("subject") %>">
+  <input id="msg-subject" name="subject" value="<%= model.escape("subject") %>" placeholder="Subject">
+  <textarea id="msg-body" name="body" placeholder="Message body"><%= model.escape("body") %></textarea>
 
-  <label for="msg-body">Body</label>
-  <textarea id="msg-body" name="body"><%= model.escape("body") %></textarea>
-
-  <button type="submit">Send</button>
+  <button type="submit" class="smallish-button">Send</button>
 </form>

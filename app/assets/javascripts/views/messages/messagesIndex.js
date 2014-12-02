@@ -8,7 +8,8 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
     "click a#new-msg" : "newMessage",
     "click h2#inbox-header" : "inboxDisplay",
     "click h2#sent-header" : "sentMessagesDisplay",
-    "click ul.messages > li" : "selectMessage"
+    "click ul.messages > li" : "selectMessage",
+    "click .msg-header button" : "newMessage"
   },
 
   initialize: function() {

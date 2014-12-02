@@ -19,6 +19,9 @@ section.events-index {
   position: relative;
   border-bottom: 2px solid #bdc3c7;
 
+  > div > ul {
+    width: 620px;
+  }
 
   div, input.time, input.date {
     display: inline-block;
@@ -51,6 +54,19 @@ section.events-index {
     border-bottom: 1px solid rgb(236, 240, 241);
   }
 
+  p.none {
+    display: block;
+    text-align: center;
+    width: 540px;
+    padding: 20px 40px 60px 40px;
+    a {
+      color: black;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
   ul.info {
     margin-left: 20px;
     float: left;
@@ -65,7 +81,7 @@ section.events-index {
       color: rgb(127, 140, 141);
       border: 0;
 
-      &.created {
+      &.created, &.attendance {
         font-style: italic;
       }
 
@@ -329,6 +345,14 @@ section.invite-menu {
   }
 
   li:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+section.events-index > div > ul > li {
+  &:after {
     display: block;
     content: "";
     clear: both;

@@ -13,7 +13,7 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template({ evts: this.model.events }));
+    this.$el.html(this.template({ evts: this.model.events || [] }));
     this.$("div").html(this.contactAutofill.render().$el);
     return this;
   },
@@ -34,10 +34,9 @@ CrowdSurfing.Views.RequestNew = Backbone.View.extend({
         details: details,
         invitation: false }, {
           success: function() {
-            that.currentUser.sentRequests.add(req);
             $(".wax-paper").removeClass("shady");
             that.$el.removeClass("active");
-            //TODO: We don't need to be navigatin
+            // TODO maybe show a success somewhere?
           }
         })
     });

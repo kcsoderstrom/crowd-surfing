@@ -5,11 +5,11 @@
 
 <ul>
   <% if(collection.models.length === 0) { %>
-    None. <a href="#/search">Search for new events.</a>
+    <p class="none"><a href="#/search">Search for events in your area.</a></p>
   <% } %>
   <% collection.forEach(function(evt) { %>
     <li data-event-id="<%= evt.id %>">
-      <img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/Clown_chili_peppers.jpg">
+      <img src="<%= evt.get("photo_url") %>">
       <ul class="info">
         <li><h3><a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a></h3></li>
         <li class="time">At <%= evt.get("is_authored") ? "<div>" + evt.get("time") + "</div>" : evt.get("time") %>
@@ -30,7 +30,7 @@
           <li class="created">You created this event; double-click properties to edit.
           <button class="delete-event">Delete this event</button></li>
         <% } else { %>
-        <li class="attendance"><%= evt.get("is_attending") ? "Attending" : "Not attending" %> <button class="attendance">Edit</button></li>
+          <li class="attendance"><%= evt.get("is_attending") ? "Attending" : "Not attending" %> <button class="attendance">Edit</button></li>
         <% } %>
 
         <% if(evt.invitation_receivers && evt.invitation_receivers.length > 0) { %>
@@ -42,7 +42,6 @@
         <% } %>
 
         <% if(evt.get("sent_request")) { %>
-        <% console.log(evt.request_receivers) %>
           <li class="invitations">You sent invitation requests to <%= evt.request_receivers.map(getName).join(" and ") %>.</li>
         <% } %>
       </ul>

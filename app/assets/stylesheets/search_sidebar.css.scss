@@ -211,6 +211,9 @@ section.adv-menu {
 
 section.search {
   display: none;
+  position: relative;
+  width: 620px;
+  float: left;
 
   &.active {
     display: block

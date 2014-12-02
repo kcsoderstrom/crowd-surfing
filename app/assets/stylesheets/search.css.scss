@@ -2,21 +2,28 @@
 
 a.load-more {
   position: absolute;
-  left: 50%;
-  width: 200px;
+  left: 0;
+  bottom: 0;
+  width: 620px;
+  height: 60px;
   text-align: center;
-  padding: 5px 20px;
-  background: red;
-  border-radius: 5px;
-  bottom: 20px;
-  transform: translateX(-100px);
+  padding: 20px;
+  clear: both;
+  font-weight: bold;
+  box-sizing: border-box;
+  font-size: 18px;
+
+  &:hover {
+    background: red;
+    color: white;
+  }
 }
 
 ul.search-results {
   width: 620px;
   background: white;
   padding-bottom: 60px;
-  float: left;
+  border: 1px solid #dfdfdf;
 }
 
 section.search-body {
@@ -24,11 +31,17 @@ section.search-body {
   margin-top: 20px;
   margin-left: 50%;
   transform: translateX(-470px);
+  padding-top: 10px;
+
+  &:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
 }
 
 li.search-result {
-  border: 1px solid #dfdfdf;
-  border-bottom: none;
+  border-bottom: 1px solid #dfdfdf;
   padding: 20px;
   width: 100%;
   box-sizing: border-box;

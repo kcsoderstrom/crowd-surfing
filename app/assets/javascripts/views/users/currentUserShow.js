@@ -24,6 +24,7 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     }
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
+    console.log(this.eventsCollection);
   },
 
   render: function() {
@@ -80,7 +81,7 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     this.attendanceView = new CrowdSurfing.Views.AttendanceMenu({model: evt});
 
     this.attendanceView.xVal = event.pageX;
-    this.attendanceView.yVal = event.pageY - $("div.current-user-for-real").offset().top + 57;
+    this.attendanceView.yVal = event.pageY - $("section.events-index").offset().top + 57;
 
     this.$el.append(this.attendanceView.render().$el);
 
