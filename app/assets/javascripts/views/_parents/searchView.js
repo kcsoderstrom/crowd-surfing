@@ -7,6 +7,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
 
   events: {
     "click :radio" : "search",
+    "click :checkbox" : "search",
     "blur input" : "search",
     "submit form" : "search",
     "keydown input" : "search",
@@ -29,7 +30,6 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     this.matches = { users: this.userMatches, events: this.eventMatches };
     this.moreMatches = { users: this.moreUserMatches, events: this.moreEventMatches };
 
-    // this.$el.addClass("left-search-column");  //TODO change that in the css and all
     this.usersAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "users"});
     this.eventsAdvMenu = new CrowdSurfing.Views.AdvancedMenu({modelsName: "events"});
 
@@ -86,7 +86,7 @@ CrowdSurfing.Views.SearchView = Backbone.View.extend({
     }
 
     if(event.type === "keydown") {
-      if(event.keycode !== 13) {
+      if(event.keyCode !== 13) {
         return;
       }
       // only search when they press the return key

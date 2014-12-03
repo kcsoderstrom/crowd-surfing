@@ -157,7 +157,7 @@ section.adv-menu {
     margin-top: 4px;
   }
 
-  input[type="radio"] {
+  input[type="radio"], input[type="checkbox"] {
     display: none;
 
     &:checked + label {
