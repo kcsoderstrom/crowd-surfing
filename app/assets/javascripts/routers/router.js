@@ -10,7 +10,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     "messages/new" : "messageNew",
     "messages/:id" : "messageShow",
     "events/new" : "eventNew",
-    "events/:id" : "eventShow",
+    // "events/:id" : "eventShow",
     "sad_face" : "loginErrors"
   },
 
@@ -133,16 +133,16 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
     this._swapView(newView);
   },
 
-  eventShow: function(id) {
-    if(!window.currentUserId) {
-      Backbone.history.navigate("#", {trigger: true});
-      return;
-    }
-    var evt = new CrowdSurfing.Models.Event(); //TODO: MAKE THIS FASTER!!
-    evt.set({id: id});
-    var showView = new CrowdSurfing.Views.EventShow({model: evt});
-    this._swapView(showView);
-  },
+  // eventShow: function(id) {
+  //   if(!window.currentUserId) {
+  //     Backbone.history.navigate("#", {trigger: true});
+  //     return;
+  //   }
+  //   var evt = new CrowdSurfing.Models.Event(); //TODO: MAKE THIS FASTER!!
+  //   evt.set({id: id});
+  //   var showView = new CrowdSurfing.Views.EventShow({model: evt});
+  //   this._swapView(showView);
+  // },
 
   loginErrors: function() {
     var welcomeView = new CrowdSurfing.Views.Welcome({loginErrors: true});

@@ -7,7 +7,8 @@ CrowdSurfing.Views.EventNew = CrowdSurfing.Views.New.extend({
     "change .my-photo-upload": "handleFile",
     "click img.photo" : "selectEventPhoto",
     "dblclick .event-photo" : "showImages",
-    "click #upload-photo" : "inputFile"
+    "click #upload-photo" : "inputFile",
+    "click button:submit" : "createNewModel"
   },
 
   initialize: function(options) {
@@ -95,7 +96,7 @@ CrowdSurfing.Views.EventNew = CrowdSurfing.Views.New.extend({
             invitation: true })
           });
 
-        Backbone.history.navigate("/messages", {trigger: true});
+        Backbone.history.navigate("", {trigger: true});
       }
     });
   }

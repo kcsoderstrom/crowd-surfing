@@ -1,10 +1,13 @@
 <% collection.forEach(function(evt) { %>
   <li class="search-result">
-    <a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a>
-    <ul>
-      <li>Date: <%= evt.escape("date") %></li>
-      <li>Time: <%= evt.escape("time") %></li>
-      <li>Description: <%= evt.escape("description") %></li>
-    </ul>
+    <img src="<%= evt.get("photo_url") %>">
+    <section class="profile-info">
+      <a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a>
+      <ul>
+        <li>Date: <%= evt.escape("date") %></li>
+        <li>Time: <%= evt.escape("time") %></li>
+        <li>Description: <%= evt.escape("description") %></li>
+      </ul>
+    </section>
   </li>
 <% }); %>

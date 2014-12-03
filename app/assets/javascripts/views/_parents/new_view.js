@@ -1,6 +1,6 @@
 CrowdSurfing.Views.New = Backbone.View.extend({
   events: {
-    "click button.submit" : "createNewModel"
+    "click button" : "createNewModel"
   },
 
   render: function() {
