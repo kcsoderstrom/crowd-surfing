@@ -225,7 +225,7 @@ ul.messages {
   }
 }
 
-.new-message-modal {
+.new-message-modal, section.new-request-modal {
   width: 357px;
   padding: 0;
   padding: 20px;
@@ -255,12 +255,50 @@ ul.messages {
     margin: 5px 0;
   }
 
-  input {
+  input, select {
     border: 1px solid rgb(189, 195, 199);
     width: 300px;
     float: right;
     clear: right;
     margin: 5px 0;
+    padding: 5px;
+    box-sizing: content-box;
+  }
+
+  ul.selected-users {
+    float: right;
+    clear: right;
+    width: 312px;
+
+    li {
+      margin: 5px 0;
+      a {
+        height: 20px;
+        text-align: left;
+        padding: 7px 12px 3px 12px;
+        color: #737373;
+        border-radius: 50px;
+        background: #F8F8F8;
+        float: left;
+        clear: left;
+
+        &:after {
+          content: " ×";
+          color: #959595;
+          display: inline;
+        }
+      }
+    }
+  }
+
+  div {
+    float: right;
+    position: relative;
+  }
+
+  ul.found-users {
+    bottom: -20px;
+    left: 10px;
   }
 }
 

@@ -190,11 +190,11 @@ section.invite-menu {
   position: absolute;
   right: 20px;
   top: 50px;
-  border-radius: 5px;
+  // border-radius: 5px;
   background: white;
   border: 1px solid #B3B3B3;
   z-index: 15;
-  padding: 5px;
+  padding: 10px;
   width: 250px;
 
   &.lonely {
@@ -224,7 +224,7 @@ section.invite-menu {
     float: left;
   }
 
-  a, button {
+  a {
     height: 20px;
     text-align: left;
     padding: 7px 12px 3px 12px;
@@ -243,18 +243,13 @@ section.invite-menu {
     color: #959595;
   }
 
-  button.inv-menu-button {
-    margin: 5px 60px;
+  button {
+    margin: 5px 56px;
   }
 
   ul.selected-users li {
     float: left;
     margin: 4px;
-  }
-
-  button:hover, a:hover {
-    background: #F2F2F2;
-    color: black;
   }
 
   &.active {
@@ -303,7 +298,6 @@ section.invite-menu {
   }
 
   input[type="text"], input[type="time"], input[type="date"], textarea {
-    // clear: both;
     width: 405px;
     height: 31px;
     float: right;
@@ -313,7 +307,17 @@ section.invite-menu {
     display: inline;
     margin-bottom: 20px;
     margin-left: 20px;
-    // margin: -8px 20px 10px 0;
+  }
+
+  input[type="radio"] {
+    float: right;
+    width: 20px;
+    margin-right: 50px;
+    margin-left: 10px;
+  }
+
+  input[type="radio"] + label {
+    float: right;
   }
 
   button {
@@ -357,4 +361,18 @@ section.events-index > div > ul > li {
     content: "";
     clear: both;
   }
+}
+
+button.show-images {
+  width: 128px;
+  height: 36px;
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: rgb(41, 128, 185);
+  box-sizing: border-box;
+  margin-top: 20px;
+  font-weight: bold;
 }

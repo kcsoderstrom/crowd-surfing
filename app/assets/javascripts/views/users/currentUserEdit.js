@@ -1,6 +1,6 @@
 CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
   template: JST["users/currentUserEdit"],
-  className: "user-show",
+  className: "I-want-this-centered",
   tagName: "section",
 
   events: {
@@ -12,7 +12,6 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    this.$el.addClass("currentUser");
     this.showAlbum = false;
   },
 

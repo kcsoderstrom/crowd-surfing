@@ -1,5 +1,5 @@
 <form class="message-new">
-  <h2>Send a message to</h2>
+  <h2>Send a message to <%= receiver ? receiver.escape("name") : "someone" %></h2>
 
   <label for="msg-receiver">CC</label>
   <div class="recipients receiver"></div>
@@ -9,3 +9,6 @@
 
   <button type="submit" class="smallish-button">Send</button>
 </form>
+
+
+<% console.log(receiver) %>

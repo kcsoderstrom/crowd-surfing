@@ -9,6 +9,12 @@ CrowdSurfing.Views.MessageNew = CrowdSurfing.Views.New.extend({
                                 { receiver: localStorage.getItem("msgToName"),
                                   id: "msg-receiver",
                                   name: "receiver" });
+    if(options) {
+      this.receiver = options.receiver;
+      if(this.receiver) {
+        this.contactAutofill.userIds = [this.receiver.id];
+      }
+    }
   },
 
   createNewModel: function(event) {
@@ -24,7 +30,9 @@ CrowdSurfing.Views.MessageNew = CrowdSurfing.Views.New.extend({
         body: body }, {
           success: function() {
             $("div.wax-paper").removeClass("shady");
-            Backbone.history.navigate("", {trigger: true});
+            $(".modal").removeClass("active");
+            Backbone.history.navigate("/messages", {trigger: true});
+            location.reload(true);
           }
         })
     });

@@ -10,7 +10,7 @@
       <% collection.received_messages.forEach(function(model) { %>
           <li data-id="<%= model.id %>">
             <ul class="info">
-              <li><img class="round-thumb" src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
+              <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
               <li><%= model.escape("created_at") %> ago</li>
               <li><%= model.escape("subject") ? model.escape("subject") : "(no subject)" %></li>
             </ul>
@@ -26,7 +26,7 @@
       <% collection.sent_messages && collection.sent_messages.forEach(function(model) { %>
         <li data-id="<%= model.id %>">
           <ul class="info">
-            <li><img class="round-thumb" src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
+            <li><img src="<%= model.get("thumb_url") %>"><a href="#/users/<%= model.user().id%>"><%= model.user().escape("name") %></a></li>
             <li><%= model.escape("created_at") %> ago</li>
             <li><%= model.escape("subject") ? model.escape("subject") : "(no subject)" %></li>
           </ul>
@@ -44,7 +44,9 @@
   <% if(model) { %>
     <% console.log(model) %>
     <div class="msg-header">
-      <button class="smallish-button">Write a Reply</button>
+      <% if(active === "inbox") {%>
+        <button class="smallish-button">Write a Reply</button>
+      <% } %>
       <h2><a href="#/users/<%= model.user().id %>"><%= model.user().escape("name") %></a></h2>
       <h3><a href="#/search"><%= model.user().escape("location") %></a></h3>
     </div>

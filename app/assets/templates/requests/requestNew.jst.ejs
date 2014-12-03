@@ -1,16 +1,14 @@
 <form class="request-new">
-  Send to
-  <div class="recipients"></div>
+  <h2>Send a request to <%= receiver ? receiver.escape("name") : "someone" %></h2>
 
-  <label for="req-details">Details</label>
-  <input id="req-details" name="details">
-
-  <label for="req-evt">Event you would like to attend</label>
+  <label for="req-evt">Event</label>
   <select id="req-evt" name="event[id]">
     <% evts.forEach(function(evt) { %>
       <option value="<%= evt.id %>"><%= evt.escape("title") %></option>
     <% }); %>
   </select>
 
-  <button type="submit">Send</button>
+  <textarea id="req-details" name="details" placeholder="Details (optional)"></textarea>
+
+  <button type="submit" class="smallish-button">Send</button>
 </form>

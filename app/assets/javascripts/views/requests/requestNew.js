@@ -1,19 +1,22 @@
 CrowdSurfing.Views.RequestNew = Backbone.View.extend({
   template: JST["requests/requestNew"],
   tagName: "section",
-  className: "new-request-modal modal common-modal", //TODO change that in the css and all
+  className: "new-request-modal modal", //TODO change that in the css and all
 
   events: {
     "submit form" : "sendRequest"
   },
 
   initialize: function(options) {
-    this.contactAutofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model });
+    if(options) {
+      this.receiver = options.receiver;
+    }
+    this.contactAutofill = new CrowdSurfing.Views.ContactAutofill({ model: this.model, receiver: this.receiver });
     this.currentUser = options.currentUser;
   },
 
   render: function() {
-    this.$el.html(this.template({ evts: this.model.events || [] }));
+    this.$el.html(this.template({ evts: this.model.events || [], receiver: this.receiver }));
     this.$("div").html(this.contactAutofill.render().$el);
     return this;
   },

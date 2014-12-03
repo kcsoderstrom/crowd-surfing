@@ -9,11 +9,11 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
     "click h2#inbox-header" : "inboxDisplay",
     "click h2#sent-header" : "sentMessagesDisplay",
     "click ul.messages > li" : "selectMessage",
-    "click .msg-header button" : "newMessage"
+    "click .msg-header button" : "newReply"
   },
 
   initialize: function() {
-    this.listenTo(this.collection, "sync", this.render); // THIS IS BAD BC IF THEY LOAD LATE YOU WILL BE CLICKING AND THEN BOOM
+    this.listenTo(this.collection, "sync", this.render);
     this.activeFolder = "inbox";
   },
 
@@ -44,10 +44,21 @@ CrowdSurfing.Views.MessagesIndex = Backbone.View.extend({
     this.listenTo(this.activeMessage, "sync", this.render);
   },
 
+  newReply: function(event) {
+    event.preventDefault();
+    if(!this.messageModal) {
+      this.messageModal = new CrowdSurfing.Views.MessageNew({model: new CrowdSurfing.Models.Message(), receiver: this.activeMessage.user() });
+      this.$("div.new-message-modal").html(this.messageModal.render().$el);
+    }
+
+    $(".wax-paper").addClass("shady");
+    this.$("section.modal").addClass("active");
+  },
+
   newMessage: function(event) {
     event.preventDefault();
     if(!this.messageModal) {
-      this.messageModal = new CrowdSurfing.Views.MessageNew({model: new CrowdSurfing.Models.Message()});
+      this.messageModal = new CrowdSurfing.Views.MessageNew({model: new CrowdSurfing.Models.Message() });
       this.$("div.new-message-modal").html(this.messageModal.render().$el);
     }
 

@@ -44,7 +44,7 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   sendRequest: function(event) {
     event.preventDefault();
     if(!this.requestModal) {
-      this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model, currentUser: this.currentUser});
+      this.requestModal = new CrowdSurfing.Views.RequestNew({model: this.model, currentUser: this.currentUser, receiver: this.model });
       this.$("div.new-request-modal").html(this.requestModal.render().$el);
     }
 

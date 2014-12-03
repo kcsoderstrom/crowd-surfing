@@ -1,6 +1,6 @@
 <ul class="selected-users">
   <% if(model && model.get("name")) { %>
-    <li data-user-id="<%= model.id %>" class="autofill"><a href="javascript:void(0)"><%= model.escape("name") %></a></li>
+    <li data-user-id="<%= model.id %>" class="autofill"></li>
   <% } %>
 </ul>
 <input name="<%= name %>" type="text" placeholder="Name">

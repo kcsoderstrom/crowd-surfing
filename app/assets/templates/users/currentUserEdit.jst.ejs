@@ -1,52 +1,27 @@
-<form class="edit-profile">
-  <section class="profile-subheader">
+<section class="typical">
+  <form class="edit-profile">
+    <h1>Edit Profile</h1>
+    <ul>
 
-    <input id="user-name" name="user[profile][name]" value="<%= model.profile().escape("name") %>" placeholder="Name" type="text">
-    <input id="user-location" name="user[profile][location]" value="<%= model.profile().escape("location") %>" placeholder="Location" type="text">
+      <li>
+        <h2>Name</h2>
+        <input type="text" id="user-name" name="user[profile][name]" value="<%= model.escape("name") %>" placeholder="Name">
+      </li>
 
-    <section class="established">
-      <h2>Are you new in town?</h2>
-        <input type="radio"
-               name="user[profile][established]"
-               value="false"
-               id="established-no"
-               <%= model.get("established") ? "" : "checked" %>>
-        <label for="established-no">Yes</label>
-        <input type="radio"
-               name="user[profile][established]"
-               value="true"
-               id="established-yes"
-              <%= model.get("established") ? "checked" : "" %>>
-        <label for="gender-male">No</label>
-    </section>
+      <li>
+        <h2>Location</h2>
+        <input id="user-location" name="user[profile][location]" value="<%= model.profile().escape("location") %>" placeholder="Location" type="text">
+      </li>
 
-    <button class="update request-button" type="submit">Update Profile</button>
+      <li>
+        <h2>Gender</h2>
 
-  </section>
-
-  <section class="left-side">
-
-    <button class="show-images">Change image</button>
-    <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
-    <%= JST["users/album-modal"]({collection: model.photos}) %>
-
-  </section>
-
-  <section class="right-side">
-
-    <label for="user-profile">About</label>
-    <textarea name="user[profile][about]"
-              id="user-profile"
-              class="profile"><%= model.profile().escape("about") %></textarea>
-
-    <section class="gender">
-      <h2>Gender</h2>
         <input type="radio"
                name="user[profile][gender]"
-               value="female"
-               id="gender-female"
-               <%= model.profile().escape("gender") === "female" ? "checked" : "" %>>
-        <label for="gender-female">Female</label>
+               value="other"
+               id="gender-other"
+              <%= model.profile().escape("gender") === "other" ? "checked" : "" %>>
+        <label for="gender-other">Other</label>
         <input type="radio"
                name="user[profile][gender]"
                value="male"
@@ -55,17 +30,65 @@
         <label for="gender-male">Male</label>
         <input type="radio"
                name="user[profile][gender]"
-               value="other"
-               id="gender-other"
-              <%= model.profile().escape("gender") === "other" ? "checked" : "" %>>
-        <label for="gender-other">Other</label>
-      </section>
+               value="female"
+               id="gender-female"
+               <%= model.profile().escape("gender") === "female" ? "checked" : "" %>>
+        <label for="gender-female">Female</label>
 
-      <input id="user-age" name="user[profile][age]" value="<%= model.profile().escape("age") %>" type="text" placeholder="Age">
 
+      </li>
+
+      <li>
+        <h2>Are you new in town?</h2>
+        <input type="radio"
+               name="user[profile][established]"
+               value="true"
+               id="established-yes"
+              <%= model.get("established") ? "checked" : "" %>>
+        <label for="established-yes">No</label>
+
+        <input type="radio"
+               name="user[profile][established]"
+               value="false"
+               id="established-no"
+               <%= model.get("established") ? "" : "checked" %>>
+        <label for="established-no">Yes</label>
+
+      </li>
+
+      <li>
+        <h2>Age</h2>
+        <input id="user-age" name="user[profile][age]" value="<%= model.profile().escape("age") %>" type="text" placeholder="Age">
+      </li>
+
+      <li>
+        <h2>About</h2>
+            <textarea name="user[profile][about]"
+              id="user-profile"
+              class="profile"><%= model.profile().escape("about") %></textarea>
+      </li>
+    </ul>
+
+    <li>
+      <img class="full-photo" src="<%= model.escape("big_photo_url") %>">
       <input type="hidden" id="profile-photo" name="user[profile][primary_photo_id]" value="<%= model.get("primary_photo_id") %>">
+    </li>
 
-  </section>
+    <button type="submit">Update</button>
+  </form>
+</section>
 
-  <div class="new-request-modal"></div>
-</form>
+<section class="right-side">
+      <section class="profile-main">
+
+      <figure class="profile-photo">
+        <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
+        <h2><button class="show-images">Change image</button></h2>
+      </figure>
+
+
+    </section>
+</section>
+
+
+<%= JST["users/album-modal"]({collection: model.photos}) %>
