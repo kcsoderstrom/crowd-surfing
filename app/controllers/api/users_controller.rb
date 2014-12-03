@@ -48,7 +48,7 @@ module Api
       if params[:delete_contact]
         contact = @user.contacts.where(friend_id: params[:contact_user_id]).first
         if contact && Contact.destroy(contact.id)
-          render json: @user
+          render json: :current_user_show
         else
           render json: contact.errors.full_messages, status: :unprocessable_entity
         end
@@ -68,10 +68,7 @@ module Api
       if profile_updated && photo_ok
         if photo_created
           @user.profile.update(primary_photo: @user.profile.photos.last)
-          puts "CAME IN HERE OK"
         end
-        puts "HEY OK LOOOK HERE IS WHETHER IT WAS MADE OR NOT"
-        p photo_created
         render :current_user_show
       else
         render json: @user.errors.full_messages,

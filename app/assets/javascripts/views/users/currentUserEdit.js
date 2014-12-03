@@ -7,7 +7,8 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
     "click button.update" : "updateProfile",
     "change .my-photo-upload": "handleFile",
     "click img.photo" : "selectProfilePhoto",
-    "click button.show-images" : "showImages"
+    "click button.show-images" : "showImages",
+    "click #upload-photo" : "inputFile"
   },
 
   initialize: function() {
@@ -34,7 +35,7 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
       },
 
       error: function() {
-        console.log("didn't work ok");
+        console.log("The update did not complete.");
       }
     })
   },
@@ -74,6 +75,10 @@ CrowdSurfing.Views.CurrentUserEdit = Backbone.View.extend({
 
     $(".modal").addClass("active");
     $(".wax-paper").addClass("shady");
+  },
+
+  inputFile: function(event) {
+    document.getElementById("photo-input").click();
   },
 
   leave: function() {

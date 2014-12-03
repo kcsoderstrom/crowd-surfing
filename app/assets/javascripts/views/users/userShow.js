@@ -37,8 +37,18 @@ CrowdSurfing.Views.UserShow = Backbone.View.extend({
   },
 
   sendMessage: function(event) {
-    localStorage.setItem("msgToName", this.model.get("name"));
-    localStorage.setItem("msgToId", this.model.get("id"));
+
+    event.preventDefault();
+    if(!this.messageModal) {
+      this.messageModal = new CrowdSurfing.Views.MessageNew({model: this.model, currentUser: this.currentUser, receiver: this.model });
+      this.$("div.new-message-modal").html(this.messageModal.render().$el);
+    }
+
+    $(".wax-paper").addClass("shady");
+    this.$(".modal").addClass("active");
+
+    // localStorage.setItem("msgToName", this.model.get("name"));
+    // localStorage.setItem("msgToId", this.model.get("id"));
   },
 
   sendRequest: function(event) {

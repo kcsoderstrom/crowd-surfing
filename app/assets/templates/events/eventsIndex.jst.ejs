@@ -9,7 +9,7 @@
   <% } %>
   <% collection.forEach(function(evt) { %>
     <li data-event-id="<%= evt.id %>">
-      <img src="<%= evt.get("photo_url") %>">
+      <img class="event-photo" src="<%= evt.get("photo_url") %>">
       <ul class="info">
         <li><h3><a href="#/events/<%= evt.id %>"><%= evt.escape("title") %></a></h3></li>
         <li class="time">At <%= evt.get("is_authored") ? "<div>" + evt.get("time") + "</div>" : evt.get("time") %>
@@ -48,6 +48,7 @@
       <% if(evt.get("is_attending")) { %>
         <a class="invite transient-friend request-button" href="#">Invite contacts</a>
       <% } %>
+
     </li>
   <% })  %>
 </ul>

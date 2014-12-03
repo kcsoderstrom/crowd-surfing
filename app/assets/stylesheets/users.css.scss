@@ -189,9 +189,17 @@ li.attendance {
 }
 
 .images-modal {
+  background: white;
+  width: 320px;
+  padding: 20px;
+
   h2 {
-    text-align: center;
-    font-size: 16px;
+    color: rgb(68, 68, 68);
+    background: rgb(236, 240, 241);
+    margin: -20px;
+    padding: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 
   li {
@@ -203,6 +211,28 @@ li.attendance {
     display: block;
     clear: both;
     content: "";
+  }
+
+  li#upload-photo {
+    display: block;
+    height: 30px;
+    width: 50px;
+    background: rgb(213, 218, 221);
+    color: rgb(127, 140, 141);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 15px 5px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(189, 196, 196);
+      color: white;
+    }
+  }
+
+  input {
+    display: none;
   }
 }
 

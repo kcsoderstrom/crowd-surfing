@@ -1,51 +1,54 @@
-  <section class="right-side">
-    <section class="profile-main">
+<section class="right-side">
+  <section class="profile-main">
 
-      <figure class="profile-photo">
-        <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
-        <h2><%= model.profile().escape("name") %></h2>
-        <h3>
-          <% if(model.profile().escape("location")) { %>
-            <%= model.profile().get("established") ? "Established in" : "New to" %>
-            <a href="#/search/location=<%= model.profile().escape("location") %>">
-              <%= model.profile().escape("location") %>
-            </a>
-          <% } else { %>
-            No location given.
-          <% } %>
-        </h3>
-      </figure>
-
-      <div class="profile-body">
-        <a href="#/edit">Edit Profile</a>
-      </div>
-
-    </section>
-
-    <section class="contacts-list">
-      <h2>Your contacts</h2>
-
-      <div class="contacts-body">
-        <% if (model.contacts) { %>
-          <ul class="contacts">
-            <% model.contacts.each(function(contact){ %>
-              <li>
-                  <img class="round-thumb" src="<%= contact.get("thumb_url") %>">
-                  <a href="#/users/<%= contact.id %>"><%= contact.escape("name") %></a>
-                  <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
-              </li>
-            <% }); %>
-          </ul>
+    <figure class="profile-photo">
+      <img src="<%= model.get("profile_photo_url") %>" class="profile-photo">
+      <h2><%= model.profile().escape("name") %></h2>
+      <h3>
+        <% if(model.profile().escape("location")) { %>
+          <%= model.profile().get("established") ? "Established in" : "New to" %>
+          <a href="#/search/location=<%= model.profile().escape("location") %>">
+            <%= model.profile().escape("location") %>
+          </a>
         <% } else { %>
-          <p>You have no contacts</p>
-          <p><a href="#/search">Search for some</a> or click your location above to find users near you.</p>
+          No location given.
         <% } %>
-      </div>
-    </section>
+      </h3>
+    </figure>
+
+    <div class="profile-body">
+      <a href="#/edit">Edit Profile</a>
+    </div>
 
   </section>
 
-  <section class="left-side">
-    <section class="events-index">
-    </section>
+  <section class="contacts-list">
+    <h2>Your contacts</h2>
+
+    <div class="contacts-body">
+      <% if (model.contacts) { %>
+        <ul class="contacts">
+          <% model.contacts.each(function(contact){ %>
+            <li>
+                <img class="round-thumb" src="<%= contact.get("thumb_url") %>">
+                <a href="#/users/<%= contact.id %>"><%= contact.escape("name") %></a>
+                <button class="delete-contact" data-id="<%= contact.id %>">Delete contact</button>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>You have no contacts</p>
+        <p><a href="#/search">Search for some</a> or click your location above to find users near you.</p>
+      <% } %>
+    </div>
   </section>
+
+</section>
+
+<section class="left-side">
+  <section class="events-index">
+  </section>
+</section>
+
+
+<%= JST["users/album-modal"]({collection: model.photos}) %>

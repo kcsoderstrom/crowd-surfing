@@ -1,17 +1,17 @@
-<section class="images-modal modal common-modal">
-  <% if (collection) { %>
-    <h2>Select from your album</h2>
-    <ul class="album">
+<section class="images-modal modal">
+  <h2>Photos</h2>
+  <ul class="album">
+    <% if (collection) { %>
       <% collection.forEach( function(photo) { %>
         <li>
           <img class="photo <%= model._profile && photo.id === model._profile.get("primary_photo_id") ? "selected" : "" %>" data-id="<%= photo.id %>" src="<%= photo.escape("url") %>">
         </li>
       <% }) %>
-    </ul>
-  <% } %>
+    <% } %>
+    <li id="upload-photo">Add Photo</li>
+  </ul>
 
-  <h2>or upload a new photo</h2>
-  <input id="photo" type="file" class="my-photo-upload">
+  <input id="photo-input" type="file" class="my-photo-upload">
 
 
 </section>

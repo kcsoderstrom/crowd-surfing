@@ -11,7 +11,12 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     "dblclick li.time" : "editProperty",
     "dblclick li.date" : "editProperty",
     "blur input.time" : "updateProperty",
-    "blur input.date" : "updateProperty"
+    "blur input.date" : "updateProperty",
+
+    "change .my-photo-upload": "handleFile",
+    "click img.photo" : "selectEventPhoto",
+    "dblclick .event-photo" : "showImages",
+    "click #upload-photo" : "inputFile"
   },
 
   initialize: function() {
@@ -24,7 +29,6 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     }
     this.eventsCollection = new CrowdSurfing.Collections.Events();
     this.eventsView = new CrowdSurfing.Views.EventsIndex({collection: this.eventsCollection});
-    console.log(this.eventsCollection);
   },
 
   render: function() {
@@ -127,6 +131,44 @@ CrowdSurfing.Views.CurrentUserShow = Backbone.View.extend({
     } else if(property === "date") {
       evt.save({date: newVal}, {});
     }
+  },
+
+  handleFile: function (event) {
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var evt = new CrowdSurfing.Models.Event();
+    evt.set('id', this.selectedEventId);
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      evt.set('pic', this.result);
+      evt.save({}, {success: function() {that.eventsCollection.fetch()}});
+    }
+    reader.readAsDataURL(file);
+  },
+
+  selectEventPhoto: function(event) {
+    var that = this;
+    $selectedPhoto = $(event.currentTarget);
+    $("img.selected").removeClass("selected");
+    $selectedPhoto.addClass("selected");
+
+    var evt = new CrowdSurfing.Models.Event();
+    evt.set('id', this.selectedEventId);
+    evt.set('photo_id', $selectedPhoto.data("id"))
+
+    evt.save({}, {success: function() {that.eventsCollection.fetch()}});
+  },
+
+  showImages: function(event) {
+    this.selectedEventId = $(event.currentTarget).closest("li").data("event-id");
+
+    $(".modal").addClass("active");
+    $(".wax-paper").addClass("shady");
+  },
+
+  inputFile: function(event) {
+    document.getElementById("photo-input").click();
   },
 
   leave: function() {

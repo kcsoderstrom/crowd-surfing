@@ -140,54 +140,6 @@ module Api
         )
       end
 
-
-      # @events = Event.includes(requests: [{sender: :profile}, {receiver: :profile}, :invitation]).find_by_sql(<<-SQL
-      #   SELECT DISTINCT events.*
-      #   FROM events
-      #   LEFT OUTER JOIN
-      #   ( SELECT requests.*
-      #     FROM requests
-      #     WHERE (
-      #         sender_id = #{current_user_id}
-      #       AND
-      #         invitation = FALSE
-      #       AND
-      #         status != 'rejected'
-      #     )
-      #   ) AS sent_requests
-      #   LEFT OUTER JOIN
-      #   ( SELECT requests.*
-      #     FROM requests
-      #     WHERE (
-      #         receiver_id = #{current_user_id}
-      #       AND
-      #         invitation = TRUE
-      #       AND
-      #         status != 'rejected'
-      #     )
-      #   )
-
-      #   requests AS sent_requests
-      #   ON sent_requests.event_id = events.id
-      #   LEFT OUTER JOIN requests AS received_invitations
-      #   ON received_invitations.event_id = events.id
-      #   WHERE ((
-      #
-      #   ) OR (
-      #       received_invitations.receiver_id = #{current_user_id}
-      #     AND
-      #       received_invitations.invitation = TRUE
-      #     AND
-      #       received_invitations.status != 'rejected'
-      #   ) OR (
-      #     events.user_id = #{current_user_id}
-      #   ))
-      #   ORDER BY
-      #     events.date
-      # SQL
-      # )
-      # render :index
-
       # and all of the people they've invited
       # and I want all the ones they've requested invitations to
       # that haven't been declined
@@ -202,6 +154,24 @@ module Api
         else
           current_user.received_requests.where(invitation: true).update_all(status: "rejected")
         end
+      end
+
+      if @event.user == current_user
+        if new_photo_params && new_photo_params[:pic].present?
+          new_photo = current_user.profile.photos.new(new_photo_params)
+          photo_created = new_photo.save
+          photo_ok = photo_created && @event.update_attribute(:photo_id, new_photo.id)
+        else
+          photo_ok = @event.update_attribute(:photo_id, params[:photo_id])
+        end
+
+        if photo_ok
+          render :show
+        else
+          render json: new_photo.errors.full_messages, status: :unprocessable_entity
+        end
+
+        return
       end
 
       if @event.user == current_user && @event.update!(event_params)
@@ -223,7 +193,6 @@ module Api
 
     def show
       @event = Event.includes(:user, requests: [{sender: :profile}, {receiver: :profile}]).find(params[:id])
-      #render json: @event
       render :show
     end
 
@@ -234,6 +203,10 @@ module Api
 
     def filter_params
       params.require(:filter_by).permit(:event_location, :date_lower, :date_upper, :event_keyword, :event_match)
+    end
+
+    def new_photo_params
+      params.permit(:pic, :photo_id)
     end
 
   end

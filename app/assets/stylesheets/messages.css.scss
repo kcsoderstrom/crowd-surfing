@@ -152,6 +152,9 @@ ul.messages {
       display: block;
 
       &:first-child a {
+        max-width: 100px;
+        overflow: hidden;
+        height: 16px;
         display: inline-block;
         color: rgb(47, 47, 47);
         font-weight: bold;
@@ -225,7 +228,7 @@ ul.messages {
   }
 }
 
-.new-message-modal, section.new-request-modal {
+section.new-message-modal, section.new-request-modal {
   width: 357px;
   padding: 0;
   padding: 20px;
