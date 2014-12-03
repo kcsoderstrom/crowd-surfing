@@ -5,7 +5,7 @@
 
       <li>
         <h2>Name</h2>
-        <input type="text" id="user-name" name="user[profile][name]" value="<%= model.escape("name") %>" placeholder="Name">
+        <input type="text" id="user-name" name="user[profile][name]" value="<%= model.profile().escape("name") %>" placeholder="Name">
       </li>
 
       <li>

@@ -35,8 +35,17 @@
 </section>
 
 <section class="right-side">
+  <section class="profile-main">
+    <figure class="profile-photo">
+      <img src="<%= model.get("photo_url") ? model.get("photo_url") : '/images/big_missing.png' %>" class="profile-photo">
+      <h2><button class="show-images">Change image</button></h2>
+    </figure>
+  </section>
+
   <section class="invite-menu active lonely">
     <h2>Send invitations</h2>
     <div class="receiver"></div>
   </section>
 </section>
+
+<%= JST["users/album-modal"]({collection: photos}) %>

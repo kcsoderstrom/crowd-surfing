@@ -129,7 +129,7 @@ CrowdSurfing.Routers.Router = Backbone.Router.extend({
       return;
     }
     var evt = new CrowdSurfing.Models.Event();
-    var newView = new CrowdSurfing.Views.EventNew({model: evt});
+    var newView = new CrowdSurfing.Views.EventNew({model: evt, currentUser: this.currentUser});
     this._swapView(newView);
   },
 
