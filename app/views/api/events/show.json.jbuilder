@@ -28,7 +28,7 @@ json.author_id @event.user.id
 
 json.attendees @event.requests.select{ |req| req.status == "accepted" }.map{ |req| req.invitation ? req.receiver : req.sender }.push(@event.user).map{|user| { photo_url: user.profile.primary_photo ? user.profile.primary_photo.pic.url(:small) : image_path("small_missing.png"), name: user.profile.name, id: user.id }}
 
-if event.photo_id
+if @event.photo_id
   json.photo_url event.photo.pic.url(:small)
 else
   json.photo_url image_path("small_missing.png")
